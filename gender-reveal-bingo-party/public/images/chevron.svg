@@ -2,6 +2,14 @@
 <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1703.96 648">
   <defs>
     <style>
+      :root {
+        --purple: #d2b3ff;
+
+        /*
+        --purple: #d8a3ff;
+        */
+      }
+
       .cls-1 {
         fill: #fff;
       }
@@ -11,7 +19,7 @@
       }
 
       .cls-3 {
-        fill: #d8a3ff;
+        fill: var(--purple);
       }
 
       .cls-4 {

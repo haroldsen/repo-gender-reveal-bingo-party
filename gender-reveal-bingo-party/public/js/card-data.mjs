@@ -94,7 +94,7 @@ class Card {
                 .free-text,
                 .id-text {
                     text-anchor: middle;
-                    font-family: Lexend-Regular, Lexend;
+                    font-family: Lexend-Regular, Lexend, Arial;
                     font-variation-settings: 'wght' 400;
                     user-select: none;
                 }

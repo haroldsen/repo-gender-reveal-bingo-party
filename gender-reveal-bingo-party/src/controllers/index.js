@@ -2,7 +2,7 @@
 // Route handlers for static pages
 
 const homePage = (req, res) => {
-    res.render('index', { title: 'Home | Gender Reveal Bingo Party' });
+    res.render('index', { title: 'Gender Reveal Bingo Party | Home' });
 };
 
 const aboutPage = (req, res) => {
@@ -22,7 +22,12 @@ const introVideoPage = (req, res) => {
 };
 
 const playableBingoCardPage = (req, res) => {
-    res.render('bingo-card', { title: 'Playable Card | Gender Reveal Bingo Party' });
+    res.render('bingo-card',
+        {
+            title: 'Playable Card | Gender Reveal Bingo Party',
+            baseURL: process.env.BASE_URL
+        }
+    );
 };
 
 const testErrorPage = (req, res, next) => {

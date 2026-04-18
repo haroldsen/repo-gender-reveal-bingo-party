@@ -6,16 +6,17 @@
 @import './pages/bingo-card.css';
 
 :root {
-    --purple-light: #e0abff;
-    --purple: #C768FF;
+    --purple: #c768ff;
     --purple-hover: #a362c9;
-    --dark-purple: #64377E;
-    --darkest-purple: #3d224d;
     --logo-purple: #2b133d;
-    --purple-4: #23142c;
-    --purple-see-through: #c868ffc7;
     --gray: #e7d7f0;
     --gray-2: #d8c8e0;
+
+    --purple-light: #e0abff;
+    --dark-purple: #5e377e;
+    --darkest-purple: #3d224d;
+    --purple-4: #23142c;
+    --purple-see-through: #c868ffc7;
     --header-height: 105px;
     --default-spacing: 20px;
     --footer-height: 30px;
@@ -32,6 +33,11 @@
     --girl-medium: #ffcce4;
     --girl-dark: #4d0024;
 
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend/Lexend-VariableFont_wght.ttf') format('truetype');
 }
 
 @media screen 

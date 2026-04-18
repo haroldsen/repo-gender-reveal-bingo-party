@@ -1,22 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1152 648">
+<svg id="Layer_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 648">
   <defs>
     <style>
-      .cls-1 {
-        fill: url(#radial-gradient);
+      :root {
+        --purple: #d2b3ff;
+        --purple-hover: #c19df2;
+        --logo-purple: #362053;
+        --gray: #e5e8ff;
+        --gray-2: #dbdeff;
+
+        --purple-light: #e0abff;
+        /* --purple: #C768FF;
+        --purple-hover: #a362c9; */
+        --dark-purple: #64377E;
+        --darkest-purple: #3d224d;
+        /* --logo-purple: #2b133d; */
+        --purple-4: #23142c;
+        --purple-see-through: #c868ffc7;
+        /* --gray: #e7d7f0;
+        --gray-2: #d8c8e0; */
+        --header-height: 105px;
+        --default-spacing: 20px;
+        --footer-height: 30px;
+        --standard-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+        --red-2: #ff6966;
+        --red-3: #e25451;
+        --red-4: #631110;
+
+        --boy-light: #cce7ff;
+        --boy-medium: #b8deff;
+        --boy-dark: #00294d;
+
+        --girl-light: #ffe0ef;
+        --girl-medium: #ffcce4;
+        --girl-dark: #4d0024;
+      }
+      .stop-1 {
+        stop-color: var(--purple);
+        stop-opacity: 0.6;
+      }
+      .stop-2 {
+        stop-color: #693193;
+        stop-opacity: 0.95;
+      }
+      .background-rect {
+        fill: url(#simple-radial-gradient);
       }
     </style>
-    <radialGradient id="radial-gradient" cx="576" cy="324" fx="576" fy="-651.68" r="975.68" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
-      <stop offset=".04" stop-color="#f3eef6" stop-opacity=".08"/>
-      <stop offset=".25" stop-color="#c0a9d2" stop-opacity=".41"/>
-      <stop offset=".44" stop-color="#9973b6" stop-opacity=".66"/>
-      <stop offset=".62" stop-color="#7d4ca1" stop-opacity=".85"/>
-      <stop offset=".77" stop-color="#6c3595" stop-opacity=".96"/>
-      <stop offset=".89" stop-color="#662d91"/>
+    
+    <radialGradient id="simple-radial-gradient" cx="792" cy="-100" r="800" gradientUnits="userSpaceOnUse">
+      <stop class="stop-1" offset="0%" />
+      <stop class="stop-2" offset="100%" />
     </radialGradient>
   </defs>
-  <g id="Layer_1-2" data-name="Layer_1">
-    <rect class="cls-1" width="1152" height="648"/>
-  </g>
+  <rect class="background-rect" width="1584" height="648"/>
 </svg>

@@ -14,7 +14,7 @@
 
 @font-face {
     font-family: 'Borel';
-    src: url('../Borel/Borel-Regular.ttf') format('truetype');
+    src: url('../fonts/Borel/Borel-Regular.ttf') format('truetype');
 }
 
 * {
