@@ -25,9 +25,9 @@ header {
 }
 
 .logo-link {
+    margin-top: 15px;
     display: flex;
-    margin-top: 10px;
-    height: 65px;
+    height: 60px;
     align-items: center;
     justify-content: center;
 }
@@ -91,13 +91,32 @@ footer {
     display: none;
     flex-direction: column;
     align-items: center;
-
-    :hover {
-        cursor: pointer;
-    }
+    height: fit-content;
 
     summary {
         height: 30px;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .open-menu {
+        display: flex;
+    }
+    .close-menu {
+        display: none;
+    }
+
+    &[open] {
+        .open-menu {
+            display: none;
+        }
+        .close-menu {
+            display: flex;
+        }
     }
 
     .link-stack {
@@ -112,8 +131,9 @@ footer {
             color: white;
             text-decoration: none;
             text-align: center;
+            /* transition: ease 200ms; */
 
-            :hover {
+            &:hover {
                 background-color: var(--purple-4);
             }
         }

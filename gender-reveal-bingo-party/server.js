@@ -1,6 +1,11 @@
 
-// FOR VPS
-// import 'dotenv/config';
+// This import statement is needed in production
+// but will crash the server when run locally.
+try {
+    await import('dotenv/config');
+} catch (e) {
+    console.log('"dotenv" not found or not needed; skipping.');
+}
 
 import express from 'express';
 import path from 'path';
@@ -33,7 +38,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 // FOR VPS
-// app.set('trust proxy', 1);
+app.set('trust proxy', 1);
 
 // Initialize PostgreSQL session store
 const pgSession = connectPgSimple(session);

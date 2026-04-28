@@ -1,22 +1,22 @@
 
 @import './partials/header-footer.css';
+@import './partials/flash-messages.css';
 @import './pages/index.css';
 @import './pages/dashboard.css';
 @import './pages/my-games.css';
 @import './pages/bingo-card.css';
 
 :root {
-    --purple: #c768ff;
-    --purple-hover: #a362c9;
-    --logo-purple: #2b133d;
-    --gray: #e7d7f0;
-    --gray-2: #d8c8e0;
-
     --purple-light: #e0abff;
-    --dark-purple: #5e377e;
+    --purple: #C768FF;
+    --purple-hover: #a362c9;
+    --dark-purple: #64377E;
     --darkest-purple: #3d224d;
+    --logo-purple: #2b133d;
     --purple-4: #23142c;
     --purple-see-through: #c868ffc7;
+    --gray: #e7d7f0;
+    --gray-2: #d8c8e0;
     --header-height: 105px;
     --default-spacing: 20px;
     --footer-height: 30px;
@@ -35,11 +35,6 @@
 
 }
 
-@font-face {
-    font-family: 'Lexend';
-    src: url('../fonts/Lexend/Lexend-VariableFont_wght.ttf') format('truetype');
-}
-
 @media screen 
     and (pointer: coarse) {
     /* This code is almost certainly running on a smartphone */
@@ -50,6 +45,11 @@
         --gray: #e5e8ff;
         --gray-2: #dbdeff;
     }
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('../fonts/Lexend/Lexend-VariableFont_wght.ttf') format('truetype');
 }
 
 * {
@@ -83,6 +83,11 @@ html, body {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    min-height: 100vh;
+
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     overflow-x: hidden;
     background-color: var(--gray);
@@ -159,7 +164,7 @@ a {
 
 .page {
     background-color: white;
-    width: 95vw;
+    width: 100vw;
     max-width: 600px;
     border-radius: 15px;
     padding: 25px;

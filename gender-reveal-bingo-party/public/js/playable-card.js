@@ -12,8 +12,6 @@ const bingoCards = getCards();
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const cardId = urlParams.get('card');
-console.log(`cardId: ${cardId}`);
-// const hasCard = urlParams.has('card');
 
 function isValidBingoCard(id) {
     return bingoCards.some(card => card.id === id);
@@ -30,7 +28,6 @@ function showBingoCardForId(id) {
     if (isValidBingoCard(id)) {
         const card = bingoCards.find(card => card.id === id);
         document.getElementsByClassName('bingo-card-main')[0].innerHTML = card.getSVG();
-        // document.getElementsByClassName('bingo-card-main')[0].insertAdjacentHTML('beforeend', `<a href="${baseURL}/bingo-card" class="button">Get New Card</a>`);
     }
 }
 
@@ -44,7 +41,8 @@ submitIdButton.addEventListener('click', () => {
     const isValidId = isValidBingoCard(idInput.value);
 
     if (isValidId) {
-        window.location.href = `${baseURL}/bingo-card?card=${idInput.value}`;
+        const nextURL = `${window.location.origin}${window.location.pathname}?card=${idInput.value}`;
+        window.location.href = nextURL;
     } else {
         idWarning.innerHTML = 'This ID is invalid.';
     }

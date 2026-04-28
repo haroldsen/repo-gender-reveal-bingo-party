@@ -22,12 +22,7 @@ const introVideoPage = (req, res) => {
 };
 
 const playableBingoCardPage = (req, res) => {
-    res.render('bingo-card',
-        {
-            title: 'Playable Card | Gender Reveal Bingo Party',
-            baseURL: process.env.BASE_URL
-        }
-    );
+    res.render('bingo-card', { title: 'Playable Card | Gender Reveal Bingo Party' });
 };
 
 const testErrorPage = (req, res, next) => {
