@@ -1,0 +1,30 @@
+name: Remote Update VPS
+
+# Trigger the workflow on push to the main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH into VPS and Update
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            # Navigate to your project folder
+            # cd /path/to/your/app
+            
+            # Pull the latest changes
+            # git pull origin main
+            
+            # Install dependencies (if needed)
+            # npm install
+            
+            # Restart the service (example using PM2)
+            # pm2 restart all
