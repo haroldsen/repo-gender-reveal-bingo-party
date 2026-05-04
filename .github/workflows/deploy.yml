@@ -16,7 +16,15 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            # 1. Manually load the environment (NVM is the most common Node manager)
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            
+            # 2. Add common paths just in case
+            export PATH=$PATH:/usr/local/bin:/usr/bin:/root/.local/share/pnpm
+            
+            # 3. Navigate and Execute
             cd /var/www/repo-gender-reveal-bingo-party/project-files
             git pull origin main
-            /root/.nvm/versions/node/v25.8.1/bin/pnpm install
-            /root/.nvm/versions/node/v25.8.1/bin/pm2 restart gender-bingo --update-env
+            pnpm install
+            pm2 restart gender-bingo --update-env
