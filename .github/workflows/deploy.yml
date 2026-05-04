@@ -1,30 +1,22 @@
-name: Remote Update VPS
+name: Remote Update (VPS)
 
-# Trigger the workflow on push to the main branch
 on:
   push:
     branches:
-      - main
+      - main  # Trigger only on pushes to the main branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: SSH into VPS and Update
-        uses: appleboy/ssh-action@v1.0.3
+      - name: SSH and Deploy
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            # Navigate to your project folder
-            # cd /path/to/your/app
-            
-            # Pull the latest changes
-            # git pull origin main
-            
-            # Install dependencies (if needed)
-            # npm install
-            
-            # Restart the service (example using PM2)
-            # pm2 restart all
+            cd /var/www/repo-gender-reveal-bingo-party/project-files
+            git pull origin main
+            pnpm install
+            pm2 restart gender-bingo --update-env
