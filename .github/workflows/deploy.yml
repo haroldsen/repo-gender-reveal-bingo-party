@@ -18,5 +18,5 @@ jobs:
           script: |
             cd /var/www/repo-gender-reveal-bingo-party/project-files
             git pull origin main
-            pnpm install
-            pm2 restart gender-bingo --update-env
+            /root/.nvm/versions/node/v25.8.1/bin/pnpm install
+            /root/.nvm/versions/node/v25.8.1/bin/pm2 restart gender-bingo --update-env
