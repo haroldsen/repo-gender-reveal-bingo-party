@@ -72,12 +72,10 @@ getIdsPage.className = 'page';
 getIdsPage.id = 'get-ids-page';
 getIdsPage.innerHTML = `
     <div class="qr-code-div">
-        <p>Scan for a bingo card!</p>
         <img
             src="../../images/qr-bingo-card.svg"
             draggable="false"
         >
-        <p class="small-url">genderrevealbingo.party/bingo-card</p>
     </div>
     <div class="id-input-section">
         <form id="get-ids">

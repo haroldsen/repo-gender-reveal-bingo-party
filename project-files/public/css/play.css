@@ -211,28 +211,10 @@ button:hover, .button:hover {
 
 .qr-code-div {
     display: none;
-    background-color: var(--darkest-purple);
-    padding: 20px;
-    border-radius: 10px;
-    color: white;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    text-align: center;
     width: fit-content;
 
-    p {
-        font-size: 30px;
-        margin: 0;
-    }
-
     img {
-        height: 50vh;
-    }
-
-    .small-url {
-        font-size: 20px;
-        white-space: nowrap;
+        height: 70vh;
     }
 }
 
