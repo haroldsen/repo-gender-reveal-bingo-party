@@ -43,7 +43,7 @@ router.get('/about', aboutPage);
 router.get('/contact-us', contactUsPage);
 router.get('/get-cards', requireLogin, getCardsPage);
 router.get('/intro-video', introVideoPage);
-router.get('/bingo-card', playableBingoCardPage);
+router.get('/card', playableBingoCardPage);
 
 // API routes
 router.use('/api', apiRoutes);
