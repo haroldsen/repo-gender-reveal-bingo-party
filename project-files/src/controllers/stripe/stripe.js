@@ -41,7 +41,8 @@ export const handleCreateCheckout = async (req, res) => {
 
 const purchaseConfirmationPage = async (req, res, next) => {
     res.render('purchase/purchase-confirmation', {
-        title: 'Purchase Confirmation | Gender Reveal Bingo Party'
+        title: 'Purchase Confirmation | Gender Reveal Bingo Party',
+        bodyClass: 'purchase-confirmation'
     });
 }
 

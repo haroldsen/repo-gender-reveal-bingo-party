@@ -1,11 +1,7 @@
 <%- include('partials/header') %>
-<main>
-
     <div class="page">
         <h1>My Games</h1>
-
         <ul id="my-games-list">
-
             <% if (games.length > 0) { %>
                 <% for( let index = 0; index < games.length; index ++ ) { %>
                     <li>
@@ -21,11 +17,7 @@
             <% } else { %>
                 <p>Click the button below to create your first game!</p>
             <% } %>
-
         </ul>
-
         <button onclick="launchStripeCheckout()">Purchase a Game</button>
-
     </div>
-</main>
 <%- include('partials/footer') %>

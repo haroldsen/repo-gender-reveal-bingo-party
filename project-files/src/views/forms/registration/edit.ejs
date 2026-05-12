@@ -1,6 +1,4 @@
 <%- include('../../partials/header') %>
-
-<main>
     <h1><%= title %></h1>
 
     <form method="POST" action="/register/<%= user.id %>/edit">
@@ -17,6 +15,4 @@
         <button type="submit">Update Account</button>
         <a href="/register/list">Cancel</a>
     </form>
-</main>
-
 <%- include('../../partials/footer') %>

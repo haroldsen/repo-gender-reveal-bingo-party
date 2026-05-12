@@ -91,17 +91,16 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     overflow-x: hidden;
     background-color: var(--gray);
-    padding-top: var(--header-height);
 }
 
 main {
     width: 100vw;
     height: fit-content;
-    min-height: calc(100vh - var(--header-height));
+    min-height: calc(90vh - var(--header-height));
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     padding-top: var(--default-spacing);
     padding-bottom: var(--default-spacing);
 }

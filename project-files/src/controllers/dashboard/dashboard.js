@@ -11,7 +11,10 @@ const dashboardPage = async (req, res) => {
 
     res.addScript('<script src="/js/dashboard.js" defer></script>');
     
-    res.render('dashboard/dashboard', { title: 'Dashboard | Gender Reveal Bingo Party' });
+    res.render('dashboard/dashboard', {
+        title: 'Dashboard | Gender Reveal Bingo Party',
+        bodyClass: 'dashboard'
+    });
 };
 
 const viewAccountPage = async (req, res) => {
@@ -22,6 +25,7 @@ const viewAccountPage = async (req, res) => {
 
     res.render('dashboard/view-account', {
         title: 'View Account | Gender Reveal Bingo Party',
+        bodyClass: 'dashboard',
         selectedUser: selectedUser,
         games: gamesForUser
     });

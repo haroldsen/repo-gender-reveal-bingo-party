@@ -36,7 +36,7 @@
     <!-- End Google Tag Manager -->
 
 </head>
-<body>
+<body class="<%= bodyClass %>">
 
     <!-- For Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W686TSMP"
@@ -56,23 +56,24 @@
                 <a href="/contact-us">Contact Us</a>
                 <a href="/card">Playable Card</a>
 
-                <!-- Only visible when logged in -->
                 <% if (isLoggedIn) { %>
+                    <!-- Only visible when logged in -->
                     <a href="/my-games">My Games</a>
                     <a href="/get-cards">Get Cards</a>
                 <% } %>
 
-                <!-- Add links for admins -->
                 <% if (userRole == 'admin' || userRole == 'employee') { %>
+                    <!-- Add links for admins -->
                     <a href="/dashboard">Admin</a>
                 <% } %>
 
                 <% if (isLoggedIn) { %>
+                    <!-- Only visible when logged in -->
                     <a href="/logout">Log Out</a>
                 <% } %>
 
-                <!-- Only visible when NOT logged in -->
                 <% if (!isLoggedIn) { %>
+                    <!-- Only visible when NOT logged in -->
                     <a href="/register">Create Account</a>
                     <a href="/login">Log In</a>
                 <% } %>
@@ -90,23 +91,24 @@
                     <a href="/contact-us">Contact Us</a>
                     <a href="/card">Playable Card</a>
 
-                    <!-- Only visible when logged in -->
                     <% if (isLoggedIn) { %>
+                        <!-- Only visible when logged in -->
                         <a href="/my-games">My Games</a>
                         <a href="/get-cards">Get Cards</a>
                     <% } %>
 
-                    <!-- Add links for admins -->
                     <% if (userRole == 'admin' || userRole == 'employee') { %>
+                        <!-- Add links for admins -->
                         <a href="/dashboard">Admin</a>
                     <% } %>
 
                     <% if (isLoggedIn) { %>
+                        <!-- Only visible when logged in -->
                         <a href="/logout">Log Out</a>
                     <% } %>
 
-                    <!-- Only visible when NOT logged in -->
                     <% if (!isLoggedIn) { %>
+                        <!-- Only visible when NOT logged in -->
                         <a href="/register">Create Account</a>
                         <a href="/login">Log In</a>
                     <% } %>
@@ -116,26 +118,5 @@
         </div>
 
     </header>
-
-<% if (isLoggedIn) { %>
-    <div class="login-name">
-        <p><%= userName %></p>
-    </div>
-<% } %>
-
-<% 
-    const messages = flash();
-    const hasMessages = Object.values(messages).some(arr => arr.length > 0);
-%>
-
-<% if (hasMessages) { %>
-    <div class="flash-messages">
-        <% Object.keys(messages).forEach(type => { %>
-            <% messages[type].forEach(message => { %>
-                <div class="flash <%= type %>">
-                    <%= message %>
-                </div>
-            <% }); %>
-        <% }); %>
-    </div>
-<% } %>
+    <main>
+        <%- include('flash-messages') %>
