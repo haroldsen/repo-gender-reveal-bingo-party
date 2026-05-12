@@ -27,7 +27,7 @@ function handleCardToggling(e) {
 function showBingoCardForId(id) {
     if (isValidBingoCard(id)) {
         const card = bingoCards.find(card => card.id === id);
-        document.getElementsByClassName('bingo-card-main')[0].innerHTML = card.getSVG();
+        document.querySelector('.bingo-card-main').innerHTML = card.getSVG();
     }
 }
 

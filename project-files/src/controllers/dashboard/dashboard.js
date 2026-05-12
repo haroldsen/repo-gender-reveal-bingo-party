@@ -13,7 +13,7 @@ const dashboardPage = async (req, res) => {
     
     res.render('dashboard/dashboard', {
         title: 'Dashboard | Gender Reveal Bingo Party',
-        bodyClass: 'dashboard'
+        mainClass: 'dashboard'
     });
 };
 
@@ -25,7 +25,7 @@ const viewAccountPage = async (req, res) => {
 
     res.render('dashboard/view-account', {
         title: 'View Account | Gender Reveal Bingo Party',
-        bodyClass: 'dashboard',
+        mainClass: 'dashboard',
         selectedUser: selectedUser,
         games: gamesForUser
     });

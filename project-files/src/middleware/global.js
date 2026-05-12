@@ -55,7 +55,7 @@ const addLocalVariables = (req, res, next) => {
     // Make req.query available to all templates
     res.locals.queryParams = { ...req.query };
 
-    res.locals.bodyClass = '';
+    res.locals.mainClass = '';
 
     // Add methods to the res object and to locals for ejs use
     setHeadAssetsFunctionality(res);

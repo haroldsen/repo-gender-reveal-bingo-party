@@ -101,6 +101,7 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: var(--default-spacing);
     padding-top: var(--default-spacing);
     padding-bottom: var(--default-spacing);
 }
