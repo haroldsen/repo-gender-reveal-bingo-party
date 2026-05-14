@@ -1,12 +1,6 @@
 
 import db from '../db.js';
 
-
-/**
- * Generates a random alphanumeric string (lowercase letters and numbers).
- * @param {number} length - The desired length of the string.
- * @returns {string} The generated random string.
- */
 function getRandomString(length) {
     const characters = 'abcdefghijkmnopqrstuvwxyz0123456789';
     let result = '';
@@ -26,14 +20,6 @@ function getRandomString(length) {
     return result;
 }
 
-/**
- * Saves a new user to the database with a hashed password.
- * 
- * @param {string} name - The user's full name
- * @param {string} email - The user's email address
- * @param {string} hashedPassword - The bcrypt-hashed password
- * @returns {Promise<Object>} The newly created user record (without password)
- */
 const createGameForUserId = async (userId, stripeSessionId) => {
     let isUnique = false;
     let result;
@@ -146,12 +132,5 @@ const getGameById = async (gameId) => {
 
     return objectList[0];
 };
-
-/**
- * Wrapper functions for cleaner API - these make the code more readable at the call site.
- * Example: getFacultyById(5) is clearer than getFaculty(5, 'id')
- */
-// const getFacultyById = (facultyId) => getFaculty(facultyId, 'id');
-// const getFacultyBySlug = (facultySlug) => getFaculty(facultySlug, 'slug');
 
 export { createGameForUserId, updateGameByGameId, getGamesForUserId, getGameById };

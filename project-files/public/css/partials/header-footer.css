@@ -4,6 +4,8 @@ footer {
 }
 
 header {
+    position: absolute;
+    top: 0;
     height: fit-content;
     width: 100vw;
     display: flex;
