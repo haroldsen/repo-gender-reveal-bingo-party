@@ -3,11 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title><%= title %></title>
+    <meta name="description" content="A fun twist where guests compete to reveal the baby's gender!  Gender Reveal Bingo Party makes it easy to throw an unforgettable gender reveal in minutes!">
 
     <link rel="stylesheet" href="/css/global.css">
 
+    <!-- ICONS -->
     <link rel="icon" type="image/svg+xml" href="/images/fav.svg">
+    <!-- Apple Devices -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <!-- Android Devices (and Google Chrome) -->
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#c768ff">
+    
+    <!-- og:title | The title of your content. -->
+    <meta property="og:title" content="<%= title %>">
+    <!-- og:type | The type of content (e.g., website, article, video.movie). -->
+    <meta property="og:type" content="website">
+    <!-- og:image | The URL of the image to be displayed in the preview. Crucial for engagement. -->
+    <meta property="og:image" content="/images/logo-dark.svg">
+    <!-- og:url | The canonical URL of the page. Helps consolidate likes/shares. -->
+    <meta property="og:url" content="https://genderrevealbingo.party">
+    <!-- og:description | A brief summary of the content (usually 2-4 sentences). -->
+    <meta property="og:description" content="A fun twist where guests compete to reveal the baby's gender!  Gender Reveal Bingo Party makes it easy to throw an unforgettable gender reveal in minutes!">
+
+    <!-- twitter:card | The type of Twitter card. Common values are summary or summary_large_image. -->
+    <!-- Best Practice Note: You should use summary_large_image for the twitter:card whenever possible,
+    as it results in a larger, more prominent image and typically has a higher CTR. -->
+    <!-- <meta name="twitter:card" content="summary_large_image"> -->
+    <!-- twitter:site | The Twitter handle of the website. -->
+    <!-- <meta name="twitter:site" content="@yourcompanyname"> -->
+    <!-- twitter:creator | The Twitter handle of the content creator. -->
+    <!-- <meta name="twitter:creator" content="@authorname"> -->
+    <!-- twitter:title | The title of your content (can be different from og:title). -->
+    <!-- <meta name="twitter:title" content="My Twitter-Friendly Title"> -->
+    <!-- twitter:image | The URL of the image for the card (can be different from og:image). -->
+    <!-- <meta name="twitter:image" content="https://example.com/image.jpg"> -->
 
     <%- renderStyles() %>
     <%- renderScripts() %>

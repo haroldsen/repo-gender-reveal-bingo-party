@@ -8,11 +8,11 @@
       }
 
       .st1 {
-        fill: #64377e;
+        fill: #64377E;
       }
 
       .st2 {
-        fill: #a362c9;
+        fill: #C768FF;
       }
     </style>
   </defs>

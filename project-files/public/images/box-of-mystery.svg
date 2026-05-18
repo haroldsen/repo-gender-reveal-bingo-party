@@ -3,57 +3,31 @@
   <defs>
     <style>
       :root {
-        --purple: #bc8fff;
-        --purple-hover: #c19df2;
-        --logo-purple: #362053;
-        --gray: #e5e8ff;
-        --gray-2: #dbdeff;
-
-        --purple-light: #e0abff;
-        /* --purple: #C768FF;
-        --purple-hover: #a362c9; */
-        --dark-purple: #5e377e;
-        --darkest-purple: #3d224d;
-        /* --logo-purple: #2b133d; */
-        --purple-4: #23142c;
-        --purple-see-through: #c868ffc7;
-        /* --gray: #e7d7f0;
-        --gray-2: #d8c8e0; */
-        --header-height: 105px;
-        --default-spacing: 20px;
-        --footer-height: 30px;
-        --standard-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
-        --red-2: #ff6966;
-        --red-3: #e25451;
-        --red-4: #631110;
-
-        --boy-light: #cce7ff;
-        --boy-medium: #b8deff;
-        --boy-dark: #00294d;
-
-        --girl-light: #ffe0ef;
-        --girl-medium: #ffcce4;
-        --girl-dark: #4d0024;
+        --purple-1: #bc8fff;
+        --purple-2: #5e377e;
+        --purple-3: #362053;
+        --white: #fff;
+        --grey: #ccc;
       }
 
       .white {
-        fill: #fff;
-      }
-
-      .purple-1 {
-        fill: var(--purple);
-      }
-
-      .purple-3 {
-        fill: var(--logo-purple);
+        fill: var(--white);
       }
 
       .white-2 {
-        fill: #ccc;
+        fill: var(--grey);
+      }
+
+      .purple-1 {
+        fill: var(--purple-1);
       }
 
       .purple-2 {
-        fill: var(--dark-purple);
+        fill: var(--purple-2);
+      }
+
+      .purple-3 {
+        fill: var(--purple-3);
       }
     </style>
   </defs>
