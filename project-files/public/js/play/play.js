@@ -28,7 +28,7 @@ let girlIds = cards
 const landingPage = document.createElement('div');
 landingPage.className = 'page';
 landingPage.innerHTML = `
-    <img class="logo" src="../../images/logo.svg">
+    <img class="logo" src="../../images/logo-dark.svg">
     <button class="play-intro-button">Play Intro</button>
     <button class="skip-intro-button">Skip Intro</button>
 `;
