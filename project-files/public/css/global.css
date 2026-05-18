@@ -269,6 +269,11 @@ form a {
     }
 }
 
+.error-404 {
+    width: 90vw;
+    max-width: 600px;
+}
+
 /* #loading {
     animation-name: loading;
     animation-duration: 1s;
