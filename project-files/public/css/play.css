@@ -69,7 +69,7 @@ body {
 
 .logo {
     width: 80vw;
-    max-width: 500px;
+    max-width: 600px;
 }
 
 input {
@@ -87,8 +87,12 @@ input {
 .id-suggestions {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
+    gap: 20px;
+    width: 100vw;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
 
     p {
         margin: 0;
@@ -97,11 +101,7 @@ input {
         padding: 20px;
         padding-top: 15px;
         padding-bottom: 15px;
-        border-radius: 0 0 15px 15px;
-
-        &:hover {
-            cursor: pointer;
-        }
+        border-radius: 0px 0px 15px 15px;
     }
 }
 
@@ -245,15 +245,42 @@ button:hover, .button:hover {
 }
 
 #mapped-numbers {
-    background-color: white;
+    background-color: var(--lightest-purple);
     border-radius: 15px;
     display: flex;
     flex-direction: row;
     user-select: none;
     overflow: hidden;
     box-shadow: 2px 2px 15px #1f0e2c;
-    height: 80vh;
-    aspect-ratio: 1 / 1;
+    width: 90vw;
+    max-width: 500px;
+    height: fit-content;
+}
+
+.pulled-number-column {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .pulled-number-column-header {
+        background-color: var(--darkest-purple);
+        color: white;
+        font-size: 30px;
+    }
+
+    p {
+        width: 100%;
+        text-align: center;
+        padding-top: 8px;
+        padding-bottom: 4px;
+        margin: 0;
+
+        &:nth-child(2n) {
+            background-color: white;
+        }
+    }
 }
 
 #new-number {
@@ -300,10 +327,20 @@ button:hover, .button:hover {
     position: fixed;
     top: 20px;
     left: 20px;
-}
 
-#fullscreen-button:hover {
-    top: 22px;
+    img {
+        display: none;
+        width: 30px;
+    }
+
+    p {
+        display: flex;
+        margin: 0;
+    }
+
+    &:hover {
+        top: 22px;
+    }
 }
 
 .close-intro {
@@ -374,60 +411,6 @@ button:hover, .button:hover {
     }
 }
 
-table {
-    width: 100%;
-    height: 100%;
-    border-spacing: 0;
-    aspect-ratio: 1 / 1;
-}
-
-thead {
-    background-color: var(--darker-purple);
-    color: white;
-    height: 10%;
-}
-
-tbody {
-    height: 90%;
-}
-
-tbody tr {
-    height: calc(100% / 15);
-}
-
-thead tr {
-    height: 100%;
-}
-
-tr {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-}
-
-td, th {
-    text-align: center;
-    height: 100%;
-    width: 20%;
-    /* padding: 5px; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-}
-
-td {
-    font-size: 3vh;
-}
-
-th {
-    font-size: 5vh;
-}
-
-tr:nth-child(2n) {
-    background-color: var(--lightest-purple);
-}
-
 #animation-area {
     width: 100vw;
     height: 100vh;
@@ -463,7 +446,8 @@ tr:nth-child(2n) {
     }
 
     img {
-        height: 40vh;
+        max-width: 350px;
+        width: 80vw;
     }
 
     @media (max-width: 1000px) {
@@ -536,9 +520,40 @@ video {
     z-index: 1;
 }
 
+.button-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+
+
 @media (orientation: portrait) {
     #orientation-warning {
         display: flex;
+    }
+
+    #fullscreen-button {
+        padding: 0;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        p {
+            display: none;
+        }
+
+        img {
+            display: flex;
+        }
+    }
+
+    .button-group {
+        position: fixed;
+        bottom: 20px;
     }
 }
 

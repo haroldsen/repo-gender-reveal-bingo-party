@@ -1,18 +1,20 @@
 <%- include('partials/header') %>
-    <div class="page">
-        <h1>Playable Bingo Card</h1>
+    <form class="card-id-form">
+        <h1>Playable Card</h1>
         <p>1. Ask the host to help you register a bingo card.</p>
         <p>2. The host will ask you if you think the baby is a BOY or a GIRL (be ready to answer).</p>
         <p>3. The host will give you an ID.</p>
-        <p>Enter the ID below:</p>
+        <label for="id-input">Enter the ID below:</label>
         <input
             type="text"
+            inputmode="numeric"
             autocomplete="off"
             maxlength="4"
+            class="id-input"
             id="id-input"
         >
-        <p id="id-warning"></p>
+        <p class="id-warning"></p>
         <button id="submit-id-button">Submit ID</button>
-    </div>
+    </form>
     <script src="/js/playable-card.js" defer type="module"></script>
 <%- include('partials/footer') %>

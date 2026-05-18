@@ -10,6 +10,9 @@
     max-width: 500px;
 }
 
-#id-warning {
+.id-warning {
+    display: none;
     color: var(--red-3);
+    width: 100%;
+    text-align: center;
 }

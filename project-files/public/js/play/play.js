@@ -29,8 +29,10 @@ const landingPage = document.createElement('div');
 landingPage.className = 'page';
 landingPage.innerHTML = `
     <img class="logo" src="../../images/logo-dark.svg">
-    <button class="play-intro-button">Play Intro</button>
-    <button class="skip-intro-button">Skip Intro</button>
+    <div class="button-group">
+        <button class="play-intro-button">Play Intro</button>
+        <button class="skip-intro-button">Skip Intro</button>
+    </div>
 `;
 
 // Handle interactions
@@ -81,7 +83,14 @@ getIdsPage.innerHTML = `
         <form id="get-ids">
             <p id="submit-message"></p>
             <label for="id-input">Type your ID here</label>
-            <input type="text" autocomplete="off" maxlength="4" class="id-input" id="id-input">
+            <input
+                type="text"
+                inputmode="numeric"
+                autocomplete="off"
+                maxlength="4"
+                class="id-input"
+                id="id-input"
+            >
             <div id="get-ids-button-row" class="button-row">
                 <button class="submit-id-button">SUBMIT</button>
             </div>
@@ -213,7 +222,7 @@ earlyBingoPage.className = 'page';
 earlyBingoPage.innerHTML = `
     <div class="pop-up">
         <h2>This is awkward...</h2>
-        <p>There should NOT have been a bingo yet.</p>
+        <p>A bingo should NOT have occurred yet.</p>
         <p>A bingo card may not have been registered.</p>
         <p>If there are still problems, this page may need refreshed and the cards may need re-registered.</p>
     </div>
@@ -324,29 +333,15 @@ function initializeGame() {
 }
 
 function updatePulledNumbersPage() {
+
     pulledNumbersPage.innerHTML = `
         <div id="mapped-numbers">
-            <table>
-                <thead>
-                    <tr>
-                        <th>B</th>
-                        <th>I</th>
-                        <th>N</th>
-                        <th>G</th>
-                        <th>O</th>
-                    </tr>
-                </thead>
-                <tbody id="pulled-number-table">
 
-                </tbody>
-            </table>
         </div>
         <div class="button-floor">
             <button class="back-to-number-puller">Back to Number Puller</button>
         </div>
     `;
-
-    let tableBody = pulledNumbersPage.querySelector('#pulled-number-table');
     
     let grouped = [[], [], [], [], []];
     for (let index = 0; index < pulled.length; index ++) {
@@ -363,23 +358,29 @@ function updatePulledNumbersPage() {
         }
     }
 
-    for (let index = 0; index < 5; index ++) {
-        while (grouped[index].length < 15) {
-            grouped[index].push('');
+    for (let i = 0; i < 5; i ++) {
+        while (grouped[i].length < 15) {
+            grouped[i].push('\u200B');
         }
     }
 
-    for (let index = 0; index < 15; index ++) {
-        tableBody.insertAdjacentHTML('beforeend', `
-            <tr>
-                <td>${grouped[0][index]}</td>
-                <td>${grouped[1][index]}</td>
-                <td>${grouped[2][index]}</td>
-                <td>${grouped[3][index]}</td>
-                <td>${grouped[4][index]}</td>
-            </tr>
-        `);
+    const mappedNumbersElement = pulledNumbersPage.querySelector('#mapped-numbers');
+    
+    for (let i = 0; i < 5; i ++) {
+        const numbersAsHTML = grouped[i].map(listItem => `<p>${listItem}</p>`).join('');
+
+        const content = `
+            <div class="pulled-number-column">
+                <p class="pulled-number-column-header">
+                    ${['B', 'I', 'N', 'G', 'O'][i]}
+                </p>
+                ${numbersAsHTML}
+            </div>
+        `;
+
+        mappedNumbersElement.insertAdjacentHTML('beforeend', content);
     }
+    
 }
 
 function pullNumber() {
@@ -396,7 +397,7 @@ function pullNumber() {
         bingoBall.innerHTML = `O${sequence[sequenceIndex]}`;
     }
     pulled.push(sequence[sequenceIndex]);
-    // pulled.sort((a, b) => a - b);
+    pulled.sort((a, b) => a - b);
 
     let animationArea = document.getElementById('animation-area');
     animationArea.insertAdjacentElement('afterbegin', bingoBall);

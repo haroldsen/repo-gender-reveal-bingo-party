@@ -3,9 +3,7 @@ import { getCards } from "./card-data.mjs";
 
 let isShowingCard = false;
 
-const submitIdButton = document.getElementById('submit-id-button');
-const idInput = document.getElementById('id-input');
-const idWarning = document.getElementById('id-warning');
+const cardIdForm = document.querySelector('.card-id-form');
 
 const bingoCards = getCards();
 
@@ -36,7 +34,12 @@ if (cardId && isValidBingoCard(cardId)) {
     isShowingCard = true;
 }
 
-submitIdButton.addEventListener('click', () => {
+cardIdForm.addEventListener('submit', (e) => {
+
+    e.preventDefault();
+
+    const idInput = document.querySelector('.id-input');
+    const idWarning = document.querySelector('.id-warning');
 
     const isValidId = isValidBingoCard(idInput.value);
 
@@ -45,8 +48,15 @@ submitIdButton.addEventListener('click', () => {
         window.location.href = nextURL;
     } else {
         idWarning.innerHTML = 'This ID is invalid.';
-    }
+        idWarning.style.display = 'block';
 
+        idWarning.classList.remove('warning-flash');
+        requestAnimationFrame(()=> {
+            requestAnimationFrame(()=> {
+                idWarning.classList.add('warning-flash');
+            });
+        });
+    }
 });
 
 document.body.addEventListener('click', handleCardToggling);

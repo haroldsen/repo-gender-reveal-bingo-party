@@ -191,7 +191,7 @@ input, select {
     padding: 10px;
 }
 
-.form-group {
+.form-item {
     display: flex;
     flex-direction: column;
 }
@@ -272,6 +272,30 @@ form a {
 .error-404 {
     width: 90vw;
     max-width: 600px;
+}
+
+.warning-flash {
+    animation-name: warning-flash-animation;
+    animation-duration: 0.5s;
+    animation-timing-function: step-end;
+}
+
+@keyframes warning-flash-animation {
+    0% {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 /* #loading {
