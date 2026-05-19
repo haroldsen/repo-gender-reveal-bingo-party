@@ -7,6 +7,7 @@
 @import './pages/bingo-card.css';
 
 :root {
+    --white: #fff;
     --purple-light: #e0abff;
     --purple: #c768ff;
     --purple-hover: #a362c9;
@@ -52,6 +53,11 @@
     src: url('../fonts/Lexend/Lexend-VariableFont_wght.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'Google Sans';
+    src: url('../fonts/Google_Sans/GoogleSans-VariableFont_GRAD\,opsz\,wght.ttf') format('truetype');
+}
+
 * {
     box-sizing: border-box;
 }
@@ -88,9 +94,9 @@ body {
     height: fit-content;
     min-height: 100vh;
 
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: 'Google Sans', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     overflow-x: hidden;
-    background-color: var(--gray);
+    background-color: var(--white);
 }
 
 main {
@@ -105,6 +111,7 @@ main {
     gap: var(--default-spacing);
     padding-top: var(--default-spacing);
     padding-bottom: var(--default-spacing);
+    background-color: var(--gray);
 }
 
 a:hover {
@@ -164,7 +171,7 @@ a {
 }
 
 .page {
-    background-color: white;
+    background-color: var(--white);
     width: 100vw;
     max-width: 600px;
     border-radius: 15px;
@@ -202,7 +209,7 @@ form {
     gap: 25px;
     width: 100%;
     max-width: 450px;
-    background-color: white;
+    background-color: var(--white);
     padding: 30px;
     border-radius: 20px;
 }
