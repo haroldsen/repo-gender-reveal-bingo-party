@@ -33,17 +33,6 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#show-qr-button {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    top: auto;
-
-    &:hover {
-        bottom: 18px;
-    }
-}
-
 #screen {
     position: absolute;
     width: 100vw;
@@ -88,11 +77,8 @@ input {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
-    position: absolute;
-    top: 0;
-    left: 0;
 
     p {
         margin: 0;
@@ -122,12 +108,12 @@ button, .button {
     width: fit-content;
     height: 50px;
     overflow: hidden;
-}
 
-button:hover, .button:hover {
-    top: 2px;
-    cursor: pointer;
-    background-color: var(--darkest-purple);
+    &:hover {
+        top: 2px;
+        cursor: pointer;
+        background-color: var(--darkest-purple);
+    }
 }
 
 #chevron {
@@ -155,7 +141,20 @@ button:hover, .button:hover {
 
 #submit-message {
     display: none;
+    text-align: center;
     margin: 0;
+
+    &.red {
+        color: var(--red);
+    }
+
+    &.green {
+        color: var(--green);
+    }
+
+    &.flashing {
+        display: flex;
+    }
 }
 
 .flashing {
@@ -194,7 +193,8 @@ button:hover, .button:hover {
     flex-direction: column;
     align-items: center;
     gap: 25px;
-    width: 100%;
+    width: 80vw;
+    max-width: 100%;
     background-color: white;
     padding: 30px;
     font-size: 20px;
@@ -220,6 +220,7 @@ button:hover, .button:hover {
 
 #get-ids-page {
     flex-direction: row;
+    align-items: center;
     justify-content: space-evenly;
     width: 100vw;
 }
@@ -325,8 +326,9 @@ button:hover, .button:hover {
 
 #fullscreen-button {
     position: fixed;
-    top: 20px;
+    bottom: 20px;
     left: 20px;
+    top: auto;
 
     img {
         display: none;
@@ -339,7 +341,7 @@ button:hover, .button:hover {
     }
 
     &:hover {
-        top: 22px;
+        bottom: 18px;
     }
 }
 

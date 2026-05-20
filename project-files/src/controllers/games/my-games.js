@@ -20,7 +20,7 @@ const myGamesPage = async (req, res) => {
 
 const playGamePage = async (req, res) => {
 
-    res.addScript('<script type="module" src="/js/play/play.js" defer></script>');
+    res.addScript('<script type="module" src="/js/play/play.mjs" defer></script>');
 
     // DOES THE GAME EXIST?
 
