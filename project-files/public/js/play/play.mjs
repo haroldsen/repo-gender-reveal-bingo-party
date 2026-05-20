@@ -6,7 +6,7 @@ import {
     landingPage,
     introVideoPage,
     registerCardsPage,
-    newNumberPage,
+    numberPullerPage,
     previousNumbersPage,
     earlyBingoPage,
     lateBingoPage,
@@ -22,7 +22,7 @@ let cardsOutOfPlay = cards;
 let cardsInPlay = [];
 let sequence = [];
 let sequenceIndex = 0;
-let pulled = [];
+let pulledNumbers = [];
 let isDoneAnimating = true;
 let hasABoy = false;
 let hasAGirl = false;
@@ -153,6 +153,8 @@ function tryIdSubmit() {
         updateIdSuggestions(searchId);
 
         flashMessage(`Card "${searchId}" added!`, 'green');
+
+        console.log(`Cards in Play:${cardsInPlay.map((card) => `\n  ${card.gender}-${card.id}`)}`);
     }
 
     // Warn the user if the card has already been added
@@ -166,19 +168,25 @@ function tryIdSubmit() {
     }
 
     idInput.focus();
-    console.log(`Cards in Play: ${cardsInPlay}`);
+
 }
 
 function goToNumberPuller() {
-    switchToPage(newNumberPage());
+    switchToPage(numberPullerPage());
     document.querySelector('.previous-numbers').addEventListener('click', () => {
-        goToPreviousNumbers();
+        if (isDoneAnimating) {
+            goToPreviousNumbers();
+        }
     });
     document.querySelector('.pull-number').addEventListener('click', () => {
-        tryPullNumber();
+        if (isDoneAnimating) {
+            tryPullNumber();
+        }
     });
     document.querySelector('.winner-found').addEventListener('click', () => {
-        tryWinnerFound();
+        if (isDoneAnimating) {
+            tryWinnerFound();
+        }
     });
 }
 
@@ -186,52 +194,81 @@ function tryPlayGame() {
     if (hasABoy && hasAGirl) {
         sequence = getWinningSequence(winningGender, cardsInPlay, maxSequenceLength);
         sequenceIndex = 0;
-        pulled = [];
+        pulledNumbers = [];
         goToNumberPuller();
     }
     else {
         let idInput = document.querySelector('#id-input');
         idInput.value = '';
-        flashMessage(`There must be at least one girl card and one boy card registered.`, 'red');
+        let registrationWarning = '';
+        if (!hasABoy) {
+            registrationWarning = registrationWarning + 'At least one boy card must be registered to play.  ';
+        }
+        if (!hasAGirl) {
+            registrationWarning = registrationWarning + 'At least one girl card must be registered to play.  ';
+        }
+        flashMessage(registrationWarning, 'red');
         idInput.focus();
     }
 }
 
 function tryPullNumber() {
-    isDoneAnimating = false;
-    if (sequence[sequenceIndex] < 16) {
-        bingoBall.innerHTML = `B${sequence[sequenceIndex]}`;
-    } else if (sequence[sequenceIndex] < 31) {
-        bingoBall.innerHTML = `I${sequence[sequenceIndex]}`;
-    } else if (sequence[sequenceIndex] < 46) {
-        bingoBall.innerHTML = `N${sequence[sequenceIndex]}`;
-    } else if (sequence[sequenceIndex] < 61) {
-        bingoBall.innerHTML = `G${sequence[sequenceIndex]}`;
-    } else {
-        bingoBall.innerHTML = `O${sequence[sequenceIndex]}`;
+    if (sequenceIndex < sequence.length) {
+        const bingoBall = document.querySelector('.bingo-ball');
+        isDoneAnimating = false;
+        bingoBall.addEventListener('animationend', () => { isDoneAnimating = true; });
+
+        // Format the bingoBall to letter-number format (like 'B1', 'I16', 'O75', etc.)
+        const columnLetter = ['B', 'I', 'N', 'G', 'O'][Math.floor((sequence[sequenceIndex] - 0.5) / 15)];
+        bingoBall.innerHTML = `${columnLetter}${sequence[sequenceIndex]}`;
+        
+        pulledNumbers.push(sequence[sequenceIndex]);
+        pulledNumbers.sort((a, b) => a - b);
+
+        const boxOfMystery = document.querySelector('.box-of-mystery');
+
+        boxOfMystery.className = 'box-of-mystery';
+        bingoBall.className = 'bingo-ball';
+        void boxOfMystery.offsetWidth;
+        void bingoBall.offsetWidth;
+        boxOfMystery.className = 'box-of-mystery animating-box';
+        bingoBall.className = 'bingo-ball animating-ball';
+
+        sequenceIndex ++;
     }
-    pulled.push(sequence[sequenceIndex]);
-    pulled.sort((a, b) => a - b);
-
-    let animationArea = document.querySelector('#animation-area');
-    animationArea.insertAdjacentElement('afterbegin', bingoBall);
-    animationArea.insertAdjacentElement('beforeend', boxOfMystery);
-    boxOfMystery.className = '';
-    bingoBall.className = '';
-    void boxOfMystery.offsetWidth;
-    void bingoBall.offsetWidth;
-    boxOfMystery.className = 'animating-box';
-    bingoBall.className = 'animating-ball';
-
-    sequenceIndex ++;
+    else {
+        goToLateBingo();
+    }
 }
 
 function goToPreviousNumbers() {
-    switchToPage(previousNumbersPage());
+    switchToPage(previousNumbersPage(pulledNumbers));
+    document.querySelector('.number-puller').addEventListener('click', () => {
+        goToNumberPuller();
+    });
 }
 
 function tryWinnerFound() {
+    if (sequenceIndex >= sequence.length) {
+        switchToPage(congratsPage(winningGender));
+    }
+    else {
+        goToEarlyBingo();
+    }
+}
 
+function goToEarlyBingo() {
+    switchToPage(earlyBingoPage());
+    document.querySelector('.number-puller').addEventListener('click', () => {
+        goToNumberPuller();
+    });
+}
+
+function goToLateBingo() {
+    switchToPage(lateBingoPage());
+    document.querySelector('.number-puller').addEventListener('click', () => {
+        goToNumberPuller();
+    });
 }
 
 //------------------------------------------------------------------------

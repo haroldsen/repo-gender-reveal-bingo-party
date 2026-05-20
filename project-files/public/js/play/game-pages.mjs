@@ -102,19 +102,19 @@ function registerCardsPage(girlIds, boyIds) {
     `;
 }
 
-function newNumberPage() {
+function numberPullerPage() {
     return `
         <div class="page">
             <div id="animation-area">
-                <div id="bingo-ball">
+                <div class="bingo-ball">
                 
                 </div>
-                <img id="box-of-mystery" src="../../images/box-of-mystery.svg">
+                <img class="box-of-mystery" src="../../images/box-of-mystery.svg">
             </div>
             <div id="pull-number-buttons" class="button-floor">
-                <button class="previous-numbers-button">Previous Numbers</button>
-                <button class="next-number-button">Pull Number</button>
-                <button class="winner-found-button">We have a winner!</button>
+                <button class="previous-numbers">Previous Numbers</button>
+                <button class="pull-number">Pull Number</button>
+                <button class="winner-found">We have a winner!</button>
             </div>
         </div>
     `;
@@ -127,7 +127,7 @@ function previousNumbersPage(pulledNumbers) {
                 ${getPulledNumbersContent(pulledNumbers)}
             </div>
             <div class="button-floor">
-                <button class="back-to-number-puller">Back to Number Puller</button>
+                <button class="number-puller">Back to Number Puller</button>
             </div>
         </div>
     `;
@@ -143,7 +143,7 @@ function earlyBingoPage() {
                 <p>If there are still problems, this page may need refreshed and the cards may need re-registered.</p>
             </div>
             <div class="button-floor">
-                <button class="back-to-game">Back to Game</button>
+                <button class="number-puller">Back to Game</button>
             </div>
         </div>
     `;
@@ -159,13 +159,13 @@ function lateBingoPage() {
                 <p>If there are still problems, this page may need refreshed and the cards may need re-registered.</p>
             </div>
             <div class="button-floor">
-                <button class="back-to-game">Back to Game</button>
+                <button class="number-puller">Back to Game</button>
             </div>
         </div>
     `;
 }
 
-function congratsPage() {
+function congratsPage(winningGender) {
     return `
         <div class="page">
             <div class="pop-up">
@@ -182,7 +182,7 @@ export {
     landingPage,
     introVideoPage,
     registerCardsPage,
-    newNumberPage,
+    numberPullerPage,
     previousNumbersPage,
     earlyBingoPage,
     lateBingoPage,
