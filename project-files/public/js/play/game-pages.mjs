@@ -111,10 +111,12 @@ function numberPullerPage() {
                 </div>
                 <img class="box-of-mystery" src="../../images/box-of-mystery.svg">
             </div>
-            <div id="pull-number-buttons" class="button-floor">
-                <button class="previous-numbers">Previous Numbers</button>
+            <div class="button-floor">
                 <button class="pull-number">Pull Number</button>
-                <button class="winner-found">We have a winner!</button>
+                <div class="button-row">
+                    <button class="previous-numbers">Previous Numbers</button>
+                    <button class="winner-found">We have a winner!</button>
+                </div>
             </div>
         </div>
     `;
@@ -139,8 +141,8 @@ function earlyBingoPage() {
             <div class="pop-up">
                 <h2>This is awkward...</h2>
                 <p>A bingo should NOT have occurred yet.</p>
-                <p>A bingo card may not have been registered.</p>
-                <p>If there are still problems, this page may need refreshed and the cards may need re-registered.</p>
+                <p>Please compare the numbers with the "previous numbers" table.</p>
+                <p>If there are still issues, this page may need refreshed and the cards may need re-registered.</p>
             </div>
             <div class="button-floor">
                 <button class="number-puller">Back to Game</button>

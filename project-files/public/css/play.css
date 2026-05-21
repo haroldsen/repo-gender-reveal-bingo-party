@@ -329,12 +329,13 @@ button, .button {
     animation-timing-function: cubic-bezier( 0.75, 0, 0.25, 1 );
 }
 
-#fullscreen-button {
+.fullscreen-button-container {
     position: fixed;
-    bottom: 20px;
+    top: 20px;
     left: 20px;
-    top: auto;
+}
 
+#fullscreen-button {
     img {
         display: none;
         width: 30px;
@@ -343,10 +344,6 @@ button, .button {
     p {
         display: flex;
         margin: 0;
-    }
-
-    &:hover {
-        bottom: 18px;
     }
 }
 
@@ -534,17 +531,21 @@ video {
     gap: 15px;
 }
 
-
-
 @media (orientation: portrait) {
-    #orientation-warning {
-        display: flex;
+    .button-group {
+        position: absolute;
+        bottom: 20px;
+    }
+}
+
+@media (max-width: 800px) {
+    .button-floor {
+        flex-direction: column;
+        align-items: center;
     }
 
     #fullscreen-button {
-        padding: 0;
-        width: 60px;
-        height: 60px;
+        padding: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -557,17 +558,6 @@ video {
             display: flex;
         }
     }
-
-    .button-group {
-        position: fixed;
-        bottom: 20px;
-    }
-}
-
-@media (orientation: landscape) {
-    #orientation-warning {
-        display: none;
-    }
 }
 
 @media (max-width: 600px) {
@@ -577,28 +567,28 @@ video {
         padding-left: 20px;
         font-size: 15px;
     }
+
+    .button-row, .button-floor {
+        gap: 15px;
+    }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
     button, .button {
         padding: 10px;
         padding-right: 15px;
         padding-left: 15px;
         font-size: 12px;
     }
-}
 
-@media (max-height: 600px) {
-    .page {
-        gap: 15px;
+    .button-row, .button-floor {
+        gap: 10px;
     }
 
-    #get-ids {
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .button-row {
-        gap: 20px;
+    #fullscreen-button {
+        padding: 10px;
+        img {
+            width: 20px;
+        }
     }
 }
