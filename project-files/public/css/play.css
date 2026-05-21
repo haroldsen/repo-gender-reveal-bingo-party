@@ -250,17 +250,15 @@ button, .button {
     gap: 20px;
 }
 
-#mapped-numbers {
-    background-color: var(--lightest-purple);
-    border-radius: 15px;
-    display: flex;
-    flex-direction: row;
+.mapped-numbers {
     user-select: none;
-    overflow: hidden;
-    box-shadow: 2px 2px 15px #1f0e2c;
-    width: 90vw;
-    max-width: 500px;
+    width: fit-content;
     height: fit-content;
+
+    svg {
+        width: 90vw;
+        max-height: 80vh;
+    }
 }
 
 .pulled-number-column {
@@ -273,14 +271,16 @@ button, .button {
     .pulled-number-column-header {
         background-color: var(--darkest-purple);
         color: white;
-        font-size: 30px;
+        /* font-size: 30px; */
+        height: 10%;
     }
 
     p {
         width: 100%;
         text-align: center;
-        padding-top: 8px;
-        padding-bottom: 4px;
+        height: 6%;
+        /* padding-top: 8px;
+        padding-bottom: 4px; */
         margin: 0;
 
         &:nth-child(2n) {
@@ -533,17 +533,12 @@ video {
 
 @media (orientation: portrait) {
     .button-group {
-        position: absolute;
+        position: fixed;
         bottom: 20px;
     }
 }
 
-@media (max-width: 800px) {
-    .button-floor {
-        flex-direction: column;
-        align-items: center;
-    }
-
+@media (max-width: 1000px) {
     #fullscreen-button {
         padding: 15px;
         display: flex;
@@ -558,9 +553,7 @@ video {
             display: flex;
         }
     }
-}
 
-@media (max-width: 600px) {
     button, .button {
         padding: 10px;
         padding-right: 20px;
@@ -571,9 +564,21 @@ video {
     .button-row, .button-floor {
         gap: 15px;
     }
+
+    #get-ids {
+        gap: 20px;
+        padding: 25px;
+    }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 600px) {
+    .button-floor {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* @media (max-width: 400px) {
     button, .button {
         padding: 10px;
         padding-right: 15px;
@@ -591,4 +596,4 @@ video {
             width: 20px;
         }
     }
-}
+} */

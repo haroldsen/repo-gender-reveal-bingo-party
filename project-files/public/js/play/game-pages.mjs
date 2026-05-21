@@ -1,44 +1,22 @@
 
+import { getNumberBoardElement } from './number-board-svg.mjs';
+
 function getPulledNumbersContent(pulledNumbers) {
     
     let grouped = [[], [], [], [], []];
     for (let i = 0; i < pulledNumbers.length; i ++) {
-        if (pulledNumbers[i] < 16) {
-            grouped[0].push(pulledNumbers[i]);
-        } else if (pulledNumbers[i] < 31) {
-            grouped[1].push(pulledNumbers[i]);
-        } else if (pulledNumbers[i] < 46) {
-            grouped[2].push(pulledNumbers[i]);
-        } else if (pulledNumbers[i] < 61) {
-            grouped[3].push(pulledNumbers[i]);
-        } else {
-            grouped[4].push(pulledNumbers[i]);
+        grouped[Math.floor((pulledNumbers[i] - 0.5) / 15)].push(pulledNumbers[i]);
+    }
+
+    let boardElement = getNumberBoardElement();
+    for (let i = 0; i < 5; i ++) {
+        for (let x = 0; x < grouped[i].length; x ++) {
+            console.log(`Trying to access .c-${i}-${x}`);
+            boardElement.querySelector(`.c-${i}-${x}`).innerHTML = grouped[i][x];
         }
     }
 
-    for (let i = 0; i < 5; i ++) {
-        while (grouped[i].length < 15) {
-            grouped[i].push('\u200B');
-        }
-    }
-    
-    let output = '';
-    for (let i = 0; i < 5; i ++) {
-        const numbersAsHTML = grouped[i].map(listItem => `<p>${listItem}</p>`).join('');
-
-        const content = `
-            <div class="pulled-number-column">
-                <p class="pulled-number-column-header">
-                    ${['B', 'I', 'N', 'G', 'O'][i]}
-                </p>
-                ${numbersAsHTML}
-            </div>
-        `;
-
-        output = output + content;
-    }
-    
-    return output;
+    return boardElement.outerHTML;
 }
 
 
@@ -125,7 +103,7 @@ function numberPullerPage() {
 function previousNumbersPage(pulledNumbers) {
     return `
         <div class="page">
-            <div id="mapped-numbers">
+            <div class="mapped-numbers">
                 ${getPulledNumbersContent(pulledNumbers)}
             </div>
             <div class="button-floor">
