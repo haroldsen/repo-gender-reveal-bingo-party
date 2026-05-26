@@ -114,6 +114,11 @@ main {
     background-color: var(--gray);
 }
 
+::selection {
+    background-color: var(--purple);
+    color: black;
+}
+
 a:hover {
     cursor: pointer;
 }
