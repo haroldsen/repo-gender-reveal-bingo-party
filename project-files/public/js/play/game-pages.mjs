@@ -36,8 +36,10 @@ function landingPage() {
 function introVideoPage() {
     return `
         <div class="page">
-            <button class="register-cards">Close Intro</button>
-            <video id="intro-video" controls controlsList="nofullscreen" src="/videos/intro-video.mp4">
+            <div class="close-intro-container">
+                <button class="register-cards">Close Intro</button>
+            </div>
+            <video class="intro-video" controls controlsList="nofullscreen" src="/videos/gender-bingo-intro-video.mp4">
         </div>
     `;
 }

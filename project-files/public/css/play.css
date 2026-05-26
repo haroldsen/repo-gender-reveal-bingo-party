@@ -531,6 +531,12 @@ video {
     gap: 15px;
 }
 
+.close-intro-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
 @media (orientation: portrait) {
     .button-group {
         position: fixed;

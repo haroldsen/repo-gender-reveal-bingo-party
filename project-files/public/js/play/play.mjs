@@ -110,6 +110,7 @@ function showLandingPage() {
 
 function goToIntroVideo() {
     switchToPage(introVideoPage());
+    document.querySelector('.intro-video').play();
     document.querySelector('.register-cards').addEventListener('click', () => {
         goToRegisterCards();
     });
