@@ -7,17 +7,25 @@
 @import './pages/bingo-card.css';
 
 :root {
+    /* --purple: #c768ff;
+    --purple-hover: #a362c9;
+    --logo-purple: #2b133d;
+    --gray: #e7d7f0;
+    --gray-2: #d8c8e0; */
+
+    --purple: #d2b3ff;
+    --purple-hover: #c19df2;
+    --logo-purple: #382a69;
+    --gray: #e5e8ff;
+    --gray-2: #dbdeff;
+
     --white: #fff;
     --purple-light: #e0abff;
-    --purple: #c768ff;
-    --purple-hover: #a362c9;
     --dark-purple: #64377E;
     --darkest-purple: #3d224d;
-    --logo-purple: #2b133d;
     --purple-4: #23142c;
     --purple-see-through: #c868ffc7;
-    --gray: #e7d7f0;
-    --gray-2: #d8c8e0;
+    
     --header-height: 105px;
     --default-spacing: 20px;
     --footer-height: 30px;
@@ -226,6 +234,33 @@ form a {
     a:hover {
         color: var(--darkest-purple);
         text-decoration: underline;
+    }
+}
+
+.password-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    input {
+        width: 100%;
+    }
+}
+
+.show-password-button {
+    .when-showing-password {
+        display: none;
+    }
+    .when-hiding-password {
+        display: flex;
+    }
+    
+    &.showing-password {
+        .when-showing-password {
+            display: flex;
+        }
+        .when-hiding-password {
+            display: none;
+        }
     }
 }
 

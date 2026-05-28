@@ -18,14 +18,23 @@
         <!-- Password field -->
         <div class="form-item">
             <label for="password">Password</label>
-            <input
-                type="password"
-                id="password"
-                name="password"
-                minlength="8"
-                required
-                placeholder="SuperSecretPassword!"
-            >
+            <div class="password-group">
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    minlength="8"
+                    required
+                    placeholder="SuperSecretPassword!"
+                >
+                <button
+                    class="show-password-button"
+                    type="button"
+                >
+                    <p class="when-hiding-password">Show</p>
+                    <p class="when-showing-password">Hide</p>
+                </button>
+            </div>
         </div>
 
         <!-- Submit button -->
@@ -35,4 +44,5 @@
             <p>New user? <a href="/register">Create an account</a></p>
         </div>
     </form>
+    <script src="/js/form.js" defer></script>
 <%- include('../../partials/footer') %>
