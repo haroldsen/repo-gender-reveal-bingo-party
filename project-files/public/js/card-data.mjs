@@ -1,8 +1,9 @@
 
 class Combo {
-    constructor(idVal, genderVal, comboVal) {
+    constructor(idVal, genderVal, type, comboVal) {
         this.id = idVal;
         this.gender = genderVal;
+        this.type = type;
         this.combo = comboVal;
     }
 
@@ -19,15 +20,62 @@ class Card {
     }
 
     getAllCombos() {
+        
         let combos = [];
+
         // Append columns and rows
         for (let num = 0; num < 5; num ++) {
-            combos.push(new Combo(this.id, this.gender, this.square[num]));
-            combos.push(new Combo(this.id, this.gender, [this.square[0][num], this.square[1][num], this.square[2][num], this.square[3][num], this.square[4][num]]));
+
+            // Append column
+            combos.push(new Combo(
+                this.id,
+                this.gender,
+                ['B', 'I', 'N', 'G', 'O'][num],
+                this.square[num]
+            ));
+
+            // Append row
+            combos.push(new Combo(
+                this.id,
+                this.gender,
+                ['top', 'upper', 'middle', 'lower', 'bottom'][num],
+                [
+                    this.square[0][num],
+                    this.square[1][num],
+                    this.square[2][num],
+                    this.square[3][num],
+                    this.square[4][num]
+                ]
+            ));
         }
+
         // Append diagonals
-        combos.push(new Combo(this.id, this.gender, [this.square[0][0], this.square[1][1], this.square[2][2], this.square[3][3], this.square[4][4]]));
-        combos.push(new Combo(this.id, this.gender, [this.square[0][4], this.square[1][3], this.square[2][2], this.square[3][1], this.square[4][0]]));
+        combos.push(new Combo(
+            this.id,
+            this.gender,
+            '\\',
+            [
+                this.square[0][0],
+                this.square[1][1],
+                this.square[2][2],
+                this.square[3][3],
+                this.square[4][4]
+            ]
+        ));
+
+        combos.push(new Combo(
+            this.id,
+            this.gender,
+            '/',
+            [
+                this.square[0][4],
+                this.square[1][3],
+                this.square[2][2],
+                this.square[3][1],
+                this.square[4][0]
+            ]
+        ));
+
         return combos;
     }
 

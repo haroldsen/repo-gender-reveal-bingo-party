@@ -11,7 +11,6 @@ function getPulledNumbersContent(pulledNumbers) {
     let boardElement = getNumberBoardElement();
     for (let i = 0; i < 5; i ++) {
         for (let x = 0; x < grouped[i].length; x ++) {
-            console.log(`Trying to access .c-${i}-${x}`);
             boardElement.querySelector(`.c-${i}-${x}`).innerHTML = grouped[i][x];
         }
     }

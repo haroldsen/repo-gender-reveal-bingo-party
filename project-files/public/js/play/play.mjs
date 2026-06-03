@@ -17,7 +17,9 @@ const pageViewer = document.querySelector('#page-viewer');
 
 const cards = getCards();
 
-let maxSequenceLength = 1;
+// If testing, insert code here.
+
+let maxSequenceLength = 22;
 let cardsOutOfPlay = cards;
 let cardsInPlay = [];
 let sequence = [];
