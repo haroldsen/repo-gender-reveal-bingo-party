@@ -1,7 +1,7 @@
 
 
 import { getCards } from "../card-data.mjs";
-import { getWinningSequence } from "./sequence.mjs";
+import { getWinningSequence, getRandomNumber } from "./sequence.mjs";
 import {
     landingPage,
     introVideoPage,
@@ -19,7 +19,6 @@ const cards = getCards();
 
 // If testing, insert code here.
 
-let maxSequenceLength = 22;
 let cardsOutOfPlay = cards;
 let cardsInPlay = [];
 let sequence = [];
@@ -195,6 +194,8 @@ function goToNumberPuller() {
 
 function tryPlayGame() {
     if (hasABoy && hasAGirl) {
+        let maxSequenceLength = Math.floor((cardsInPlay.length * (7 / 98)) + 17.5);
+        maxSequenceLength = maxSequenceLength + getRandomNumber(2);
         sequence = getWinningSequence(winningGender, cardsInPlay, maxSequenceLength);
         sequenceIndex = 0;
         pulledNumbers = [];

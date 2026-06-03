@@ -175,7 +175,7 @@ export function getWinningSequence(winningGender, cardsInPlay, maxSequenceLength
     return sequence;
 }
 
-function getRandomNumber(maxExclusive) {
+export function getRandomNumber(maxExclusive) {
     const randomNumber = Math.floor(Math.random() * maxExclusive);
     return randomNumber
 }
