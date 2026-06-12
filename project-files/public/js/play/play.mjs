@@ -174,11 +174,6 @@ function tryIdSubmit() {
 
 function goToNumberPuller() {
     switchToPage(numberPullerPage(pulledNumbers));
-    // document.querySelector('.previous-numbers').addEventListener('click', () => {
-    //     if (isDoneAnimating) {
-    //         goToPreviousNumbers();
-    //     }
-    // });
     document.querySelector('.pull-number').addEventListener('click', () => {
         if (isDoneAnimating) {
             tryPullNumber();
@@ -244,13 +239,6 @@ function tryPullNumber() {
         goToLateBingo();
     }
 }
-
-// function goToPreviousNumbers() {
-//     switchToPage(previousNumbersPage(pulledNumbers));
-//     document.querySelector('.number-puller').addEventListener('click', () => {
-//         goToNumberPuller();
-//     });
-// }
 
 function tryWinnerFound() {
     if (sequenceIndex >= sequence.length) {

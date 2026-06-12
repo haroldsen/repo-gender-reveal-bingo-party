@@ -108,39 +108,6 @@ function numberPullerPage(pulledNumbers) {
     `;
 }
 
-// function numberPullerPage() {
-//     return `
-//         <div class="page">
-//             <div id="animation-area">
-//                 <div class="bingo-ball">
-                
-//                 </div>
-//                 <img class="box-of-mystery" src="../../images/box-of-mystery.svg">
-//             </div>
-//             <div class="button-floor">
-//                 <button class="pull-number">Pull Number</button>
-//                 <div class="button-row">
-//                     <button class="previous-numbers">Previous Numbers</button>
-//                     <button class="winner-found">We have a winner!</button>
-//                 </div>
-//             </div>
-//         </div>
-//     `;
-// }
-
-// function previousNumbersPage(pulledNumbers) {
-//     return `
-//         <div class="page">
-//             <div class="mapped-numbers">
-//                 ${getPulledNumbersContent(pulledNumbers)}
-//             </div>
-//             <div class="button-floor">
-//                 <button class="number-puller">Back to Number Puller</button>
-//             </div>
-//         </div>
-//     `;
-// }
-
 function earlyBingoPage() {
     return `
         <div class="page">
