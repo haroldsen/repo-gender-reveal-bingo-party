@@ -18,6 +18,11 @@ function getPulledNumbersContent(pulledNumbers) {
     return boardElement.outerHTML;
 }
 
+function updatePulledNumberBoard(pulledNumbers) {
+    const mappedNumbers = document.querySelector('.mapped-numbers');
+    mappedNumbers.innerHTML = getPulledNumbersContent(pulledNumbers);
+}
+
 
 
 function landingPage() {
@@ -81,38 +86,60 @@ function registerCardsPage(girlIds, boyIds) {
     `;
 }
 
-function numberPullerPage() {
+function numberPullerPage(pulledNumbers) {
     return `
-        <div class="page">
-            <div id="animation-area">
-                <div class="bingo-ball">
-                
+        <div class="number-puller-page">
+            <div class="mapped-numbers">
+                ${getPulledNumbersContent(pulledNumbers)}
+            </div>
+            <div class="page">
+                <div id="animation-area">
+                    <div class="bingo-ball">
+                    
+                    </div>
+                    <img class="box-of-mystery" src="../../images/box-of-mystery.svg">
                 </div>
-                <img class="box-of-mystery" src="../../images/box-of-mystery.svg">
             </div>
             <div class="button-floor">
                 <button class="pull-number">Pull Number</button>
-                <div class="button-row">
-                    <button class="previous-numbers">Previous Numbers</button>
-                    <button class="winner-found">We have a winner!</button>
-                </div>
+                <button class="winner-found">We have a winner!</button>
             </div>
         </div>
     `;
 }
 
-function previousNumbersPage(pulledNumbers) {
-    return `
-        <div class="page">
-            <div class="mapped-numbers">
-                ${getPulledNumbersContent(pulledNumbers)}
-            </div>
-            <div class="button-floor">
-                <button class="number-puller">Back to Number Puller</button>
-            </div>
-        </div>
-    `;
-}
+// function numberPullerPage() {
+//     return `
+//         <div class="page">
+//             <div id="animation-area">
+//                 <div class="bingo-ball">
+                
+//                 </div>
+//                 <img class="box-of-mystery" src="../../images/box-of-mystery.svg">
+//             </div>
+//             <div class="button-floor">
+//                 <button class="pull-number">Pull Number</button>
+//                 <div class="button-row">
+//                     <button class="previous-numbers">Previous Numbers</button>
+//                     <button class="winner-found">We have a winner!</button>
+//                 </div>
+//             </div>
+//         </div>
+//     `;
+// }
+
+// function previousNumbersPage(pulledNumbers) {
+//     return `
+//         <div class="page">
+//             <div class="mapped-numbers">
+//                 ${getPulledNumbersContent(pulledNumbers)}
+//             </div>
+//             <div class="button-floor">
+//                 <button class="number-puller">Back to Number Puller</button>
+//             </div>
+//         </div>
+//     `;
+// }
 
 function earlyBingoPage() {
     return `
@@ -164,8 +191,8 @@ export {
     introVideoPage,
     registerCardsPage,
     numberPullerPage,
-    previousNumbersPage,
     earlyBingoPage,
     lateBingoPage,
-    congratsPage
+    congratsPage,
+    updatePulledNumberBoard
 }

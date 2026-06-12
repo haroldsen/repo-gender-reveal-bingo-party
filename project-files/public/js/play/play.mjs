@@ -1,5 +1,4 @@
 
-
 import { getCards } from "../card-data.mjs";
 import { getWinningSequence, getRandomNumber } from "./sequence.mjs";
 import {
@@ -7,10 +6,10 @@ import {
     introVideoPage,
     registerCardsPage,
     numberPullerPage,
-    previousNumbersPage,
     earlyBingoPage,
     lateBingoPage,
-    congratsPage
+    congratsPage,
+    updatePulledNumberBoard
 } from './game-pages.mjs';
 
 const pageViewer = document.querySelector('#page-viewer');
@@ -174,12 +173,12 @@ function tryIdSubmit() {
 }
 
 function goToNumberPuller() {
-    switchToPage(numberPullerPage());
-    document.querySelector('.previous-numbers').addEventListener('click', () => {
-        if (isDoneAnimating) {
-            goToPreviousNumbers();
-        }
-    });
+    switchToPage(numberPullerPage(pulledNumbers));
+    // document.querySelector('.previous-numbers').addEventListener('click', () => {
+    //     if (isDoneAnimating) {
+    //         goToPreviousNumbers();
+    //     }
+    // });
     document.querySelector('.pull-number').addEventListener('click', () => {
         if (isDoneAnimating) {
             tryPullNumber();
@@ -218,6 +217,7 @@ function tryPlayGame() {
 
 function tryPullNumber() {
     if (sequenceIndex < sequence.length) {
+        updatePulledNumberBoard(pulledNumbers);
         const bingoBall = document.querySelector('.bingo-ball');
         isDoneAnimating = false;
         bingoBall.addEventListener('animationend', () => { isDoneAnimating = true; });
@@ -245,12 +245,12 @@ function tryPullNumber() {
     }
 }
 
-function goToPreviousNumbers() {
-    switchToPage(previousNumbersPage(pulledNumbers));
-    document.querySelector('.number-puller').addEventListener('click', () => {
-        goToNumberPuller();
-    });
-}
+// function goToPreviousNumbers() {
+//     switchToPage(previousNumbersPage(pulledNumbers));
+//     document.querySelector('.number-puller').addEventListener('click', () => {
+//         goToNumberPuller();
+//     });
+// }
 
 function tryWinnerFound() {
     if (sequenceIndex >= sequence.length) {
