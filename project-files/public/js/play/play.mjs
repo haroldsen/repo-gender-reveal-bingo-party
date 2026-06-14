@@ -198,7 +198,7 @@ function tryPlayGame() {
     if (hasABoy && hasAGirl) {
         let maxSequenceLength = Math.floor((cardsInPlay.length * (7 / 98)) + 17.5);
         maxSequenceLength = maxSequenceLength + getRandomNumber(2);
-        sequence = getWinningSequence(winningGender, cardsInPlay, 1);
+        sequence = getWinningSequence(winningGender, cardsInPlay, maxSequenceLength);
         sequenceIndex = 0;
         pulledNumbers = [];
         goToNumberPuller();
