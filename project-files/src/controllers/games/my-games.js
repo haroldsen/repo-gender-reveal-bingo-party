@@ -59,6 +59,7 @@ const editGamePage = async (req, res) => {
 
     const gameUserId = gameToEdit.userId;
     const previousTitle = gameToEdit.title;
+    const currentGender = gameToEdit.gender;
 
     const isOwnerOfGame = req.session.user.id === gameUserId;
 
@@ -66,6 +67,7 @@ const editGamePage = async (req, res) => {
         res.render('games/edit-game', {
             title: 'Edit Game | Gender Reveal Bingo Party',
             previousTitle: previousTitle,
+            currentGender: currentGender,
             gameId: req.params.gameId
         });
     } else {

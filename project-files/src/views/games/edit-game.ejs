@@ -18,14 +18,24 @@
 
         <!-- Gender field -->
         <div class="form-item">
-            <label for="title">Gender</label>
+            <label for="gender">Gender</label>
             <select
                 id="gender"
                 name="gender"
                 required
             >
-                <option>BOY</option>
-                <option>GIRL</option>
+                <option
+                    value="BOY"
+                    <%= (currentGender && currentGender.toUpperCase() === 'BOY') ? 'selected' : '' %>
+                >
+                    BOY
+                </option>
+                <option
+                    value="GIRL"
+                    <%= (currentGender && currentGender.toUpperCase() === 'GIRL') ? 'selected' : '' %>
+                >
+                    GIRL
+                </option>
             </select>
         </div>
 
