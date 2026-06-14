@@ -61,25 +61,27 @@ function registerCardsPage(girlIds, boyIds) {
                 >
             </div>
             <div class="id-input-section">
-                <form id="get-ids">
-                    <p id="submit-message"></p>
-                    <label for="id-input">Type your ID here</label>
-                    <input
-                        type="text"
-                        inputmode="numeric"
-                        autocomplete="off"
-                        maxlength="4"
-                        class="id-input"
-                        id="id-input"
-                    >
-                    <div id="get-ids-button-row" class="button-row">
-                        <button class="submit-id">SUBMIT</button>
-                        <button class="play-game">PLAY GAME</button>
+                <div class="id-input-area">
+                    <form id="get-ids">
+                        <p id="submit-message"></p>
+                        <label for="id-input">Type your ID here</label>
+                        <input
+                            type="text"
+                            inputmode="numeric"
+                            autocomplete="off"
+                            maxlength="4"
+                            class="id-input"
+                            id="id-input"
+                        >
+                        <div class="button-row">
+                            <button class="submit-id">SUBMIT</button>
+                            <button class="play-game">PLAY GAME</button>
+                        </div>
+                    </form>
+                    <div class="id-suggestions">
+                        <p class="girl-suggestion">GIRL: ${girlIds[0]}</p>
+                        <p class="boy-suggestion">BOY: ${boyIds[0]}</p>
                     </div>
-                </form>
-                <div class="id-suggestions">
-                    <p class="girl-suggestion">GIRL: ${girlIds[0]}</p>
-                    <p class="boy-suggestion">BOY: ${boyIds[0]}</p>
                 </div>
             </div>
         </div>

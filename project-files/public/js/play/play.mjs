@@ -71,6 +71,11 @@ function toggleFullscreen() {
     }
 }
 
+function toggleQRCode() {
+    const qrCodeDiv = document.querySelector('.qr-code-div');
+    qrCodeDiv.classList.toggle('showing');
+}
+
 function switchToPage(content) {
     pageViewer.innerHTML = content;
 }
@@ -129,6 +134,9 @@ function goToRegisterCards() {
     document.querySelector('.play-game').addEventListener('click', (e) => {
         e.preventDefault();
         tryPlayGame();
+    });
+    document.querySelector('#show-qr-button').addEventListener('click', () => {
+        toggleQRCode();
     });
 }
 
@@ -190,7 +198,7 @@ function tryPlayGame() {
     if (hasABoy && hasAGirl) {
         let maxSequenceLength = Math.floor((cardsInPlay.length * (7 / 98)) + 17.5);
         maxSequenceLength = maxSequenceLength + getRandomNumber(2);
-        sequence = getWinningSequence(winningGender, cardsInPlay, maxSequenceLength);
+        sequence = getWinningSequence(winningGender, cardsInPlay, 1);
         sequenceIndex = 0;
         pulledNumbers = [];
         goToNumberPuller();
