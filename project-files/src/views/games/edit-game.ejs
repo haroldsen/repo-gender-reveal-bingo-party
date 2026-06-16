@@ -1,5 +1,5 @@
 <%- include('../partials/header') %>
-    <form method="POST" action="/my-games/edit-game/<%= gameId %>" class="edit-game-form">
+    <form method="POST" action="/my-games/edit-game/<%= game.id %>" class="edit-game-form">
         
         <h1>Edit Game</h1>
 
@@ -12,7 +12,7 @@
                 name="title"
                 required
                 placeholder="Jack and Jill's Gender Reveal"
-                value="<%= previousTitle %>"
+                value="<%= game.title %>"
             >
         </div>
 
@@ -25,22 +25,28 @@
                 required
             >
                 <option
+                    value="NONE"
+                    <%= (game.gender && game.gender.toUpperCase() === 'NONE') ? 'selected' : '' %>
+                >
+                    NONE
+                </option>
+                <option
                     value="BOY"
-                    <%= (currentGender && currentGender.toUpperCase() === 'BOY') ? 'selected' : '' %>
+                    <%= (game.gender && game.gender.toUpperCase() === 'BOY') ? 'selected' : '' %>
                 >
                     BOY
                 </option>
                 <option
                     value="GIRL"
-                    <%= (currentGender && currentGender.toUpperCase() === 'GIRL') ? 'selected' : '' %>
+                    <%= (game.gender && game.gender.toUpperCase() === 'GIRL') ? 'selected' : '' %>
                 >
                     GIRL
                 </option>
             </select>
         </div>
 
-        <!-- Submit button -->
         <button type="submit">Save Changes</button>
+        <a href="/my-games/about-game/<%= game.id %>" class="button">Discard Changes</a>
 
         <!-- <p>Twins!?!?  Triplets!?!?!?</p>
         <button>Add Another Baby</button> -->

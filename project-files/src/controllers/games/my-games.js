@@ -33,19 +33,47 @@ const playGamePage = async (req, res) => {
 
     // DOES THE USER OWN THE GAME?
 
-    const gameUserId = gameToPlay.userId;
+    const doesNotOwnGame = req.session.user.id != gameToPlay.userId;
 
-    const isOwnerOfGame = req.session.user.id === gameUserId;
-
-    if (isOwnerOfGame) {
-        res.render('games/play-game', {
-            title: 'Play | Gender Reveal Bingo Party',
-            winningGender: gameToPlay.gender
-        });
-    } else {
+    if (doesNotOwnGame) {
         req.flash('error', 'You do not have permission to play this game.');
         return res.redirect('/my-games');
     }
+
+    // HAS THE GENDER BEEN SET TO BOY OR GIRL?
+
+    if (gameToPlay.gender != 'BOY' && gameToPlay.gender != 'GIRL') {
+        req.flash('error', 'The gender has not been set for this game.');
+        return res.redirect('/my-games');
+    }
+
+    // LAUNCH THE GAME PLAYER IF WE'VE PASSED ALL SECURITY CHECKS.
+    res.render('games/play-game', {
+        title: 'Play | Gender Reveal Bingo Party',
+        winningGender: gameToPlay.gender
+    });
+}
+
+const aboutGamePage = async (req, res) => {
+
+    const gameToview = await getGameById(req.params.gameId);
+
+    if (!gameToview) {
+        req.flash('error', 'Game not found.');
+        return res.redirect('/my-games');
+    }
+
+    const doesNotOwnGame = req.session.user.id != gameToview.userId;
+
+    if (doesNotOwnGame) {
+        req.flash('error', 'You do not have permission to view this game.');
+        return res.redirect('/my-games');
+    }
+
+    res.render('games/about-game', {
+        title: 'About Game | Gender Reveal Bingo Party',
+        game: gameToview
+    });
 }
 
 const editGamePage = async (req, res) => {
@@ -57,18 +85,12 @@ const editGamePage = async (req, res) => {
         return res.redirect('/my-games');
     }
 
-    const gameUserId = gameToEdit.userId;
-    const previousTitle = gameToEdit.title;
-    const currentGender = gameToEdit.gender;
-
-    const isOwnerOfGame = req.session.user.id === gameUserId;
+    const isOwnerOfGame = req.session.user.id === gameToEdit.userId;
 
     if (isOwnerOfGame) {
         res.render('games/edit-game', {
             title: 'Edit Game | Gender Reveal Bingo Party',
-            previousTitle: previousTitle,
-            currentGender: currentGender,
-            gameId: req.params.gameId
+            game: gameToEdit
         });
     } else {
         req.flash('error', 'You do not have permission to edit this game.');
@@ -114,7 +136,7 @@ const handleEditGameSubmission = async (req, res) => {
         await updateGameByGameId(gameId, title, gender, 'By you');
         
         req.flash('success', 'Game edited successfully!');
-        return res.redirect('/my-games');
+        return res.redirect(`/my-games/about-game/${gameId}`);
     }
     
     // CATCH DATABASE ERRORS
@@ -130,6 +152,7 @@ const myGamesRoutes = Router();
 
 myGamesRoutes.get('/', myGamesPage);
 myGamesRoutes.get('/play-game/:gameId', playGamePage);
+myGamesRoutes.get('/about-game/:gameId', aboutGamePage);
 myGamesRoutes.get('/edit-game/:gameId', editGamePage);
 myGamesRoutes.post('/edit-game/:gameId', editGameValidation, handleEditGameSubmission);
 

@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+    <div class="page">
+        <h1>About Game</h1>
+        <p>Title: <%= game.title %></p>
+        <div class="button-row">
+            <a class="button" href="/my-games/edit-game/<%= game.id %>">
+                Edit Game
+            </a>
+            <button>
+                Create Edit Link
+            </button>
+        </div>
+        <% if (game.editLink.length > 10) { %>
+            <p>Share this link with a doctor (or trusted friend) to set the gender remotely!</p>
+            <p>This link will expire after the gender has been set.</p>
+            <div class="edit-link-area">
+                <p class="edit-link">https://genderrevealbingo.party/edit-game/</p>
+                <button class="copy-edit-link">
+                    C
+                </button>
+            </div>
+        <% } %>
+        <a class="button" href="/my-games">
+            Back to My Games
+        </a>
+    </div>
+<%- include('../partials/footer') %>
