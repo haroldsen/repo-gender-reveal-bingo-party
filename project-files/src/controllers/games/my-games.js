@@ -111,7 +111,7 @@ const handleEditGameSubmission = async (req, res) => {
 
     try {
         const { title, gender } = req.body;
-        await updateGameByGameId(gameId, title, gender);
+        await updateGameByGameId(gameId, title, gender, 'By you');
         
         req.flash('success', 'Game edited successfully!');
         return res.redirect('/my-games');

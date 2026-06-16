@@ -3,12 +3,12 @@
 -- This file accumulates changes from multiple assignments
 -- Add new tables and modifications here as you work through the course
 
--- Contact form table
-CREATE TABLE IF NOT EXISTS contact_form (
+-- Roles table for role-based access control
+CREATE TABLE IF NOT EXISTS roles (
     id SERIAL PRIMARY KEY,
-    subject VARCHAR(255) NOT NULL,
-    message TEXT NOT NULL,
-    submitted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    role_name VARCHAR(50) UNIQUE NOT NULL,
+    role_description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Users table for registration system
@@ -21,12 +21,29 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Roles table for role-based access control
-CREATE TABLE IF NOT EXISTS roles (
+-- Create the games table
+CREATE TABLE IF NOT EXISTS games (
+    id VARCHAR(30) PRIMARY KEY,
+    title VARCHAR(50) NOT NULL,
+    gender VARCHAR(4) NOT NULL DEFAULT 'NONE',
+    plays_remaining INTEGER NOT NULL DEFAULT 0,
+    edit_link VARCHAR(15) NOT NULL DEFAULT 'NONE',
+    
+    -- This will be values like "Created", "By you" and "Via edit link"
+    last_edit_info VARCHAR(50) NOT NULL DEFAULT 'Created',
+    last_edit_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    stripe_session_id VARCHAR(255) UNIQUE NOT NULL
+);
+
+-- Contact form table
+CREATE TABLE IF NOT EXISTS contact_form (
     id SERIAL PRIMARY KEY,
-    role_name VARCHAR(50) UNIQUE NOT NULL,
-    role_description TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    subject VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    submitted TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Add role_id column to users table if it doesn't exist
@@ -75,27 +92,4 @@ BEGIN
     END IF;
 END $$;
 
--- Create the games table
--- id, title, gender, is_playable, created_at, user_id
-CREATE TABLE IF NOT EXISTS games (
-    -- Primary key: 30-character string
-    id VARCHAR(30) PRIMARY KEY,
-    
-    -- Title: max length 50, required
-    title VARCHAR(50) NOT NULL,
 
-    -- Gender:
-    gender VARCHAR(4) NOT NULL,
-    
-    -- Boolean value: defaults to true if needed, or false
-    is_playable BOOLEAN NOT NULL DEFAULT TRUE,
-    
-    -- Created at: captures the exact time of entry
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    
-    -- Foreign key: references the users table
-    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-
-    -- The Stripe session ID (The key to preventing duplicates)
-    stripe_session_id VARCHAR(255) UNIQUE NOT NULL
-);
