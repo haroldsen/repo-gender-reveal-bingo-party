@@ -1,0 +1,50 @@
+
+.about-game {
+
+    &.page {
+        gap: 80px;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .edit-link-area {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+            border: solid black 1px;
+            border-radius: 5px;
+
+            .edit-link {
+                text-align: left;
+                padding-left: 10px;
+                padding-right: 10px;
+                white-space: nowrap;
+                display: flex;
+                align-items: center;
+                width: 100%;
+                overflow-x: scroll;
+
+                /* Hide the scrollbar */
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+
+            .copy-edit-link {
+                aspect-ratio: 1 / 1;
+                
+                &:hover {
+                    top: 0;
+                }
+            }
+        }
+    }
+}
