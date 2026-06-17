@@ -18,7 +18,7 @@
         </div>
         
         <div>
-            <h2>Edit Links</h2>
+            <h2>Edit Link</h2>
             <p>
                 Edit links can be shared with a doctor or close friend.
                 This allows them to set the gender of your game without accessing your account.
@@ -27,18 +27,30 @@
             <% if (game.editLink.length > 10) { %>
                 <p>Your edit link:</p>
                 <div class="edit-link-area">
-                    <p class="edit-link">https://genderrevealbingo.party/edit-game/<%= game.editLink %></p>
+                    <p class="edit-link">https://genderrevealbingo.party/edit-link/<%= game.editLink %></p>
                     <button class="copy-edit-link">
                         copy
                     </button>
                 </div>
-                <button>
-                    Delete Edit Link
-                </button>
+                <form
+                    method="POST"
+                    class="unstyled-form"
+                    action="/my-games/delete-edit-link/<%= game.id %>"
+                >
+                    <button type="submit">
+                        Delete Edit Link
+                    </button>
+                </form>
             <% } else { %>
-                <button>
-                    Create Edit Link
-                </button>
+                <form
+                    method="POST"
+                    class="unstyled-form"
+                    action="/my-games/create-edit-link/<%= game.id %>"
+                >
+                    <button type="submit">
+                        Create Edit Link
+                    </button>
+                </form>
             <% } %>
         </div>
 
@@ -51,29 +63,31 @@
 
         const copyButton = document.querySelector('.copy-edit-link');
 
-        copyButton.addEventListener('click', async () => {
-            try {
+        if (copyButton) {
+            copyButton.addEventListener('click', async () => {
+                try {
 
-                const urlText = 'https://genderrevealbingo.party/edit-game/<%= game.editLink %>';
+                    const urlText = 'https://genderrevealbingo.party/edit-link/<%= game.editLink %>';
 
-                // Use the Clipboard API to write text
-                await navigator.clipboard.writeText(urlText);
+                    // Use the Clipboard API to write text
+                    await navigator.clipboard.writeText(urlText);
+                    
+                    flashBrowserMessage('Copied link to clipboard!', 'good');
+
+                    copyButton.textContent = 'Copied';
+                    setTimeout(() => copyButton.textContent = 'Copy', 2000);
+                }
                 
-                flashBrowserMessage('Copied link to clipboard!', 'good');
+                catch (err) {
 
-                copyButton.textContent = 'Copied';
-                setTimeout(() => copyButton.textContent = 'Copy', 2000);
-            }
-            
-            catch (err) {
+                    console.error('Failed to copy link: ', err);
+                
+                    flashBrowserMessage('Failed to copy link.', 'bad');
 
-                console.error('Failed to copy link: ', err);
-            
-                flashBrowserMessage('Failed to copy link.', 'bad');
-
-                copyButton.textContent = 'Copy Failed';
-                setTimeout(() => copyButton.textContent = 'Copy', 2000);
-            }
-        });
+                    copyButton.textContent = 'Copy Failed';
+                    setTimeout(() => copyButton.textContent = 'Copy', 2000);
+                }
+            });
+        }
     </script>
 <%- include('../partials/footer') %>

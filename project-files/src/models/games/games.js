@@ -12,12 +12,17 @@ function getRandomString(length) {
     for (let i = 0; i < length; i ++) {
         // Use the modulo operator to pick an index within our characters range
         result += characters[randomValues[i] % characters.length];
-        if (i < length - 1 && (i + 1) % 5 == 0) {
-            result += '-';
-        }
     }
     
     return result;
+}
+
+function generateGameId() {
+    let gameId = getRandomString(4);
+    for (let i = 0; i < 3; i ++) {
+        gameId = `${gameId}-${getRandomString(4)}`;
+    }
+    return gameId;
 }
 
 // -----------------------------------------------------------------------
@@ -28,7 +33,7 @@ const createGameForUserId = async (userId, stripeSessionId) => {
     let result;
 
     while (!isUnique) {
-        const gameId = getRandomString(25);
+        const gameId = generateGameId();
         
         try {
             const query = `
@@ -144,9 +149,43 @@ const getGameById = async (gameId) => {
     return objectList[0];
 };
 
+// -----------------------------------------------------------------------
+// Create or replace an edit link token for a specific game id.
+// -----------------------------------------------------------------------
+const createEditLinkForGameId = async (gameId) => {
+    const newEditLink = getRandomString(14);
+    const query = `
+        UPDATE games
+        SET edit_link = $2
+        WHERE id = $1
+        RETURNING id, edit_link;
+    `;
+    const result = await db.query(query, [gameId, newEditLink]);
+    
+    // Return the updated game details or null if gameId didn't exist
+    return result.rows[0] || null;
+};
+
+// -----------------------------------------------------------------------
+// Revert the edit link token back to 'NONE' for a specific game id.
+// -----------------------------------------------------------------------
+const deleteEditLinkForGameId = async (gameId) => {
+    const query = `
+        UPDATE games
+        SET edit_link = 'NONE'
+        WHERE id = $1
+        RETURNING id, edit_link;
+    `;
+    const result = await db.query(query, [gameId]);
+    
+    return result.rows[0] || null;
+};
+
 export {
     createGameForUserId,
     updateGameByGameId,
     getGamesForUserId,
-    getGameById
+    getGameById,
+    createEditLinkForGameId,
+    deleteEditLinkForGameId
 };

@@ -4,7 +4,13 @@ import { Router } from "express";
 import { validationResult } from "express-validator";
 import { editGameValidation } from '../../middleware/validation/forms.js';
 
-import { getGamesForUserId, getGameById, updateGameByGameId } from "../../models/games/games.js";
+import {
+    getGamesForUserId,
+    getGameById,
+    updateGameByGameId,
+    createEditLinkForGameId,
+    deleteEditLinkForGameId
+} from "../../models/games/games.js";
 
 const myGamesPage = async (req, res) => {
 
@@ -148,6 +154,72 @@ const handleEditGameSubmission = async (req, res) => {
     }
 }
 
+const handleCreateEditLink = async (req, res) => {
+
+    const gameId = req.params.gameId;
+    const gameToEdit = await getGameById(gameId);
+
+    // DOES THE GAME EXIST?
+
+    if (!gameToEdit) {
+        req.flash('error', 'Game not found.');
+        return res.redirect('/my-games');
+    }
+
+    // DOES THE USER OWN THE GAME?
+
+    const isOwnerOfGame = gameToEdit.userId === req.session.user.id;
+    if (!isOwnerOfGame) {
+        req.flash('error', 'You do not have permission to modify this game.');
+        return res.redirect('/my-games');
+    }
+
+    // ATTEMPT TO CREATE THE EDIT LINK.
+
+    try {
+        await createEditLinkForGameId(gameId);
+        req.flash('success', 'Successfully created a new edit link!');
+    } catch (error) {
+        console.error('Error creating edit link:', error);
+        req.flash('error', 'Unable to generate edit link. Please try again.');
+    }
+
+    return res.redirect(`/my-games/about-game/${gameId}`);
+};
+
+const handleDeleteEditLink = async (req, res) => {
+
+    const gameId = req.params.gameId;
+    const gameToEdit = await getGameById(gameId);
+
+    // DOES THE GAME EXIST?
+
+    if (!gameToEdit) {
+        req.flash('error', 'Game not found.');
+        return res.redirect('/my-games');
+    }
+
+    // DOES THE USER OWN THE GAME?
+
+    const isOwnerOfGame = gameToEdit.userId === req.session.user.id;
+    if (!isOwnerOfGame) {
+        req.flash('error', 'You do not have permission to modify this game.');
+        return res.redirect('/my-games');
+    }
+
+    // ATTEMPT TO DELETE THE EDIT LINK.
+
+    try {
+        await deleteEditLinkForGameId(gameId);
+        req.flash('success', 'The edit link has been deleted.');
+    } catch (error) {
+        console.error('Error deleting edit link:', error);
+        req.flash('error', 'Unable to delete edit link. Please try again.');
+    }
+
+    return res.redirect(`/my-games/about-game/${gameId}`);
+};
+
 const myGamesRoutes = Router();
 
 myGamesRoutes.get('/', myGamesPage);
@@ -155,5 +227,7 @@ myGamesRoutes.get('/play-game/:gameId', playGamePage);
 myGamesRoutes.get('/about-game/:gameId', aboutGamePage);
 myGamesRoutes.get('/edit-game/:gameId', editGamePage);
 myGamesRoutes.post('/edit-game/:gameId', editGameValidation, handleEditGameSubmission);
+myGamesRoutes.post('/create-edit-link/:gameId', handleCreateEditLink);
+myGamesRoutes.post('/delete-edit-link/:gameId', handleDeleteEditLink);
 
 export default myGamesRoutes;
