@@ -119,7 +119,9 @@ const getGameById = async (gameId) => {
             plays_remaining,
             created_at,
             user_id,
-            edit_link
+            edit_link,
+            last_edit_info,
+            last_edit_at
         FROM games
         WHERE id = $1
         LIMIT 1
@@ -134,7 +136,9 @@ const getGameById = async (gameId) => {
         playsRemaining: game.plays_remaining,
         createdAt: game.created_at,
         userId: game.user_id,
-        editLink: game.edit_link
+        editLink: game.edit_link,
+        lastEditInfo: game.last_edit_info,
+        lastEditAt: game.last_edit_at
     }));
 
     return objectList[0];

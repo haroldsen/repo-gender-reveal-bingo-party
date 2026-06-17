@@ -1,6 +1,7 @@
 
 @import './partials/header-footer.css';
 @import './partials/flash-messages.css';
+@import './partials/browser-message.css';
 @import './pages/index.css';
 @import './pages/dashboard.css';
 @import './pages/my-games.css';
@@ -24,7 +25,7 @@
     --purple-light: #e0abff;
     --dark-purple: #64377E;
     --darkest-purple: #3d224d;
-    --purple-4: #23142c;
+    --purple-4: #1c1024;
     --purple-see-through: #c868ffc7;
     
     --header-height: 105px;
@@ -133,6 +134,7 @@ a:hover {
 }
 
 button, .button {
+    text-align: center;
     position: relative;
     top: 0px;
     background-color: var(--purple);

@@ -23,7 +23,15 @@ const setHeadAssetsFunctionality = (res) => {
         res.locals.scripts.push({ content: js, priority });
     };
 
+    // -------------------------------------------------------------------
     // These functions will be available in EJS templates
+    // -------------------------------------------------------------------
+
+    // Converts a date to the format Wed, 6/17/2026
+    res.locals.formatDate = (date) => {
+        return date.toLocaleDateString('en-US', { weekday: 'short', month: '2-digit', day: '2-digit', year: 'numeric' });
+    };
+
     res.locals.renderStyles = () => {
         return res.locals.styles
             // Sort by priority: higher numbers load first

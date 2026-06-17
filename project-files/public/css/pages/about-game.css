@@ -2,9 +2,10 @@
 .about-game {
 
     &.page {
-        gap: 80px;
+        gap: 100px;
 
         div {
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -39,8 +40,6 @@
             }
 
             .copy-edit-link {
-                aspect-ratio: 1 / 1;
-                
                 &:hover {
                     top: 0;
                 }

@@ -5,7 +5,8 @@
         <div>
             <h2>Details</h2>
             <p>Title: <%= game.title %></p>
-            <p>Created On: <%= game.createdAt.toLocaleDateString('en-US', { weekday: 'short', month: '2-digit', day: '2-digit', year: 'numeric' }) %></p>
+            <p>Created On: <%= formatDate(game.createdAt) %></p>
+            <p>Last Edit: <%= game.lastEditInfo %> on <%= formatDate(game.lastEditAt) %></p>
         </div>
 
         <div>
@@ -20,7 +21,7 @@
             <h2>Edit Links</h2>
             <p>
                 Edit links can be shared with a doctor or close friend.
-                This allows them to set the gender of a game you own without accessing your account.
+                This allows them to set the gender of your game without accessing your account.
             </p>
             <p>Edit links will expire after the gender has been set.</p>
             <% if (game.editLink.length > 10) { %>
@@ -28,7 +29,7 @@
                 <div class="edit-link-area">
                     <p class="edit-link">https://genderrevealbingo.party/edit-game/<%= game.editLink %></p>
                     <button class="copy-edit-link">
-                        C
+                        copy
                     </button>
                 </div>
                 <button>
@@ -45,4 +46,34 @@
             Back to My Games
         </a>
     </div>
+    <script type="module">
+        import { flashBrowserMessage } from '/js/partials/browser-message.mjs';
+
+        const copyButton = document.querySelector('.copy-edit-link');
+
+        copyButton.addEventListener('click', async () => {
+            try {
+
+                const urlText = 'https://genderrevealbingo.party/edit-game/<%= game.editLink %>';
+
+                // Use the Clipboard API to write text
+                await navigator.clipboard.writeText(urlText);
+                
+                flashBrowserMessage('Copied link to clipboard!', 'good');
+
+                copyButton.textContent = 'Copied';
+                setTimeout(() => copyButton.textContent = 'Copy', 2000);
+            }
+            
+            catch (err) {
+
+                console.error('Failed to copy link: ', err);
+            
+                flashBrowserMessage('Failed to copy link.', 'bad');
+
+                copyButton.textContent = 'Copy Failed';
+                setTimeout(() => copyButton.textContent = 'Copy', 2000);
+            }
+        });
+    </script>
 <%- include('../partials/footer') %>
