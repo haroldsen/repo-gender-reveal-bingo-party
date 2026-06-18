@@ -227,7 +227,7 @@ function tryPullNumber() {
 
         // Format the bingoBall to letter-number format (like 'B1', 'I16', 'O75', etc.)
         const columnLetter = ['B', 'I', 'N', 'G', 'O'][Math.floor((sequence[sequenceIndex] - 0.5) / 15)];
-        bingoBall.innerHTML = `${columnLetter}${sequence[sequenceIndex]}`;
+        document.querySelector('.bingo-ball-text').innerHTML = `${columnLetter}${sequence[sequenceIndex]}`;
         
         pulledNumbers.push(sequence[sequenceIndex]);
         pulledNumbers.sort((a, b) => a - b);

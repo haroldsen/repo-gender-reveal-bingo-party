@@ -1,0 +1,165 @@
+
+.number-puller-page {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.mapped-numbers {
+    user-select: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > div {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    svg {
+        width: 100%;
+        max-width: 90%;
+        max-height: 75vh;
+    }
+
+    .page {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+#animation-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: -100;
+    position: relative;
+}
+
+.box-of-mystery {
+    width: 25vw;
+    max-width: 250px;
+    position: absolute;
+    opacity: 0;
+}
+
+.bingo-ball {
+    opacity: 0;
+    height: 90%;
+    max-width: 5vw;
+    max-height: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    position: absolute;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.animating-ball {
+    animation-duration: calc(5 * var(--animation-speed-factor));
+    animation-name: pull-number;
+    animation-delay: calc(1.5 * var(--animation-speed-factor));
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier( 0.75, 0, 0.25, 1 );
+
+    text {
+        animation-duration: calc(5 * var(--animation-speed-factor));
+        animation-name: fade-text;
+        animation-delay: calc(1.5 * var(--animation-speed-factor));
+        animation-fill-mode: forwards;
+        animation-timing-function: cubic-bezier( 0.75, 0, 0.25, 1 );
+    }
+}
+
+.animating-box {
+    animation-duration: calc(4 * var(--animation-speed-factor));
+    animation-name: box-of-mystery;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier( 0.75, 0, 0.25, 1 );
+}
+
+@keyframes pull-number {
+    0% {
+        opacity: 1;
+        top: 62%;
+    }
+    20% {
+        top: 30%;
+    }
+    40% {
+        top: 30%;
+        transform: translateY(0);
+    }
+    60% {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    80% {
+        max-width: 5vw;
+        max-height: 5vw;
+        top: 50%;
+    }
+    100% {
+        opacity: 1;
+        max-width: 90%;
+        max-height: 90%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+@keyframes fade-text {
+    0% {
+        fill: #fff;
+    }
+    80% {
+        fill: #fff;
+    }
+    100% {
+        fill: #000;
+    }
+}
+
+@keyframes box-of-mystery {
+    0% {
+        opacity: 1;
+        top: 105%;
+    }
+    33% {
+        top: 60%;
+    }
+    66% {
+        top: 60%;
+    }
+    100% {
+        opacity: 1;
+        top: 105%;
+    }
+}
+
+@media (max-width: 600px) {
+    .number-puller-page {
+        flex-direction: column-reverse;
+    }
+
+    .mapped-numbers {
+        align-items: start;
+        max-height: 50vh;
+
+        svg {
+            max-height: 40vh;
+        }
+    }
+}

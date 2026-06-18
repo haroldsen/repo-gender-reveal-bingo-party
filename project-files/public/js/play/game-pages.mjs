@@ -94,13 +94,33 @@ function numberPullerPage(pulledNumbers) {
             <div class="mapped-numbers">
                 ${getPulledNumbersContent(pulledNumbers)}
             </div>
-            <div class="page">
-                <div id="animation-area">
-                    <div class="bingo-ball">
-                    
-                    </div>
-                    <img class="box-of-mystery" src="../../images/box-of-mystery.svg">
+            <div id="animation-area">
+                <div class="bingo-ball">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+                        <defs>
+                            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.15"/>
+                            </filter>
+                        </defs>
+
+                        <circle cx="100" cy="100" r="90" fill="#FFFFFF" filter="url(#shadow)" />
+
+                        <text
+                            class="bingo-ball-text"
+                            x="100"
+                            y="100"
+                            font-family="'Google Sans', sans-serif"
+                            font-size="75"
+                            text-anchor="middle"
+                            fill: currentColor;
+                            dominant-baseline="central"
+                        >
+                            err
+                        </text>
+                    </svg>
                 </div>
+
+                <img class="box-of-mystery" src="../../images/box-of-mystery.svg">
             </div>
             <div class="button-floor">
                 <button class="pull-number">Pull Number</button>
