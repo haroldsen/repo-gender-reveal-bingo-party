@@ -27,7 +27,7 @@
             <% if (game.editLink.length > 10) { %>
                 <p>Your edit link:</p>
                 <div class="edit-link-area">
-                    <p class="edit-link">https://genderrevealbingo.party/edit-link/<%= game.editLink %></p>
+                    <p class="edit-link">https://genderrevealbingo.party/edit-link/<%= game.id %>/<%= game.editLink %></p>
                     <button class="copy-edit-link">
                         copy
                     </button>
@@ -67,7 +67,7 @@
             copyButton.addEventListener('click', async () => {
                 try {
 
-                    const urlText = 'https://genderrevealbingo.party/edit-link/<%= game.editLink %>';
+                    const urlText = 'https://genderrevealbingo.party/edit-link/<%= game.id %>/<%= game.editLink %>';
 
                     // Use the Clipboard API to write text
                     await navigator.clipboard.writeText(urlText);

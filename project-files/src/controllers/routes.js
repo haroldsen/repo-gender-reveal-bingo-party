@@ -20,6 +20,7 @@ import loginRoutes from './forms/login.js';
 import myGamesRoutes from './games/my-games.js';
 import paymentHandlerRoutes from './stripe/stripe.js';
 import dashboardRoutes from './dashboard/dashboard.js';
+import editLinkRoutes from './games/edit-link.js';
 
 import { Router } from 'express';
 import apiRoutes from './api/api.js';
@@ -53,6 +54,9 @@ router.use('/my-games', requireLogin, myGamesRoutes);
 
 // Stripe purchase routes
 router.use('/purchase-game', paymentHandlerRoutes);
+
+// Edit link routes
+router.use('/edit-link', editLinkRoutes);
 
 // Registration routes
 router.use('/register', registrationRoutes);

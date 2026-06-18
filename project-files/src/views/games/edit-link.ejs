@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+    <form method="POST" action="/edit-link/<%= game.id %>/<%= editLink %>" class="edit-game-form">
+        
+        <h1><%= game.title %></h1>
+
+        <p><%= game.gameOwner %> has invited you to edit their game.</p>
+
+        <!-- Gender field -->
+        <div class="form-item">
+            <label for="gender">Is the baby a boy or a girl?</label>
+            <select
+                id="gender"
+                name="gender"
+                required
+            >
+                <option value="" disabled selected>
+                    -- Select Gender --
+                </option>
+                <option value="BOY">
+                    BOY
+                </option>
+                <option value="GIRL">
+                    GIRL
+                </option>
+            </select>
+        </div>
+
+        <button type="submit">Save Answer</button>
+
+    </form>
+<%- include('../partials/footer') %>

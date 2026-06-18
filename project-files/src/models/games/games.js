@@ -78,6 +78,22 @@ const updateGameByGameId = async (id, title, gender, lastEditInfo) => {
 };
 
 // -----------------------------------------------------------------------
+// Update the gender of a game by its id.
+// -----------------------------------------------------------------------
+const updateGameGenderByGameId = async (id, gender, lastEditInfo) => {
+    const query = `
+        UPDATE games
+        SET gender = $2,
+            last_edit_info = $3,
+            last_edit_at = CURRENT_TIMESTAMP
+        WHERE id = $1
+        RETURNING id, gender, last_edit_info, last_edit_at
+    ;`;
+    const result = await db.query(query, [id, gender, lastEditInfo]);
+    return result.rows[0] || null;
+};
+
+// -----------------------------------------------------------------------
 // Retrieve all games that belong to a specific user.
 // -----------------------------------------------------------------------
 const getGamesForUserId = async (userId) => {
@@ -118,23 +134,32 @@ const getGameById = async (gameId) => {
     
     const query = `
         SELECT
-            id,
-            title,
-            gender,
-            plays_remaining,
-            created_at,
-            user_id,
-            edit_link,
-            last_edit_info,
-            last_edit_at
-        FROM games
-        WHERE id = $1
+            g.id,
+            g.title,
+            g.gender,
+            g.plays_remaining,
+            g.created_at,
+            g.user_id,
+            g.edit_link,
+            g.last_edit_info,
+            g.last_edit_at,
+            u.name AS owner_name
+        FROM games g
+        INNER JOIN users u ON g.user_id = u.id
+        WHERE g.id = $1
         LIMIT 1
     `;
     
     const result = await db.query(query, [gameId]);
 
-    const objectList = result.rows.map(game => ({
+    // If no game is found, return null immediately instead of running .map() on an empty array
+    if (result.rows.length === 0) {
+        return null;
+    }
+
+    const game = result.rows[0];
+
+    return {
         id: game.id,
         title: game.title,
         gender: game.gender,
@@ -143,10 +168,9 @@ const getGameById = async (gameId) => {
         userId: game.user_id,
         editLink: game.edit_link,
         lastEditInfo: game.last_edit_info,
-        lastEditAt: game.last_edit_at
-    }));
-
-    return objectList[0];
+        lastEditAt: game.last_edit_at,
+        gameOwner: game.owner_name
+    };
 };
 
 // -----------------------------------------------------------------------
@@ -184,6 +208,7 @@ const deleteEditLinkForGameId = async (gameId) => {
 export {
     createGameForUserId,
     updateGameByGameId,
+    updateGameGenderByGameId,
     getGamesForUserId,
     getGameById,
     createEditLinkForGameId,

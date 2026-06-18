@@ -118,10 +118,22 @@ const editGameValidation = [
         .escape()
 ];
 
+/**
+ * Validation rules for editing game via edit link
+ */
+const editLinkValidation = [
+    body('gender')
+        .trim()
+        .isIn(['BOY', 'GIRL'])
+        .withMessage('Gender must be either "BOY" or "GIRL"')
+        .escape()
+];
+
 export { 
     contactValidation,
     registrationValidation,
     loginValidation,
     updateAccountValidation,
-    editGameValidation
+    editGameValidation,
+    editLinkValidation
 };
