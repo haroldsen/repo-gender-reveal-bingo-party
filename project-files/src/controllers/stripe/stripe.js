@@ -31,7 +31,9 @@ export const handleCreateCheckout = async (req, res) => {
             mode: 'payment',
             success_url: `${baseURL}/purchase-game/purchase-confirmation`,
             cancel_url: `${baseURL}/my-games`,
-            metadata: { userId }
+            metadata: { userId },
+            billing_address_collection: 'required',
+            automatic_tax: { enabled: true }
         });
         res.json({ url: session.url });
     } catch (error) {
