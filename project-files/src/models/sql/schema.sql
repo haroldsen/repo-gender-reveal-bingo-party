@@ -1,8 +1,4 @@
 
--- Practice database tables for assignments
--- This file accumulates changes from multiple assignments
--- Add new tables and modifications here as you work through the course
-
 -- Roles table for role-based access control
 CREATE TABLE IF NOT EXISTS roles (
     id SERIAL PRIMARY KEY,
@@ -32,6 +28,10 @@ CREATE TABLE IF NOT EXISTS games (
     -- This will be values like "Created", "By you" and "Via edit link"
     last_edit_info VARCHAR(50) NOT NULL DEFAULT 'Created',
     last_edit_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+
+    -- This will allow the user to download
+    -- the winning card after a complete game.
+    last_winning_card JSONB DEFAULT NULL,
 
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
