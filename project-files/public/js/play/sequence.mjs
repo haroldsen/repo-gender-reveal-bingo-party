@@ -169,8 +169,9 @@ export function getWinningSequence(winningGender, cardsInPlay, maxSequenceLength
         `);
     }
 
+    // FOR TESTING
     // verify(sequence, winningCombo, combos);
-    
+
     // Return the final sequence.
     return sequence;
 }

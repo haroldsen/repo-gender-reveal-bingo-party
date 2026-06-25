@@ -55,7 +55,12 @@ const processLogin = async (req, res) => {
         req.session.user = user;
 
         req.flash('success', `Welcome, ${user.name}!`);
-        res.redirect('/my-games');
+
+        // Try to send the user to their destination
+        // default to "My Games" page.
+        const redirectUrl = req.session.redirectTo || '/my-games';
+
+        res.redirect(redirectUrl);
 
     } catch (error) {
         // Model functions do not catch errors, so handle them here

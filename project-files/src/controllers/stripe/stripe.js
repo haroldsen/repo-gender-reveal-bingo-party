@@ -24,20 +24,35 @@ export const handleCreateCheckout = async (req, res) => {
     console.log('\nCreating Stripe checkout session!');
 
     try {
-        const userId = req.session.user.id;
+
+        // req.session.user is guaranteed to exist because of the 'requireLogin' middleware
+        const userId = req.session.user.id; 
+        
+        // Get the page the user came from.
+        // Default back to /my-games if the header is missing.
+        const fallbackUrl = `${baseURL}/my-games`;
+        const cancelUrl = req.get('Referer') || fallbackUrl;
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: [{ price: priceId, quantity: 1 }],
             mode: 'payment',
             success_url: `${baseURL}/purchase-game/purchase-confirmation`,
-            cancel_url: `${baseURL}/my-games`,
+            cancel_url: cancelUrl,
             metadata: { userId },
             billing_address_collection: 'required',
             automatic_tax: { enabled: true }
         });
-        res.json({ url: session.url });
+
+        // 303 See Other is the recommended HTTP status code for web redirection after a request
+        res.redirect(303, session.url);
+
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error('Stripe session creation failed:', error);
+        
+        // Use flash memory to warn the user, then bounce them back safely
+        req.flash('error', 'Could not initiate payment. Please try again.');
+        res.redirect('/my-games');
     }
 };
 
@@ -49,7 +64,7 @@ const purchaseConfirmationPage = async (req, res, next) => {
 }
 
 // Map the functions to the routes
-router.post('/create-checkout-session', requireLogin, express.json(), handleCreateCheckout);
+router.get('/create-checkout-session', requireLogin, handleCreateCheckout);
 router.get('/purchase-confirmation', requireLogin, purchaseConfirmationPage);
 
 export default router;

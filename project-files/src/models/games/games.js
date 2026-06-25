@@ -94,6 +94,33 @@ const updateGameGenderByGameId = async (id, gender, lastEditInfo) => {
 };
 
 // -----------------------------------------------------------------------
+// Update the winning card of a game by its id.
+// -----------------------------------------------------------------------
+const updateWinningCardForGameId = async (gameId, cardId, sequence) => {
+
+    const recentWinningCard = {
+        id: cardId,
+        sequence: sequence
+    };
+    
+    const query = `
+        UPDATE games
+        SET last_winning_card = $2
+        WHERE id = $1
+        RETURNING id, last_winning_card
+    ;`;
+
+    try {
+        const result = await db.query(query, [gameId, JSON.stringify(recentWinningCard)]);
+        return result.rows[0] || null;
+    }
+    catch (error) {
+        console.error(`Error updating winning card for game ${gameId}:`, error);
+        throw error;
+    }
+};
+
+// -----------------------------------------------------------------------
 // Retrieve all games that belong to a specific user.
 // -----------------------------------------------------------------------
 const getGamesForUserId = async (userId) => {
@@ -143,6 +170,7 @@ const getGameById = async (gameId) => {
             g.edit_link,
             g.last_edit_info,
             g.last_edit_at,
+            g.last_winning_card,
             u.name AS owner_name
         FROM games g
         INNER JOIN users u ON g.user_id = u.id
@@ -209,6 +237,7 @@ export {
     createGameForUserId,
     updateGameByGameId,
     updateGameGenderByGameId,
+    updateWinningCardForGameId,
     getGamesForUserId,
     getGameById,
     createEditLinkForGameId,
