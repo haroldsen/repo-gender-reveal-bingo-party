@@ -28,10 +28,14 @@ export const handleCreateCheckout = async (req, res) => {
         // req.session.user is guaranteed to exist because of the 'requireLogin' middleware
         const userId = req.session.user.id; 
         
-        // Get the page the user came from.
-        // Default back to /my-games if the header is missing.
-        const fallbackUrl = `${baseURL}/my-games`;
-        const cancelUrl = req.get('Referer') || fallbackUrl;
+        // TODO: Fix the cancel url so it's dynamic.
+        //       We want to redirect the user to where they came from.
+        //       Here's the catch: if a user clicks on "Purchase Game" while they aren't
+        //       logged in, the user will have technically come from the "Login" page.
+        //       We don't want that.
+        //       We want to redirect the user to where they clicked "Purchase Game",
+        //       NOT their target destination stored from the requireLogin function.
+        const cancelUrl = `${baseURL}/my-games`;
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
