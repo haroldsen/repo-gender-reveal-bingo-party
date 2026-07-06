@@ -99,6 +99,33 @@ function flashMessage(message, colorClass) {
     submitMessage.classList.add('flashing');
 }
 
+async function saveWinningCardToDatabase(gameId, winningData) {
+    try {
+        const response = await fetch('/api/game/update-winner', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                gameId: gameId,
+                winningId: winningData.winningId,
+                sequence: winningData.sequence
+            })
+        });
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Server responded with ${response.status}: ${errorText}`);
+        }
+
+        const data = await response.json();
+        console.log('Database synced successfully:', data);
+    } catch (error) {
+        console.error('Failed to sync winning card details to server:', error);
+        // flashMessage('Warning: Game progress not synced to server.', 'red');
+    }
+}
+
 //------------------------------------------------------------------------
 // CORE FUNCTIONS
 //------------------------------------------------------------------------
@@ -198,7 +225,13 @@ function tryPlayGame() {
     if (hasABoy && hasAGirl) {
         let maxSequenceLength = Math.floor((cardsInPlay.length * (7 / 98)) + 17.5);
         maxSequenceLength = maxSequenceLength + getRandomNumber(2);
-        sequence = getWinningSequence(winningGender, cardsInPlay, maxSequenceLength);
+
+        const winningData = getWinningSequence(window.winningGender, cardsInPlay, maxSequenceLength);
+
+        saveWinningCardToDatabase(window.gameId, winningData);
+
+        sequence = winningData.sequence;
+
         sequenceIndex = 0;
         pulledNumbers = [];
         goToNumberPuller();
@@ -250,7 +283,7 @@ function tryPullNumber() {
 
 function tryWinnerFound() {
     if (sequenceIndex >= sequence.length) {
-        switchToPage(congratsPage(winningGender));
+        switchToPage(congratsPage(window.winningGender));
     }
     else {
         goToEarlyBingo();

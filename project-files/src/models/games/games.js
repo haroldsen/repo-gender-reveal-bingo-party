@@ -96,22 +96,31 @@ const updateGameGenderByGameId = async (id, gender, lastEditInfo) => {
 // -----------------------------------------------------------------------
 // Update the winning card of a game by its id.
 // -----------------------------------------------------------------------
-const updateWinningCardForGameId = async (gameId, cardId, sequence) => {
+const updateWinningCardForGameId = async (gameId, userId, cardId, sequence) => {
 
     const recentWinningCard = {
         id: cardId,
         sequence: sequence
     };
     
+    // 2. Update the SQL query to require BOTH game id AND user_id ownership
     const query = `
         UPDATE games
-        SET last_winning_card = $2
-        WHERE id = $1
+        SET last_winning_card = $3
+        WHERE id = $1 AND user_id = $2
         RETURNING id, last_winning_card
     ;`;
 
     try {
-        const result = await db.query(query, [gameId, JSON.stringify(recentWinningCard)]);
+        // 3. Pass the userId variable securely into the parameters array ($2)
+        const result = await db.query(query, [
+            gameId, 
+            userId, 
+            JSON.stringify(recentWinningCard)
+        ]);
+        
+        // Returns the updated record if successful, 
+        // or null if the gameId didn't exist OR the user didn't own it.
         return result.rows[0] || null;
     }
     catch (error) {
@@ -197,7 +206,8 @@ const getGameById = async (gameId) => {
         editLink: game.edit_link,
         lastEditInfo: game.last_edit_info,
         lastEditAt: game.last_edit_at,
-        gameOwner: game.owner_name
+        gameOwner: game.owner_name,
+        lastWinningCard: game.last_winning_card
     };
 };
 

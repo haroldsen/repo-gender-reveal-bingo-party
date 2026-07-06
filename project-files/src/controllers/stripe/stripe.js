@@ -68,7 +68,7 @@ const purchaseConfirmationPage = async (req, res, next) => {
 }
 
 // Map the functions to the routes
-router.get('/create-checkout-session', requireLogin, handleCreateCheckout);
+router.get('/checkout', requireLogin, handleCreateCheckout);
 router.get('/purchase-confirmation', requireLogin, purchaseConfirmationPage);
 
 export default router;

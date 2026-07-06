@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="/css/play.css">
 
     <script>
-        const winningGender = '<%- winningGender %>';
+        window.winningGender = '<%- game.gender %>';
+        window.gameId = '<%- game.id %>';
     </script>
 
     <%- renderStyles() %>

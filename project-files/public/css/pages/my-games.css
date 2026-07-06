@@ -20,6 +20,10 @@
         border: solid var(--purple) 4px;
         border-radius: 10px;
 
+        .game-title {
+            font-weight: bold;
+        }
+
         p {
             max-width: 100%;
             font-size: 18px;

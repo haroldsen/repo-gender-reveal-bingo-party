@@ -173,7 +173,10 @@ export function getWinningSequence(winningGender, cardsInPlay, maxSequenceLength
     // verify(sequence, winningCombo, combos);
 
     // Return the final sequence.
-    return sequence;
+    return {
+        sequence: sequence,
+        winningId: winningCombo.id
+    };
 }
 
 export function getRandomNumber(maxExclusive) {

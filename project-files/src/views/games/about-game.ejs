@@ -54,6 +54,20 @@
             <% } %>
         </div>
 
+        <div>
+            <h2>Winning Card</h2>
+            <p>After a game is completed, you can download a copy of the winning card for memories or as a keep-sake.</p>
+            <p>We only keep track of the most recent winning card.</p>
+            <p>If a game is launched multiple times, the winning card will be overwritten with the most recent winning card.</p>
+
+            <% if (game.lastWinningCard) { %>
+                <p>Your winning card:</p>
+                <a class="button" href="my-games/winning-card/<%= game.id %>" download="winning-card.pdf">Download Card</a>
+            <% } else { %>
+                <p>The option to download the winning card will appear here once this game has been launched.</p>
+            <% } %>
+        </div>
+
         <a class="button" href="/my-games">
             Back to My Games
         </a>

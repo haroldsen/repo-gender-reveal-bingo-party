@@ -294,9 +294,21 @@ form a {
     }
 }
 
-.get-cards {
+.how-to-main {
     svg {
         max-width: 400px;
+    }
+
+    .page {
+        gap: 100px;
+
+        div {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
     }
 }
 

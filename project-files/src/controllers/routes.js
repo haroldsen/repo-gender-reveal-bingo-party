@@ -4,7 +4,7 @@ import { addDemoHeaders } from '../middleware/demo/headers.js';
 import {
     homePage,
     aboutPage,
-    getCardsPage,
+    howToPage,
     contactUsPage,
     introVideoPage,
     playableBingoCardPage
@@ -42,7 +42,7 @@ router.use('/register', (req, res, next) => {
 router.get('/', homePage);
 router.get('/about', aboutPage);
 router.get('/contact-us', contactUsPage);
-router.get('/get-cards', requireLogin, getCardsPage);
+router.get('/how-to', howToPage);
 router.get('/intro-video', introVideoPage);
 router.get('/card', playableBingoCardPage);
 

@@ -8,8 +8,10 @@
         "express": "^5.2.1",
         "express-session": "^1.19.0",
         "express-validator": "^7.3.1",
+        "pdfkit": "^0.19.1",
         "pg": "^8.18.0",
-        "stripe": "^20.4.1"
+        "stripe": "^20.4.1",
+        "svg-to-pdfkit": "^0.1.8"
     },
     "type": "module",
     "scripts": {

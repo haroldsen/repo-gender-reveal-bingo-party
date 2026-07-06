@@ -6,7 +6,9 @@
                 <% for( let index = 0; index < games.length; index ++ ) { %>
                     <li>
                         <div class="game-details">
-                            <p><%= games[index].title %></p>
+                            <p class="game-title"><%= games[index].title %></p>
+                            <p>Last Edit: <%= games[index].lastEditInfo %> on <%= formatDate(games[index].lastEditAt) %></p>
+
                             <div class="game-options">
                                 <a href="/my-games/play-game/<%= games[index].id %>" class="button">Launch Game</a>
                                 <a href="/my-games/about-game/<%= games[index].id %>" class="button">About Game</a>
@@ -18,6 +20,6 @@
                 <p>Click the button below to create your first game!</p>
             <% } %>
         </ul>
-        <a href="/purchase-game/create-checkout-session" class="button">Purchase a Game</a>
+        <a href="/purchase-game/checkout" class="button">Purchase a Game</a>
     </div>
 <%- include('partials/footer') %>

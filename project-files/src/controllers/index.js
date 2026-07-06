@@ -9,8 +9,8 @@ const aboutPage = (req, res) => {
     res.render('about', { title: 'About | Gender Reveal Bingo Party' });
 };
 
-const getCardsPage = (req, res) => {
-    res.render('get-cards', { title: 'Get Cards | Gender Reveal Bingo Party', mainClass: 'get-cards' });
+const howToPage = (req, res) => {
+    res.render('how-to-host', { title: 'How to Host | Gender Reveal Bingo Party', mainClass: 'how-to-main' });
 };
 
 const contactUsPage = (req, res) => {
@@ -31,4 +31,4 @@ const testErrorPage = (req, res, next) => {
     next(err);
 };
 
-export { homePage, aboutPage, getCardsPage, contactUsPage, testErrorPage, introVideoPage, playableBingoCardPage };
+export { homePage, aboutPage, howToPage, contactUsPage, testErrorPage, introVideoPage, playableBingoCardPage };
