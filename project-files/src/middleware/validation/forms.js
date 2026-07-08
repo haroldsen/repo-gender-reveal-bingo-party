@@ -109,8 +109,8 @@ const editGameValidation = [
         .trim()
         .isLength({ min: 3, max: 50 })
         .withMessage('Title must be between 3 and 50 characters')
-        .matches(/^[a-zA-Z\s'-]+$/)
-        .withMessage('Title can only contain letters, spaces, hyphens, and apostrophes'),
+        .matches(/^[a-zA-Z\s'\.-]+$/)
+        .withMessage('Title can only contain letters, spaces, hyphens, apostrophes, and periods'),
     body('gender')
         .trim()
         .isIn(['BOY', 'GIRL'])

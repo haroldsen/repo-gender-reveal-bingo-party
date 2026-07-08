@@ -1,46 +1,96 @@
 import { Router } from "express";
 
-import PDFDocument from 'pdfkit';
-import SVGtoPDF from 'svg-to-pdfkit';
+import puppeteer from 'puppeteer';
+import fs from 'fs';
+import path from 'path';
+
+import { getGameById } from "../../../models/games/games.js";
+import { getCardById } from "../../../models/card-data/card-data.mjs";
 
 const winningCardRoute = Router();
 
-winningCardRoute.get('/:gameId', (req, res) => {
+winningCardRoute.get('/:gameId', async (req, res) => {
+    let browser;
     try {
-        // 1. Create your SVG string dynamically (or load it from a file/database)
-        const svgString = `
-            <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="100" cy="100" r="80" fill="#3498db" />
-                <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="16" font-family="Helvetica">
-                    Hello Node!
-                </text>
-            </svg>
-        `;
+        const { gameId } = req.params;
 
-        // 2. Initialize a PDFKit Document
-        const doc = new PDFDocument({ size: 'A4' });
+        const game = await getGameById(gameId);
+        if (!game || !game.lastWinningCard) {
+            return res.status(404).send('Winning card not found for this game.');
+        }
 
-        // 3. Set HTTP headers to force file download in the browser
-        res.setHeader('Content-Type', 'application/pdf');
-        res.setHeader('Content-Disposition', 'attachment; filename="generated-vector.pdf"');
+        const card = getCardById(game.lastWinningCard.id);
+        const winningSequence = game.lastWinningCard.sequence;
+        const svgString = card.getToggledSVG(winningSequence);
 
-        // 4. Pipe the PDF document directly into the Express response stream
-        doc.pipe(res);
+        // 1. Read your local Lexend font file and convert it to Base64
+        const fontPath = path.resolve('./Lexend/Lexend-VariableFont_wght.ttf');
+        const fontBase64 = fs.readFileSync(fontPath).toString('base64');
 
-        // 5. Convert the SVG string and draw it onto the PDF document
-        // Parameters: (pdfDoc, svgString, x_position, y_position, options)
-        SVGtoPDF(doc, svgString, 100, 100, {
-            width: 300,  // Scale width inside the PDF
-            height: 300, // Scale height inside the PDF
-            preserveAspectRatio: 'xMidYMid meet'
+        browser = await puppeteer.launch({
+            headless: 'new',
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
         });
 
-        // 6. Finalize the PDF file and close the stream
-        doc.end();
+        const page = await browser.newPage();
+
+        // 2. Inject the font directly via Base64 src data URI
+        const htmlContent = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    @font-face {
+                        font-family: 'Lexend';
+                        src: url(data:font/ttf;charset=utf-8;base64,${fontBase64}) format('truetype');
+                    }
+                    body, html {
+                        margin: 0;
+                        padding: 0;
+                        background: transparent;
+                        overflow: hidden;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
+                        width: 100vw;
+                    }
+                    svg {
+                        width: 100%;
+                        height: 100%;
+                    }
+                </style>
+            </head>
+            <body>
+                ${svgString}
+            </body>
+            </html>
+        `;
+
+        // 3. Changed to 'load' instead of 'networkidle0'
+        // Since the font is inline, there are 0 external network requests needed.
+        await page.setContent(htmlContent, { 
+            waitUntil: 'load' 
+        });
+
+        const pdfBuffer = await page.pdf({
+            width: '360pt',
+            height: '504pt',
+            printBackground: true,
+            margin: { top: 0, right: 0, bottom: 0, left: 0 }
+        });
+
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', `attachment; filename="winning-card.pdf"`);
+        res.send(pdfBuffer);
 
     } catch (error) {
-        console.error('Error generating PDF:', error);
+        console.error('Error generating PDF with Puppeteer:', error);
         res.status(500).send('An error occurred while generating your PDF.');
+    } finally {
+        if (browser) {
+            await browser.close();
+        }
     }
 });
 

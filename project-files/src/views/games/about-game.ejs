@@ -62,7 +62,7 @@
 
             <% if (game.lastWinningCard) { %>
                 <p>Your winning card:</p>
-                <a class="button" href="my-games/winning-card/<%= game.id %>" download="winning-card.pdf">Download Card</a>
+                <a class="button" href="/my-games/winning-card/<%= game.id %>" download="winning-card.pdf">Download Card</a>
             <% } else { %>
                 <p>The option to download the winning card will appear here once this game has been launched.</p>
             <% } %>

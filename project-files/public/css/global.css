@@ -160,6 +160,12 @@ button, .button {
     }
 }
 
+.purchase-div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 ul {
     list-style-type: none;
     width: 100%;

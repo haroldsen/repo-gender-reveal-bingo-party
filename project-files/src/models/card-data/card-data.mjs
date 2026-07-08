@@ -79,16 +79,18 @@ class Card {
         return combos;
     }
 
-    _getSVGStyleRootContent() {
+    _getSVGRootContent() {
         if (this.gender == 'BOY') {
-            return `--boy-light: #cce7ff;
+            return ` --boy-light: #cce7ff;
                 --boy-medium: #b8deff;
-                --boy-dark: #00294d;`;
+                --boy-dark: #00294d;`
+            ;
         }
         else {
-            return `--girl-light: #ffe0ef;
+            return ` --girl-light: #ffe0ef;
                 --girl-medium: #ffcce4;
-                --girl-dark: #4d0024;`;
+                --girl-dark: #4d0024;`
+            ;
         }
     }
 
@@ -97,16 +99,16 @@ class Card {
         const gender = this.gender.toLowerCase();
 
         return `:root {
-                ${this._getSVGStyleRootContent()}
+                ${this._getSVGRootContent()}
             }
-
+        
             /* FONT STYLES */
 
             .column-header-text,
             .number-text,
             .free-text,
             .id-text {
-                font-family: Lexend-Regular, Lexend;
+                font-family: Lexend-Regular, Lexend, Helvetica, Arial, sans-serif;
                 font-variation-settings: 'wght' 400;
                 text-anchor: middle;
                 user-select: none;
@@ -394,7 +396,7 @@ class Card {
 
         let svgText = this.getSVG();
 
-        svgText.replace('num-free', 'toggled');
+        svgText = svgText.replace('num-free', 'toggled');
 
         sequence.forEach(number => {
             svgText = svgText.replace(`num-${number}`, 'toggled');
@@ -507,6 +509,15 @@ const cards = [
     new Card('2223', 'GIRL', [[5, 6, 10, 13, 15], [26, 21, 23, 17, 24], [45, 40, 'FREE', 39, 33], [51, 49, 59, 46, 56], [63, 68, 64, 72, 73]])
 ];
 
-export function getCards() {
+function getCards() {
     return cards;
+}
+
+function getCardById(searchId) {
+    return cards.find(card => card.id === searchId);
+}
+
+export {
+    getCards,
+    getCardById
 }

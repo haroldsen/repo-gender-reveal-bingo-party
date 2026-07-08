@@ -16,3 +16,7 @@
     width: 100%;
     text-align: center;
 }
+
+.number-square-group:hover {
+    cursor: pointer;
+}
