@@ -1,6 +1,8 @@
 {
     "name": "Gender Reveal Bingo Party",
     "short_name": "Gender Bingo",
+    "start_url": "/",
+    "id": "/",
     "icons": [
         {
             "src": "/images/android-chrome-192x192.png",
@@ -13,7 +15,8 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#fff",
-    "background_color": "#fff",
-    "display": "browser"
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait"
 }
