@@ -1,62 +1,69 @@
 <%- include('partials/header') %>
     <div class="page">
-        <div>
-            <h1>How to Host</h1>
-            <p>Hosting a Gender Reveal Bingo Party is relatively cheap and fairly straight-forward.</p>
-            <p>These instructions will explain everything you need to know to have the best experience with your gender reveal.</p>
-        </div>
+        <section>
+            <div>
+                <h1>How to Host</h1>
+                <p>Hosting a Gender Reveal Bingo Party is relatively cheap and fairly straight-forward.</p>
+                <p>These instructions will explain everything you need to know to have the best experience with your gender reveal.</p>
+            </div>
+        </section>
 
-        <div>
-            <h2>About Games</h2>
+        <section id="about-games">
+            <div>
+                <h2>About Games</h2>
+                <p>Before you can play Gender Reveal Bingo Party, you'll need to purchase a game.</p>
+                <p>Games can be purchased via the button below.</p>
+                <div class="purchase-div">
+                    <a href="/purchase-game/checkout" class="button">Purchase a Game</a>
+                    <p>$19.99 + tax</p>
+                </div>
+            </div>
+
+            <div>
+                <p>After purchasing a game, the game will appear in your account.</p>
+                <img src="images/demo/new-game.png" draggable="false"/>
+            </div>
+
+            <div>
+                <p>Once you have a game, you'll want to explore the "About Game" page.</p>
+                <img src="images/demo/about-game.png" />
+                <p>This button allows you to view and edit your game in the following ways:</p>
+                <ul>
+                    <li>Set the gender and title of the game</li>
+                    <li>Create an edit link<br>(edit links allow doctors or friends to set the gender of your game without accessing your account)</li>
+                    <li>Download a copy of the winning card<br>(if the game has been played)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="about-cards">
+            <div>
+                <h2>About Cards</h2>
+                <p>Our game player only works with our unique cards.</p>
+                <%- include('svgs/fanned-cards') %>
+                <p>Before launching a game, you'll want to consider how your guests will access their bingo cards.</p>
+            </div>
             
-            <p>Before you can use Gender Reveal Bingo Party, you'll need to purchase a game.</p>
+            <div>
+                <p>Guests can access bingo cards in one of two ways:</p>
+            </div>
 
-            <p>Games can be purchased via the button below.</p>
-
-            <p>$19.99 + tax</p>
-            <a href="/purchase-game/checkout" class="button">Purchase a Game</a>
-
-            <p>After purchasing a game, the game will appear in your account.</p>
-
-            <img />
-
-            <p>The following can be done through the <button>About Game</button> button:</p>
-
-            <ul>
-                <li>Set the gender and title of the game.</li>
-                <li>Create an edit link (allows doctors or friends to set the gender without creating an account).</li>
-                <li>Download a copy of the winning card (if the game has been played).</li>
-            </ul>
-        </div>
-
-        <div id="about-cards">
-            <h2>About Cards</h2>
+            <div>
+                <p>If paper cards will be used, they will need to be printed and cut beforehand.</p>
+                <p>Download the print file for free!</p>
+                <a class="button" href="downloads/gender-reveal-bingo-cards.pdf" download>Download PDF</a>
+            </div>
             
-            <p>Our game player only works with our unique cards.</p>
+            <div>
+                <p>If digital cards will be used, there is...</p>
+            </div>
+        </section>
 
-            <%- include('svgs/fanned-cards') %>
-
-            <p>Before launching a game, you'll want to consider how your guests will access their bingo cards.</p>
-
-            <p>Guests can access bingo cards in one of two ways:</p>
-
-            <p>If paper cards will be used, they will need to be printed and cut beforehand.</p>
-
-            <p>Download the print file for free!</p>
-            <a class="button" href="downloads/gender-reveal-bingo-cards.pdf" download>Download PDF</a>
-        </div>
-
-        <div>
-            <h2>Playing the Game</h2>
-            
-            <p>Our game player only works with our unique cards.</p>
-
-            <p>Before launching a game, you'll want to consider how your guests will access their bingo cards.</p>
-
-            <p>If paper cards will be used, they will need to be printed and cut beforehand.</p>
-
-            <p>Download the print file for free!</p>
-            <a class="button" href="downloads/gender-reveal-bingo-cards.pdf" download>Download PDF</a>
-        </div>
+        <section id="playing-the-game">
+            <div>
+                <h2>Playing the Game</h2>
+                <p>Once you've configured your game, and have prepared the bingo cards (if applicable), you'll be ready to launch the game!</p>
+            </div>
+        </section>
     </div>
 <%- include('partials/footer') %>

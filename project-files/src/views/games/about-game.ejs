@@ -1,9 +1,7 @@
 <%- include('../partials/header') %>
     <div class="about-game page">
-        <h1>About Game</h1>
-
         <div>
-            <h2>Details</h2>
+            <h1>About Game</h1>
             <p>Title: <%= game.title %></p>
             <p>Created On: <%= formatDate(game.createdAt) %></p>
             <p>Last Edit: <%= game.lastEditInfo %> on <%= formatDate(game.lastEditAt) %></p>
@@ -57,19 +55,18 @@
         <div>
             <h2>Winning Card</h2>
             <p>After a game is completed, you can download a copy of the winning card for memories or as a keep-sake.</p>
-            <p>We only keep track of the most recent winning card.</p>
-            <p>If a game is launched multiple times, the winning card will be overwritten with the most recent winning card.</p>
+            <p>If a game is launched more than once, the previous winning card will be overwritten with the most recent winning card.</p>
 
             <% if (game.lastWinningCard) { %>
                 <p>Your winning card:</p>
                 <button class="download-winning-card">Download Card</button>
             <% } else { %>
-                <p>The option to download the winning card will appear here once this game has been launched.</p>
+                <p>The option to download the winning card will appear here after this game has been launched.</p>
             <% } %>
         </div>
 
         <a class="button" href="/my-games">
-            Back to My Games
+            Go Back
         </a>
     </div>
     <div id="winning-card-container">

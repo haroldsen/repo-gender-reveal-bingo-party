@@ -209,7 +209,7 @@ const handleDeleteEditLink = async (req, res) => {
 
     try {
         await deleteEditLinkForGameId(gameId);
-        req.flash('success', 'The edit link has been deleted.');
+        req.flash('success', 'The edit link has been deleted for this game.');
     } catch (error) {
         console.error('Error deleting edit link:', error);
         req.flash('error', 'Unable to delete edit link. Please try again.');
