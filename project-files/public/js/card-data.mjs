@@ -394,7 +394,7 @@ class Card {
 
         let svgText = this.getSVG();
 
-        svgText.replace('num-free', 'toggled');
+        svgText = svgText.replace('num-free', 'toggled');
 
         sequence.forEach(number => {
             svgText = svgText.replace(`num-${number}`, 'toggled');

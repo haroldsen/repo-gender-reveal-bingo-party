@@ -62,7 +62,7 @@
 
             <% if (game.lastWinningCard) { %>
                 <p>Your winning card:</p>
-                <a class="button" href="/my-games/winning-card/<%= game.id %>" download="winning-card.pdf">Download Card</a>
+                <button class="download-winning-card">Download Card</button>
             <% } else { %>
                 <p>The option to download the winning card will appear here once this game has been launched.</p>
             <% } %>
@@ -72,8 +72,15 @@
             Back to My Games
         </a>
     </div>
+    <div id="winning-card-container">
+        <div id="winning-card-data"><%- JSON.stringify(game.lastWinningCard || '') %></div>
+    </div>
     <script type="module">
+
         import { flashBrowserMessage } from '/js/partials/browser-message.mjs';
+        import { getCards } from '/js/card-data.mjs';
+
+        // COPY EDIT LINK
 
         const copyButton = document.querySelector('.copy-edit-link');
 
@@ -102,6 +109,28 @@
                     setTimeout(() => copyButton.textContent = 'Copy', 2000);
                 }
             });
+        }
+
+        // DOWNLOAD WINNING CARD
+
+        const winningCardDataElement = document.querySelector('#winning-card-data');
+
+        const winningCardData = JSON.parse(winningCardDataElement.innerHTML);
+
+        const winningCardButton = document.querySelector('.download-winning-card');
+
+        if (winningCardButton) {
+
+            const cards = getCards();
+            const winningCard = cards.find(card => card.id == winningCardData.id);
+
+            const winningCardContainer = document.querySelector('#winning-card-container');
+
+            winningCardContainer.innerHTML = winningCard.getToggledSVG(winningCardData.sequence);
+
+            winningCardButton.addEventListener('click', () => {
+                window.print();
+            })
         }
     </script>
 <%- include('../partials/footer') %>

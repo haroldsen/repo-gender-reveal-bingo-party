@@ -47,3 +47,24 @@
         }
     }
 }
+
+#winning-card-container {
+    display: none;
+}
+
+@media print {
+
+    @page {
+        size: letter portrait;
+        /* size: [width] [height] */
+        margin: 0.5in; /* Margins on the paper itself */
+    }
+
+    header, footer, .about-game {
+        display: none !important;
+    }
+
+    #winning-card-container {
+        display: flex !important;
+    }
+}

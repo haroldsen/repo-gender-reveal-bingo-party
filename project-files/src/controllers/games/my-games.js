@@ -4,8 +4,6 @@ import { Router } from "express";
 import { validationResult } from "express-validator";
 import { editGameValidation } from '../../middleware/validation/forms.js';
 
-import winningCardRoute from './winning-card/winning-card.js';
-
 import {
     getGamesForUserId,
     getGameById,
@@ -230,7 +228,5 @@ myGamesRoutes.get('/edit-game/:gameId', editGamePage);
 myGamesRoutes.post('/edit-game/:gameId', editGameValidation, handleEditGameSubmission);
 myGamesRoutes.post('/create-edit-link/:gameId', handleCreateEditLink);
 myGamesRoutes.post('/delete-edit-link/:gameId', handleDeleteEditLink);
-
-myGamesRoutes.use('/winning-card', winningCardRoute);
 
 export default myGamesRoutes;
