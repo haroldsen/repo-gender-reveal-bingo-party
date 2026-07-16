@@ -2,6 +2,12 @@
 <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1319.84 1455.84">
   <defs>
     <style>
+
+      @font-face {
+        font-family: 'Google Sans';
+        src: url('../../fonts/Google_Sans/GoogleSans-VariableFont_GRAD\,opsz\,wght.ttf') format('truetype');
+      }
+
       .cls-1 {
         letter-spacing: -.01em;
       }
