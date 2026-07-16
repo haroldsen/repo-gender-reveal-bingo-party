@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1319.84 1455.84">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-2 {
+        filter: url(#drop-shadow-2);
+      }
+
+      .cls-3 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-6 {
+        font-size: 43.5px;
+      }
+
+      .cls-6, .cls-7 {
+        font-family: GoogleSans-Medium, 'Google Sans';
+        font-variation-settings: 'opsz' 18, 'wght' 500, 'GRAD' 0;
+        font-weight: 500;
+      }
+
+      .cls-8 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-9 {
+        fill: none;
+      }
+
+      .cls-10 {
+        filter: url(#drop-shadow-4);
+      }
+
+      .cls-11 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-12 {
+        letter-spacing: 0em;
+      }
+
+      .cls-13 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-14 {
+        filter: url(#drop-shadow-1);
+      }
+
+      .cls-15 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-16 {
+        letter-spacing: 0em;
+      }
+
+      .cls-17 {
+        letter-spacing: 0em;
+      }
+
+      .cls-18 {
+        clip-path: url(#clippath-3);
+      }
+
+      .cls-19 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-20 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-21 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-22 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-23 {
+        letter-spacing: -.06em;
+      }
+
+      .cls-24 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-25 {
+        filter: url(#drop-shadow-3);
+      }
+
+      .cls-26 {
+        letter-spacing: -.04em;
+      }
+
+      .cls-27 {
+        letter-spacing: 0em;
+      }
+
+      .cls-28 {
+        clip-path: url(#clippath-2);
+      }
+
+      .cls-29 {
+        letter-spacing: 0em;
+      }
+
+      .cls-7 {
+        font-size: 104.2px;
+      }
+
+      .cls-30 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-31 {
+        letter-spacing: 0em;
+      }
+    </style>
+    <filter id="drop-shadow-1" x="47.37" y="387.72" width="607" height="355" filterUnits="userSpaceOnUse">
+      <feOffset dx="7" dy="7"/>
+      <feGaussianBlur result="blur" stdDeviation="5"/>
+      <feFlood flood-color="#000" flood-opacity=".75"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clippath">
+      <rect class="cls-9" x="56.36" y="396.47" width="576" height="323.89" rx="27.51" ry="27.51"/>
+    </clipPath>
+    <filter id="drop-shadow-2" x="-115.05" y="694.01" width="918.83" height="570.71" filterUnits="userSpaceOnUse">
+      <feOffset dx="7" dy="7"/>
+      <feGaussianBlur result="blur-2" stdDeviation="5"/>
+      <feFlood flood-color="#000" flood-opacity=".75"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clippath-1">
+      <rect class="cls-9" x="56.36" y="917.9" width="576" height="323.89" rx="27.51" ry="27.51"/>
+    </clipPath>
+    <filter id="drop-shadow-3" x="679.37" y="387.72" width="607" height="355" filterUnits="userSpaceOnUse">
+      <feOffset dx="7" dy="7"/>
+      <feGaussianBlur result="blur-3" stdDeviation="5"/>
+      <feFlood flood-color="#000" flood-opacity=".75"/>
+      <feComposite in2="blur-3" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clippath-2">
+      <rect class="cls-9" x="687.48" y="396.47" width="576" height="323.89" rx="27.51" ry="27.51"/>
+    </clipPath>
+    <filter id="drop-shadow-4" x="679.37" y="909.72" width="607" height="355" filterUnits="userSpaceOnUse">
+      <feOffset dx="7" dy="7"/>
+      <feGaussianBlur result="blur-4" stdDeviation="5"/>
+      <feFlood flood-color="#000" flood-opacity=".75"/>
+      <feComposite in2="blur-4" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <clipPath id="clippath-3">
+      <rect class="cls-9" x="687.48" y="917.9" width="576" height="323.89" rx="27.51" ry="27.51"/>
+    </clipPath>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <rect class="cls-4" width="1319.84" height="1455.84" rx="45.49" ry="45.49"/>
+    <text class="cls-7" transform="translate(200.05 153.28)"><tspan x="0" y="0">H</tspan><tspan class="cls-11" x="74.4" y="0">O</tspan><tspan x="159.84" y="0">W </tspan><tspan class="cls-26" x="284.35" y="0">T</tspan><tspan class="cls-27" x="337.91" y="0">O R</tspan><tspan class="cls-3" x="512.75" y="0">E</tspan><tspan x="569.02" y="0">GI</tspan><tspan class="cls-20" x="681.76" y="0">S</tspan><tspan x="739.07" y="0">TER</tspan><tspan x="-104.2" y="148.79">DIGI</tspan><tspan class="cls-23" x="111.49" y="148.79">T</tspan><tspan x="162.75" y="148.79">AL BINGO </tspan><tspan class="cls-12" x="677.79" y="148.79">C</tspan><tspan x="754.38" y="148.79">AR</tspan><tspan class="cls-11" x="890.98" y="148.79">D</tspan><tspan class="cls-31" x="964.75" y="148.79">S</tspan></text>
+    <text class="cls-6" transform="translate(65.18 775.26)"><tspan x="0" y="0">The pl</tspan><tspan class="cls-24" x="121.23" y="0">a</tspan><tspan class="cls-19" x="144.37" y="0">y</tspan><tspan x="167.17" y="0">er gi</tspan><tspan class="cls-1" x="255.95" y="0">v</tspan><tspan x="278.79" y="0">es their guess</tspan><tspan x="147.57" y="59">( b</tspan><tspan class="cls-1" x="199.16" y="59">o</tspan><tspan class="cls-29" x="224.74" y="59">y or girl ) </tspan></text>
+    <text class="cls-6" transform="translate(724.69 775.26)"><tspan x="0" y="0">The ho</tspan><tspan class="cls-17" x="135.89" y="0">s</tspan><tspan x="156.86" y="0">t gi</tspan><tspan class="cls-5" x="220.5" y="0">v</tspan><tspan class="cls-29" x="243.33" y="0">es the pl</tspan><tspan class="cls-24" x="413.59" y="0">a</tspan><tspan class="cls-1" x="436.73" y="0">y</tspan><tspan class="cls-29" x="459.53" y="0">er</tspan><tspan x="101.94" y="59">an </tspan><tspan class="cls-24" x="160.92" y="59">av</tspan><tspan class="cls-16" x="206.99" y="59">ailable ID </tspan></text>
+    <text class="cls-6" transform="translate(146.2 1309.61)"><tspan x="0" y="0">The pl</tspan><tspan class="cls-24" x="121.23" y="0">a</tspan><tspan class="cls-1" x="144.37" y="0">y</tspan><tspan x="167.17" y="0">er </tspan><tspan class="cls-21" x="219.37" y="0">r</tspan><tspan x="235.68" y="0">egi</tspan><tspan class="cls-17" x="297.14" y="0">s</tspan><tspan class="cls-8" x="318.11" y="0">t</tspan><tspan class="cls-29" x="333.94" y="0">e</tspan><tspan class="cls-21" x="358.83" y="0">r</tspan><tspan x="375.14" y="0">s</tspan><tspan x="-21.68" y="59">the ID on their d</tspan><tspan class="cls-22" x="301.38" y="59">e</tspan><tspan class="cls-16" x="325.74" y="59">vi</tspan><tspan class="cls-15" x="359.37" y="59">c</tspan><tspan x="382.99" y="59">e </tspan></text>
+    <text class="cls-6" transform="translate(729.88 1309.61)"><tspan x="0" y="0">The ho</tspan><tspan class="cls-17" x="135.89" y="0">s</tspan><tspan x="156.86" y="0">t </tspan><tspan class="cls-21" x="183.92" y="0">r</tspan><tspan x="200.23" y="0">egi</tspan><tspan class="cls-17" x="261.69" y="0">s</tspan><tspan class="cls-8" x="282.66" y="0">t</tspan><tspan class="cls-29" x="298.49" y="0">e</tspan><tspan class="cls-21" x="323.37" y="0">r</tspan><tspan x="339.69" y="0">s the ID</tspan><tspan x="46.81" y="59">on the game pl</tspan><tspan class="cls-24" x="346.25" y="59">a</tspan><tspan class="cls-1" x="369.4" y="59">y</tspan><tspan class="cls-29" x="392.19" y="59">er </tspan></text>
+    <g class="cls-14">
+      <g class="cls-30">
+        <image width="971" height="546" transform="translate(56.36 396.47) scale(.59)" xlink:href="step11.png"/>
+      </g>
+    </g>
+    <g class="cls-2">
+      <g class="cls-13">
+        <image width="953" height="536" transform="translate(-115.05 694.01) scale(.96 1.02)" xlink:href="step3.png"/>
+      </g>
+    </g>
+    <g class="cls-25">
+      <g class="cls-28">
+        <image width="616" height="346" transform="translate(687.48 396.47) scale(.94)" xlink:href="step2.png"/>
+      </g>
+    </g>
+    <g class="cls-10">
+      <g class="cls-18">
+        <image width="594" height="334" transform="translate(687.48 917.91) scale(.97)" xlink:href="step4.png"/>
+      </g>
+    </g>
+  </g>
+</svg>
