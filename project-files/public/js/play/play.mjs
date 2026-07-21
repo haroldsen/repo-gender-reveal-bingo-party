@@ -5,6 +5,7 @@ import {
     landingPage,
     introVideoPage,
     registerCardsPage,
+    digitalCardInstructionsPage,
     numberPullerPage,
     earlyBingoPage,
     lateBingoPage,
@@ -165,6 +166,16 @@ function goToRegisterCards() {
     document.querySelector('#show-qr-button').addEventListener('click', () => {
         toggleQRCode();
     });
+    document.querySelector('.show-digital-card-instructions').addEventListener('click', () => {
+        goToDigitalCardInstructions();
+    });
+}
+
+function goToDigitalCardInstructions() {
+    switchToPage(digitalCardInstructionsPage());
+    document.querySelector('.close-instructions').addEventListener('click', (e) => {
+        goToRegisterCards();
+    });
 }
 
 function tryIdSubmit() {
@@ -241,10 +252,13 @@ function tryPlayGame() {
         idInput.value = '';
         let registrationWarning = '';
         if (!hasABoy) {
-            registrationWarning = registrationWarning + 'At least one boy card must be registered to play.  ';
+            registrationWarning = registrationWarning + 'At least one boy card must be registered to play.';
         }
         if (!hasAGirl) {
-            registrationWarning = registrationWarning + 'At least one girl card must be registered to play.  ';
+            if (!hasABoy) {
+                registrationWarning = registrationWarning + '<br>';
+            }
+            registrationWarning = registrationWarning + 'At least one girl card must be registered to play.';
         }
         flashMessage(registrationWarning, 'red');
         idInput.focus();

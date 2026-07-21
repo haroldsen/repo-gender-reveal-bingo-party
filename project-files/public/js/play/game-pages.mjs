@@ -53,6 +53,7 @@ function registerCardsPage(girlIds, boyIds) {
         <div class="page" id="get-ids-page">
             <div class="button-floor">
                 <button id="show-qr-button">SHOW QR CODE</button>
+                <button class="show-digital-card-instructions">About Digital Cards</button>
             </div>
             <div class="qr-code-div">
                 <img
@@ -63,6 +64,7 @@ function registerCardsPage(girlIds, boyIds) {
             <div class="id-input-section">
                 <div class="id-input-area">
                     <form id="get-ids">
+                        <h2>Card Registration</h2>
                         <p id="submit-message"></p>
                         <label for="id-input">Type your ID here</label>
                         <input
@@ -86,6 +88,11 @@ function registerCardsPage(girlIds, boyIds) {
             </div>
         </div>
     `;
+}
+
+const instructionsElement = document.querySelector('.digital-card-instructions');
+function digitalCardInstructionsPage() {
+    return `<div class="digital-card-instructions custom-scrollbar">${instructionsElement.innerHTML}</div>`;
 }
 
 function numberPullerPage(pulledNumbers) {
@@ -179,6 +186,7 @@ export {
     landingPage,
     introVideoPage,
     registerCardsPage,
+    digitalCardInstructionsPage,
     numberPullerPage,
     earlyBingoPage,
     lateBingoPage,
