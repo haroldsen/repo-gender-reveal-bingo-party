@@ -8,6 +8,7 @@
 .playable-card {
     width: 100vw;
     max-width: 500px;
+    box-shadow: var(--standard-shadow);
 }
 
 .id-warning {
