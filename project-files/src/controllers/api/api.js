@@ -26,26 +26,25 @@ apiRoutes.get('/search-users', requireRoleFromList(['admin']), async (req, res) 
 
 apiRoutes.post('/game/update-winner', async (req, res) => {
     try {
-        // 1. API Session Guard: Is a user even logged in?
+        // Is a user logged in?
         if (!req.session || !req.session.user) {
             return res.status(401).json({ error: 'Authentication required.' });
         }
 
         const { gameId, winningId, sequence } = req.body;
         
-        // Extract the secure user ID from the server-side session
+        // Extract the user ID from the server-side session
         const loggedInUserId = req.session.user.id;
 
-        // 2. Format Validation
+        // Validate the form
         if (!gameId || !winningId || !Array.isArray(sequence)) {
             return res.status(400).json({ error: 'Missing or invalid parameters.' });
         }
 
-        // 3. Database Execution with Ownership constraint
+        // Update the database
         const updatedGame = await updateWinningCardForGameId(gameId, loggedInUserId, winningId, sequence);
         
-        // 4. Secure Failure Handler
-        // If null is returned, it means either the gameId doesn't exist, 
+        // If null is returned, it means either the gameId doesn't exist,
         // or the game belongs to a different userId.
         if (!updatedGame) {
             return res.status(403).json({ 
@@ -53,7 +52,7 @@ apiRoutes.post('/game/update-winner', async (req, res) => {
             });
         }
 
-        // Success!
+        // Return success
         res.json({ success: true, game: updatedGame });
 
     } catch (err) {

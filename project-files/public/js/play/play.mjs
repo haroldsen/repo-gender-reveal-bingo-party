@@ -38,6 +38,23 @@ let girlIds = cards
 // HELPER FUNCTIONS
 //------------------------------------------------------------------------
 
+const backgroundMusic = new Audio('/music/game-music.mp3');
+backgroundMusic.volume = 0.0;
+
+backgroundMusic.addEventListener('ended', () => {
+    backgroundMusic.currentTime = 0;
+    backgroundMusic.play();
+});
+
+// Trigger play on first user interaction
+document.body.addEventListener('click', (e) => {
+    if (!e.target.classList.contains('play-intro')) {
+        backgroundMusic.play();
+    }
+}, { once: true });
+
+// -----------------------
+
 function toggleFullscreen() {
     const element = document.documentElement;
 
@@ -143,7 +160,10 @@ function showLandingPage() {
 
 function goToIntroVideo() {
     switchToPage(introVideoPage());
-    document.querySelector('.intro-video').play();
+    const videoElement = document.querySelector('.intro-video');
+    videoElement.volume = 0.5;
+    videoElement.play();
+    backgroundMusic.pause();
     document.querySelector('.register-cards').addEventListener('click', () => {
         goToRegisterCards();
     });
@@ -151,6 +171,7 @@ function goToIntroVideo() {
 
 function goToRegisterCards() {
     switchToPage(registerCardsPage(girlIds, boyIds));
+    backgroundMusic.play();
     document.querySelector('#get-ids').addEventListener('submit', (e) => {
         e.preventDefault();
         tryIdSubmit();
