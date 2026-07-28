@@ -43,7 +43,6 @@ function introVideoPage() {
             <div class="close-intro-container">
                 <button class="register-cards">Close Intro</button>
             </div>
-            <video class="intro-video" controls controlsList="nofullscreen" src="/videos/gender-bingo-intro-video.mp4">
         </div>
     `;
 }

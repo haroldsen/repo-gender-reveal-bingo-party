@@ -41,6 +41,16 @@ let girlIds = cards
 const backgroundMusic = new Audio('/music/game-music.mp3');
 backgroundMusic.volume = 0.0;
 
+const introSample = new Audio('/music/audio-test.mp3');
+introSample.volume = 0.0;
+
+const introVideoElement = document.createElement('video');
+introVideoElement.className = 'intro-video';
+introVideoElement.controls = true;
+introVideoElement.setAttribute('controlsList', 'nofullscreen');
+introVideoElement.src = '/videos/gender-bingo-intro-video.mp4';
+introVideoElement.volume = 0.5;
+
 backgroundMusic.addEventListener('ended', () => {
     backgroundMusic.currentTime = 0;
     backgroundMusic.play();
@@ -160,9 +170,8 @@ function showLandingPage() {
 
 function goToIntroVideo() {
     switchToPage(introVideoPage());
-    const videoElement = document.querySelector('.intro-video');
-    videoElement.volume = 0.5;
-    videoElement.play();
+    document.querySelector('.close-intro-container').insertAdjacentElement('afterend', introVideoElement);
+    introVideoElement.play();
     backgroundMusic.pause();
     document.querySelector('.register-cards').addEventListener('click', () => {
         goToRegisterCards();
@@ -365,4 +374,17 @@ document.addEventListener('click', (e) => {
 });
 document.querySelector('.music-volume').addEventListener('input', (e) => {
     backgroundMusic.volume = e.target.value;
+});
+document.querySelector('.intro-volume').addEventListener('change', (e) => {
+    introSample.volume = e.target.value;
+    introVideoElement.volume = e.target.value;
+    introSample.currentTime = 0;
+    if (!document.querySelector('.close-intro-container')) {
+        introSample.play();
+    }
+});
+document.querySelector('.intro-volume').addEventListener('input', (e) => {
+    if (document.querySelector('.close-intro-container')) {
+        introVideoElement.volume = e.target.value;
+    }
 });
