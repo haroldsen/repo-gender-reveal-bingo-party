@@ -3,11 +3,7 @@
   <defs>
     <style>
       :root {
-        --purple: #d2b3ff;
-
-        /*
-        --purple: #d8a3ff;
-        */
+        --purple: #d9ccff;
       }
 
       .cls-1 {

@@ -72,11 +72,20 @@
     <div id="page-viewer">
 
     </div>
-    <div class="fullscreen-button-container">
-        <button id="fullscreen-button">
-            <p>fullscreen</p>
-            <img src="/images/icon-fullscreen.svg">
-        </button>
+    <div class="settings-container">
+        <button class="open-settings">Settings</button>
+        <div class="settings-panel">
+            <button class="close-settings">Exit Settings</button>
+            <button class="toggle-fullscreen">Fullscreen</button>
+            <div>
+                <label>Intro Volume</label>
+                <input class="intro-volume" type="range" min="0" max="1" step="0.05" value="0">
+            </div>
+            <div>
+                <label>Music Volume</label>
+                <input class="music-volume" type="range" min="0" max="1" step="0.05" value="0">
+            </div>
+        </div>
     </div>
     <div class="digital-card-instructions custom-scrollbar" style="display: none;">
         <%- include('../partials/registering-digital-cards') %>

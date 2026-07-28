@@ -3,9 +3,9 @@
   <defs>
     <style>
       :root {
-        --purple-1: #bc8fff;
-        --purple-2: #5e377e;
-        --purple-3: #362053;
+        --purple-1: #ab8fff;
+        --purple-2: #48367c;
+        --purple-3: #2e2154;
         --white: #fff;
         --grey: #ccc;
       }

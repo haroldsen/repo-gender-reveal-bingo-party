@@ -351,4 +351,18 @@ window.addEventListener('beforeunload', (e) => {
     return message;
 });
 
-document.getElementById('fullscreen-button').addEventListener('click', toggleFullscreen);
+document.querySelector('.toggle-fullscreen').addEventListener('click', toggleFullscreen);
+document.querySelector('.open-settings').addEventListener('click', (e) => {
+    e.target.closest('.settings-container').classList.add('open');
+});
+document.querySelector('.close-settings').addEventListener('click', (e) => {
+    e.target.closest('.settings-container').classList.remove('open');
+});
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.settings-container')) {
+        document.querySelector('.settings-container').classList.remove('open');
+    }
+});
+document.querySelector('.music-volume').addEventListener('input', (e) => {
+    backgroundMusic.volume = e.target.value;
+});
