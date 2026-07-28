@@ -78,6 +78,20 @@ const updateGameByGameId = async (id, title, gender, lastEditInfo) => {
 };
 
 // -----------------------------------------------------------------------
+// Update the title of a game by its id.
+// -----------------------------------------------------------------------
+const updateGameTitleByGameId = async (id, title) => {
+    const query = `
+        UPDATE games
+        SET title = $2
+        WHERE id = $1
+        RETURNING id, title
+    ;`;
+    const result = await db.query(query, [id, title]);
+    return result.rows[0] || null;
+};
+
+// -----------------------------------------------------------------------
 // Update the gender of a game by its id.
 // -----------------------------------------------------------------------
 const updateGameGenderByGameId = async (id, gender, lastEditInfo) => {
@@ -246,6 +260,7 @@ const deleteEditLinkForGameId = async (gameId) => {
 export {
     createGameForUserId,
     updateGameByGameId,
+    updateGameTitleByGameId,
     updateGameGenderByGameId,
     updateWinningCardForGameId,
     getGamesForUserId,

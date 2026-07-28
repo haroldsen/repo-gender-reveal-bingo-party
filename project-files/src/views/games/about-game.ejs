@@ -9,9 +9,11 @@
 
         <div>
             <h2>Edit Game</h2>
-            <p>Use this button to change the title and gender of your game.</p>
-            <a class="button" href="/my-games/edit-game/<%= game.id %>">
-                Edit Game
+            <a class="button" href="/my-games/set-title/<%= game.id %>">
+                Set Title
+            </a>
+            <a class="button" href="/my-games/set-gender/<%= game.id %>">
+                Set Gender
             </a>
         </div>
         
@@ -22,6 +24,7 @@
                 This allows them to set the gender of your game without accessing your account.
             </p>
             <p>Edit links will expire after the gender has been set.</p>
+            <p>Edit links can break when shared through social media messaging platforms.  For this reason, we recommend sharing them through texts or emails.</p>
             <% if (game.editLink.length > 10) { %>
                 <p>Your edit link:</p>
                 <div class="edit-link-area">
@@ -66,7 +69,7 @@
         </div>
 
         <a class="button" href="/my-games">
-            Go Back
+            Back to Games
         </a>
     </div>
     <div id="winning-card-container">
@@ -110,6 +113,11 @@
 
         // DOWNLOAD WINNING CARD
 
+        async function handlePrint() {
+            await document.fonts.ready;
+            window.print();
+        }
+
         const winningCardDataElement = document.querySelector('#winning-card-data');
 
         const winningCardData = JSON.parse(winningCardDataElement.innerHTML);
@@ -125,9 +133,7 @@
 
             winningCardContainer.innerHTML = winningCard.getToggledSVG(winningCardData.sequence);
 
-            winningCardButton.addEventListener('click', () => {
-                window.print();
-            })
+            winningCardButton.addEventListener('click', handlePrint);
         }
     </script>
 <%- include('../partials/footer') %>

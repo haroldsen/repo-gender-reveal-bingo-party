@@ -2,12 +2,16 @@
 import { Router } from "express";
 
 import { validationResult } from "express-validator";
-import { editGameValidation } from '../../middleware/validation/forms.js';
+import {
+    editGameTitleValidation,
+    editGameGenderValidation
+} from '../../middleware/validation/forms.js';
 
 import {
     getGamesForUserId,
     getGameById,
-    updateGameByGameId,
+    updateGameTitleByGameId,
+    updateGameGenderByGameId,
     createEditLinkForGameId,
     deleteEditLinkForGameId
 } from "../../models/games/games.js";
@@ -80,7 +84,7 @@ const aboutGamePage = async (req, res) => {
     });
 }
 
-const editGamePage = async (req, res) => {
+const setTitlePage = async (req, res) => {
 
     const gameToEdit = await getGameById(req.params.gameId);
 
@@ -92,7 +96,7 @@ const editGamePage = async (req, res) => {
     const isOwnerOfGame = req.session.user.id === gameToEdit.userId;
 
     if (isOwnerOfGame) {
-        res.render('games/edit-game', {
+        res.render('games/set-title', {
             title: 'Edit Game | Gender Reveal Bingo Party',
             game: gameToEdit
         });
@@ -102,7 +106,29 @@ const editGamePage = async (req, res) => {
     }
 }
 
-const handleEditGameSubmission = async (req, res) => {
+const setGenderPage = async (req, res) => {
+
+    const gameToEdit = await getGameById(req.params.gameId);
+
+    if (!gameToEdit) {
+        req.flash('error', 'Game not found.');
+        return res.redirect('/my-games');
+    }
+
+    const isOwnerOfGame = req.session.user.id === gameToEdit.userId;
+
+    if (isOwnerOfGame) {
+        res.render('games/set-gender', {
+            title: 'Edit Game | Gender Reveal Bingo Party',
+            game: gameToEdit
+        });
+    } else {
+        req.flash('error', 'You do not have permission to edit this game.');
+        return res.redirect('/my-games');
+    }
+}
+
+const handleSetTitle = async (req, res) => {
 
     const gameId = req.params.gameId;
     const gameToEdit = await getGameById(gameId);
@@ -130,14 +156,14 @@ const handleEditGameSubmission = async (req, res) => {
         errors.array().forEach(error => {
             req.flash('error', error.msg);
         });
-        return res.redirect(`/my-games/edit-game/${gameId}`);
+        return res.redirect(`/my-games/set-title/${gameId}`);
     }
 
     // UPDATE THE DATABASE
 
     try {
-        const { title, gender } = req.body;
-        await updateGameByGameId(gameId, title, gender, 'By you');
+        const { title } = req.body;
+        await updateGameTitleByGameId(gameId, title);
         
         req.flash('success', 'Game edited successfully!');
         return res.redirect(`/my-games/about-game/${gameId}`);
@@ -148,7 +174,57 @@ const handleEditGameSubmission = async (req, res) => {
     catch (error) {
         console.error('Error editing game:', error);
         req.flash('error', 'Unable to edit game. Please try again later.');
-        return res.redirect(`/my-games/edit-game/${gameId}`);
+        return res.redirect(`/my-games/set-title/${gameId}`);
+    }
+}
+
+const handleSetGender = async (req, res) => {
+
+    const gameId = req.params.gameId;
+    const gameToEdit = await getGameById(gameId);
+
+    // DOES THE GAME EXIST?
+
+    if (!gameToEdit) {
+        req.flash('error', 'Game not found.');
+        return res.redirect('/my-games');
+    }
+
+    // DOES THE USER OWN THE GAME?
+
+    const isOwnerOfGame = gameToEdit.userId === req.session.user.id;
+
+    if (!isOwnerOfGame) {
+        req.flash('error', 'You do not have permission to edit this game.');
+        return res.redirect('/my-games');
+    }
+
+    // WERE THE EDITS VALID?
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        errors.array().forEach(error => {
+            req.flash('error', error.msg);
+        });
+        return res.redirect(`/my-games/set-gender/${gameId}`);
+    }
+
+    // UPDATE THE DATABASE
+
+    try {
+        const { gender } = req.body;
+        await updateGameGenderByGameId(gameId, gender, 'By you');
+        
+        req.flash('success', 'Game edited successfully!');
+        return res.redirect(`/my-games/about-game/${gameId}`);
+    }
+    
+    // CATCH DATABASE ERRORS
+
+    catch (error) {
+        console.error('Error editing game:', error);
+        req.flash('error', 'Unable to edit game. Please try again later.');
+        return res.redirect(`/my-games/set-gender/${gameId}`);
     }
 }
 
@@ -223,9 +299,12 @@ const myGamesRoutes = Router();
 myGamesRoutes.get('/', myGamesPage);
 myGamesRoutes.get('/play-game/:gameId', playGamePage);
 myGamesRoutes.get('/about-game/:gameId', aboutGamePage);
-myGamesRoutes.get('/edit-game/:gameId', editGamePage);
+myGamesRoutes.get('/set-title/:gameId', setTitlePage);
+myGamesRoutes.get('/set-gender/:gameId', setGenderPage);
 
-myGamesRoutes.post('/edit-game/:gameId', editGameValidation, handleEditGameSubmission);
+myGamesRoutes.post('/set-title/:gameId', editGameTitleValidation, handleSetTitle);
+myGamesRoutes.post('/set-gender/:gameId', editGameGenderValidation, handleSetGender);
+
 myGamesRoutes.post('/create-edit-link/:gameId', handleCreateEditLink);
 myGamesRoutes.post('/delete-edit-link/:gameId', handleDeleteEditLink);
 

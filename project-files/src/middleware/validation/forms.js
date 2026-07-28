@@ -104,17 +104,23 @@ const updateAccountValidation = [
 /**
  * Validation rules for editing game details
  */
-const editGameValidation = [
+const editGameTitleValidation = [
     body('title')
         .trim()
         .isLength({ min: 3, max: 50 })
         .withMessage('Title must be between 3 and 50 characters')
         .matches(/^[a-zA-Z\s'\.-]+$/)
-        .withMessage('Title can only contain letters, spaces, hyphens, apostrophes, and periods'),
+        .withMessage('Title can only contain letters, spaces, hyphens, apostrophes, and periods')
+];
+
+/**
+ * Validation rules for editing game details
+ */
+const editGameGenderValidation = [
     body('gender')
         .trim()
-        .isIn(['BOY', 'GIRL'])
-        .withMessage('Gender must be either "BOY" or "GIRL"')
+        .isIn(['BOY', 'GIRL', 'NONE'])
+        .withMessage('Gender must be either "BOY", "GIRL", or "NONE".')
         .escape()
 ];
 
@@ -134,6 +140,7 @@ export {
     registrationValidation,
     loginValidation,
     updateAccountValidation,
-    editGameValidation,
+    editGameTitleValidation,
+    editGameGenderValidation,
     editLinkValidation
 };

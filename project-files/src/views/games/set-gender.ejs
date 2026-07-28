@@ -1,20 +1,7 @@
 <%- include('../partials/header') %>
-    <form method="POST" action="/my-games/edit-game/<%= game.id %>" class="edit-game-form">
+    <form method="POST" action="/my-games/set-gender/<%= game.id %>" class="edit-game-form">
         
-        <h1>Edit Game</h1>
-
-        <!-- Title field -->
-        <div class="form-item">
-            <label for="title">Title</label>
-            <input
-                type="text"
-                id="title"
-                name="title"
-                required
-                placeholder="Jack and Jill's Gender Reveal"
-                value="<%= game.title %>"
-            >
-        </div>
+        <h1>Set Gender</h1>
 
         <!-- Gender field -->
         <div class="form-item">
