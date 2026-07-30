@@ -105,6 +105,7 @@ class Card {
             .column-header-text,
             .number-text,
             .free-text,
+            .site-link-text,
             .id-text {
                 font-family: Lexend-Regular, Lexend;
                 font-variation-settings: 'wght' 400;
@@ -119,6 +120,10 @@ class Card {
 
             .free-text {
                 font-size: 18px;
+            }
+
+            .site-link-text {
+                font-size: 12px;
             }
 
             .id-text {
@@ -148,6 +153,7 @@ class Card {
             .${gender} .square-grid-lines,
             .${gender} .number-text,
             .${gender} .free-text,
+            .${gender} .site-link-text,
             .${gender} .id-background,
             .${gender} .toggled .number-square {
                 fill: var(--${gender}-dark);
@@ -378,6 +384,10 @@ class Card {
                                 <text class="column-header-text" transform="translate(234.08 158.97)">G</text>
                                 <text class="column-header-text" transform="translate(288.31 158.97)">O</text>
                             </g>
+                        </g>
+
+                        <g class="site-link-group">
+                            <text class="site-link-text" transform="translate(180 455.75)">www.genderrevealbingo.party</text>
                         </g>
 
                         <g class="id-group">
