@@ -166,11 +166,7 @@ const getGamesForUserId = async (userId) => {
     return result.rows.map(game => ({
         id: game.id,
         title: game.title,
-        createdAt: new Date(game.created_at).toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric'
-        }),
+        createdAt: game.created_at,
         playsRemaining: game.plays_remaining,
         lastEditInfo: game.last_edit_info,
         lastEditAt: game.last_edit_at

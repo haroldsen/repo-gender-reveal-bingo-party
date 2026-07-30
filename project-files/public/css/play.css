@@ -231,6 +231,8 @@ button, .button {
     width: 100%;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap: 20px;
 
     &.showing {
         display: flex;
@@ -328,7 +330,7 @@ button, .button {
     align-items: center;
     gap: 20px;
 
-    button {
+    button, .button {
         background-color: var(--darkest-purple);
     }
 

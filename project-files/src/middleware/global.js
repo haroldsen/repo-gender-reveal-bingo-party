@@ -29,7 +29,7 @@ const setHeadAssetsFunctionality = (res) => {
 
     // Converts a date to the format Wed, 6/17/2026
     res.locals.formatDate = (date) => {
-        return date.toLocaleDateString('en-US', { weekday: 'short', month: '2-digit', day: '2-digit', year: 'numeric' });
+        return date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
     };
 
     res.locals.renderStyles = () => {

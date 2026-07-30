@@ -1,20 +1,53 @@
 <%- include('../partials/header') %>
     <div class="about-game page">
+
+        <% 
+            // Parse the pre-formatted string back into a Date object
+            const created = new Date(game.createdAt);
+            const expireDate = new Date(created);
+            expireDate.setDate(created.getDate() + 30);
+            expireDate.setHours(23, 59, 59, 999);
+
+            const now = new Date();
+            const diffTime = expireDate - now;
+            const daysLeft = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        %>
+
         <div>
             <h1>About Game</h1>
             <p>Title: <%= game.title %></p>
             <p>Created On: <%= formatDate(game.createdAt) %></p>
-            <p>Last Edit: <%= game.lastEditInfo %> on <%= formatDate(game.lastEditAt) %></p>
+            <p class="game-expiration">
+                Expires On: <%= formatDate(expireDate) %>
+                <% if (daysLeft > 0) { %>
+                    <span>(<%= daysLeft %> <%= daysLeft === 1 ? 'day' : 'days' %> left)</span>
+                <% } else if (daysLeft === 0) { %>
+                    <span class="warning">(Expires today)</span>
+                <% } else { %>
+                    <span class="expired">(Expired)</span>
+                <% } %>
+            </p>
+            <p>Last Gender Edit: <%= game.lastEditInfo %> on <%= formatDate(game.lastEditAt) %></p>
+            <div class="view-gender-area">
+                <button class="view-gender-button" type="button">
+                    View Gender
+                </button>
+                <p>
+                    <%= game.gender %>
+                </p>
+            </div>
         </div>
 
         <div>
             <h2>Edit Game</h2>
-            <a class="button" href="/my-games/set-title/<%= game.id %>">
-                Set Title
-            </a>
-            <a class="button" href="/my-games/set-gender/<%= game.id %>">
-                Set Gender
-            </a>
+            <div class="button-row">
+                <a class="button" href="/my-games/set-title/<%= game.id %>">
+                    Set Title
+                </a>
+                <a class="button" href="/my-games/set-gender/<%= game.id %>">
+                    Set Gender
+                </a>
+            </div>
         </div>
         
         <div>
@@ -79,6 +112,15 @@
 
         import { flashBrowserMessage } from '/js/partials/browser-message.mjs';
         import { getCards } from '/js/card-data.mjs';
+
+        // VIEW GENDER BUTTON
+
+        document.querySelector('.view-gender-button').addEventListener('click', (e) => {
+            const viewGenderArea = e.target.closest('.view-gender-area');
+            if (viewGenderArea) {
+                viewGenderArea.classList.toggle('show');
+            }
+        });
 
         // COPY EDIT LINK
 

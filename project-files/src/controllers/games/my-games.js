@@ -48,6 +48,20 @@ const playGamePage = async (req, res) => {
         return res.redirect('/my-games');
     }
 
+    // HAS THE GAME EXPIRED? (30 days from createdAt)
+
+    const createdAt = new Date(gameToPlay.createdAt);
+    const expireDate = new Date(createdAt);
+    expireDate.setDate(createdAt.getDate() + 30);
+    
+    // Allow the game to be played until midnight of expiration day.
+    expireDate.setHours(23, 59, 59, 999);
+
+    if (new Date() > expireDate) {
+        req.flash('error', 'This game has expired and can no longer be played.');
+        return res.redirect('/my-games');
+    }
+
     // HAS THE GENDER BEEN SET TO BOY OR GIRL?
 
     if (gameToPlay.gender != 'BOY' && gameToPlay.gender != 'GIRL') {

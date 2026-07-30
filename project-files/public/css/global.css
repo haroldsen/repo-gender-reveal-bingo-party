@@ -143,9 +143,7 @@ button, .button {
     top: 0px;
     background-color: var(--purple);
     font-weight: bold;
-    padding: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 10px 15px;
     border-radius: 5px;
     border: none;
     font-size: 18px;
@@ -396,7 +394,7 @@ form a {
 
 .button-row {
     display: flex;
-    flex-direction: row;
+    flex-direction: row !important;
     justify-content: center;
     gap: 10px;
 }

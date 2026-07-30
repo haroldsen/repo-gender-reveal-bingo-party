@@ -45,6 +45,46 @@
                 }
             }
         }
+
+        /*
+        .edit-link-area {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            gap: 0;
+            border: solid black 1px;
+            border-radius: 5px;
+        */
+
+        .view-gender-area {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            border: solid black 1px;
+            border-radius: 5px;
+
+            button {
+                white-space: nowrap;
+
+                &:hover {
+                    top: 0;
+                }
+            }
+
+            p {
+                display: none;
+                width: 100%;
+                text-align: left;
+            }
+
+            &.show {
+                p {
+                    display: flex;
+                }
+            }
+        }
     }
 }
 

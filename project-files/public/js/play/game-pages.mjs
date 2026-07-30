@@ -52,13 +52,13 @@ function registerCardsPage(girlIds, boyIds) {
         <div class="page" id="get-ids-page">
             <div class="button-floor">
                 <button id="show-qr-button">SHOW QR CODE</button>
-                <button class="show-digital-card-instructions">About Digital Cards</button>
             </div>
             <div class="qr-code-div">
                 <img
                     src="../../images/qr-bingo-card.svg"
                     draggable="false"
                 >
+                <button class="show-digital-card-instructions">About Digital Cards</button>
             </div>
             <div class="id-input-section">
                 <div class="id-input-area">

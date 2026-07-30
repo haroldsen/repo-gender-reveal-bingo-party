@@ -11,22 +11,13 @@
                 name="gender"
                 required
             >
-                <option
-                    value="NONE"
-                    <%= (game.gender && game.gender.toUpperCase() === 'NONE') ? 'selected' : '' %>
-                >
+                <option value="NONE">
                     NONE
                 </option>
-                <option
-                    value="BOY"
-                    <%= (game.gender && game.gender.toUpperCase() === 'BOY') ? 'selected' : '' %>
-                >
+                <option value="BOY">
                     BOY
                 </option>
-                <option
-                    value="GIRL"
-                    <%= (game.gender && game.gender.toUpperCase() === 'GIRL') ? 'selected' : '' %>
-                >
+                <option value="GIRL">
                     GIRL
                 </option>
             </select>

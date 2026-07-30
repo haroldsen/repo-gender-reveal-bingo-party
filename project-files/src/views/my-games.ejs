@@ -4,13 +4,38 @@
         <ul id="my-games-list">
             <% if (games.length > 0) { %>
                 <% for( let index = 0; index < games.length; index ++ ) { %>
+
+                    <% 
+                        // Parse the pre-formatted string back into a Date object
+                        const created = new Date(games[index].createdAt);
+                        const expireDate = new Date(created);
+                        expireDate.setDate(created.getDate() + 30);
+                        expireDate.setHours(23, 59, 59, 999);
+
+                        const now = new Date();
+                        const diffTime = expireDate - now;
+                        const daysLeft = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                    %>
+
                     <li>
                         <div class="game-details">
                             <p class="game-title"><%= games[index].title %></p>
-                            <p>Last Edit: <%= games[index].lastEditInfo %> on <%= formatDate(games[index].lastEditAt) %></p>
+
+                            <p class="game-expiration">
+                                Expires On: <%= formatDate(expireDate) %>
+                                <% if (daysLeft > 0) { %>
+                                    <span>(<%= daysLeft %> <%= daysLeft === 1 ? 'day' : 'days' %> left)</span>
+                                <% } else if (daysLeft === 0) { %>
+                                    <span class="warning">(Expires today)</span>
+                                <% } else { %>
+                                    <span class="expired">(Expired)</span>
+                                <% } %>
+                            </p>
 
                             <div class="game-options">
-                                <a href="/my-games/play-game/<%= games[index].id %>" class="button">Launch Game</a>
+                                <% if (daysLeft >= 0) { %>
+                                    <a href="/my-games/play-game/<%= games[index].id %>" class="button">Launch Game</a>
+                                <% } %>
                                 <a href="/my-games/about-game/<%= games[index].id %>" class="button">About Game</a>
                             </div>
                         </div>
