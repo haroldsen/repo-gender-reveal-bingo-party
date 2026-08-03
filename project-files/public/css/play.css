@@ -11,6 +11,9 @@
     --red: #af0000;
     --green: #1daf00;
     --animation-speed-factor: 0.75s;
+    --base-gap-thin: 15px;
+    --base-gap: 25px;
+    --base-font: 20px;
 }
 
 @font-face {
@@ -25,7 +28,7 @@
 
 * {
     user-select: none;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
     text-align: center;
 }
 
@@ -35,13 +38,19 @@ h2 {
 
 p {
     line-height: 1.5;
+    font-size: var(--base-font);
+}
+
+label {
+    font-size: var(--base-font);
 }
 
 body {
     margin: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -63,18 +72,21 @@ body {
     align-items: center;
     justify-content: center;
     z-index: -1;
-}
 
-#screen > img {
-    height: 100%;
-    position: absolute;
-    z-index: 5;
-    user-select: none;
+    img {
+        min-height: 100vh;
+        min-width: 100vw;
+        object-fit: cover;
+        position: absolute;
+        z-index: 5;
+        user-select: none;
+    }
 }
 
 .logo {
     width: 75vw;
     max-width: 650px;
+    max-height: 40vh;
 }
 
 input {
@@ -88,31 +100,28 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+    max-height: 100%;
+    overflow-y: auto;
 
-.id-input-area {
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    max-width: 500px;
-}
+    .id-input-area {
+        display: flex;
+        flex-direction: row;
 
-.id-suggestions {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    width: 100%;
-    justify-content: center;
+        .id-suggestion {
+            margin: 0;
+            background-color: var(--darker-purple);
+            color: white;
+            font-size: var(--base-font);
+            padding: 10px 15px;
+        }
 
-    p {
-        margin: 0;
-        background-color: var(--darker-purple);
-        color: white;
-        font-size: 18px;
-        padding: 20px;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        border-radius: 0px 0px 15px 15px;
+        .boy-suggestion {
+            border-radius: 0px 15px 15px 0px;
+        }
+
+        .girl-suggestion {
+            border-radius: 15px 0px 0px 15px;
+        }
     }
 }
 
@@ -126,7 +135,7 @@ button, .button {
     padding-right: 25px;
     padding-left: 25px;
     border-radius: 50px;
-    font-size: 20px;
+    font-size: var(--base-font);
     position: relative;
     transition: ease 200ms;
     text-transform: uppercase;
@@ -205,50 +214,55 @@ button, .button {
     }
 }
 
-#intro-video-page {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
 #get-ids {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
-    width: 100%;
+    gap: var(--base-gap);
+    padding: var(--base-gap);
     background-color: white;
-    padding: 30px;
-    font-size: 20px;
     border-radius: 15px;
-    box-sizing: border-box;
-    box-shadow: 2px 2px 15px #1f0e2c;
 }
 
 .qr-code-div {
     display: none;
     width: 100%;
+    height: 100%;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    gap: 20px;
-
-    &.showing {
-        display: flex;
-    }
+    gap: var(--base-gap-thin);
 
     img {
-        width: 80%;
-        max-height: 70vh;
+        /* PREVENT OVERFLOW */
+        flex: 1 1 0;
+        min-height: 0;
+
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
     }
 }
 
 #get-ids-page {
+    display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100vw;
+    height: 100%;
+
+    &.show-qr {
+        .qr-code-div {
+            display: flex;
+        }
+
+        @media (max-width: 850px) {
+            .id-input-section {
+                display: none;
+            }
+        }
+    }
 }
 
 #play-bingo {
@@ -272,54 +286,29 @@ button, .button {
     gap: 20px;
 }
 
-.pulled-number-column {
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    .pulled-number-column-header {
-        background-color: var(--darkest-purple);
-        color: white;
-        /* font-size: 30px; */
-        height: 10%;
-    }
-
-    p {
-        width: 100%;
-        height: 6%;
-        /* padding-top: 8px;
-        padding-bottom: 4px; */
-        margin: 0;
-
-        &:nth-child(2n) {
-            background-color: white;
-        }
-    }
-}
-
 #new-number {
     display: flex;
 }
 
 .settings-container {
-    position: fixed;
-    top: 20px;
-    left: 20px;
+    z-index: 1000;
+    width: 50vw;
+    margin-right: 50vw;
+    height: fit-content;
+    padding: var(--base-gap-thin);
+    display: flex;
 
     &.open {
         .settings-panel {
             display: flex;
         }
-
-        & > button {
-            display: none;
-        }
     }
 }
 
 .settings-panel {
+    position: fixed;
+    top: var(--base-gap-thin);
+    left: var(--base-gap-thin);
     color: #fff;
     background-color: var(--darker-purple);
     padding: 25px;
@@ -342,11 +331,6 @@ button, .button {
 }
 
 #fullscreen-button {
-    img {
-        display: none;
-        width: 30px;
-    }
-
     p {
         display: flex;
         margin: 0;
@@ -385,7 +369,6 @@ button, .button {
 
     p {
         margin: 0;
-        font-size: 30px;
     }
 
     img {
@@ -403,34 +386,36 @@ button, .button {
             margin-top: 10px;
             margin-bottom: 10px;
         }
-
-        p {
-            font-size: 20px;
-        }
     }
 }
 
 #page-viewer {
     width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
+    height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    .page-area {
+        width: 100vw;
+        height: 100%;
+        padding: 0px var(--base-gap-thin);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
 }
 
 .button-floor {
-    position: fixed;
+    z-index: 500;
     width: 100vw;
-    left: 0;
-    bottom: 20px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 20px;
-    z-index: 100;
+    padding: var(--base-gap-thin);
+    gap: var(--base-gap-thin);
 }
 
 @keyframes fade-in {
@@ -442,19 +427,15 @@ button, .button {
     }
 }
 
-.big-warning {
-    position: fixed;
+.intro-video-page {
     top: 0;
     left: 0;
-    background-color: var(--lightest-purple);
+    position: fixed;
     width: 100vw;
     height: 100vh;
-    padding: 5vw;
-    z-index: 1000;
-
-    p {
-        width: 90vw;
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 video {
@@ -472,8 +453,12 @@ video {
 
 .close-intro-container {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: var(--base-gap-thin);
+    right: var(--base-gap-thin);
+
+    button {
+        z-index: 1500;
+    }
 }
 
 .digital-card-instructions {
@@ -570,19 +555,14 @@ video {
         position: fixed;
         bottom: 20px;
     }
-
-    #get-ids-page {
-        flex-direction: column-reverse;
-    }
-
-    .qr-code-div {
-        img {
-            max-height: 40vh;
-        }
-    }
 }
 
 @media (max-width: 1000px) {
+    :root {
+        --base-font: 15px;
+        --base-gap: 15px;
+    }
+
     #fullscreen-button {
         padding: 15px;
         display: flex;
@@ -598,34 +578,18 @@ video {
         }
     }
 
-    button, .button {
+    button, .button, .id-suggestion {
         padding: 10px;
         padding-right: 20px;
         padding-left: 20px;
-        font-size: 15px;
     }
 
     .button-row, .button-floor {
         gap: 15px;
     }
 
-    #get-ids {
-        gap: 20px;
-        padding: 25px;
-    }
-
-    .id-suggestions {
-        p {
-            padding: 15px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            font-size: 15px;
-        }
-    }
-
     input {
         padding: 8px;
-        font-size: 15px;
         width: 175px;
     }
 }
@@ -634,11 +598,6 @@ video {
     .button-floor {
         flex-direction: column;
         align-items: center;
-    }
-
-    #get-ids {
-        gap: 15px;
-        padding: 20px;
     }
 
     input {

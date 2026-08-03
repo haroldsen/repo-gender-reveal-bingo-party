@@ -100,8 +100,8 @@ function toggleFullscreen() {
 }
 
 function toggleQRCode() {
-    const qrCodeDiv = document.querySelector('.qr-code-div');
-    qrCodeDiv.classList.toggle('showing');
+    const getIdsPage = document.querySelector('#get-ids-page');
+    getIdsPage.classList.toggle('show-qr');
 }
 
 function switchToPage(content) {

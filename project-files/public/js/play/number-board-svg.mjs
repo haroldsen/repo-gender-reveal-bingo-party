@@ -166,7 +166,7 @@ const template = document.createElement('template');
 function getNumberBoardElement() {
     const numberBoardElement = document.createElement('div');
     numberBoardElement.innerHTML = boardSVG;
-    return numberBoardElement;
+    return numberBoardElement.querySelector('svg');
 }
 
 export { getNumberBoardElement };
