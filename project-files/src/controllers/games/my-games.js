@@ -1,4 +1,6 @@
 
+const price = process.env.PRICE_FOR_DISPLAY || '$';
+
 import { Router } from "express";
 
 import { validationResult } from "express-validator";
@@ -22,7 +24,8 @@ const myGamesPage = async (req, res) => {
 
     res.render('my-games', {
         title: 'My Games | Gender Reveal Bingo Party',
-        games: userGames
+        games: userGames,
+        price: price
     });
 }
 

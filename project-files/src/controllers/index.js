@@ -1,16 +1,22 @@
 
+const price = process.env.PRICE_FOR_DISPLAY || '$';
+
 // Route handlers for static pages
 
 const homePage = (req, res) => {
-    res.render('index', { title: 'Gender Reveal Bingo Party | Home', mainClass: 'index' });
-};
-
-const aboutPage = (req, res) => {
-    res.render('about', { title: 'About | Gender Reveal Bingo Party' });
+    res.render('index', {
+        title: 'Gender Reveal Bingo Party | Home',
+        mainClass: 'index',
+        price: price
+    });
 };
 
 const howToPage = (req, res) => {
-    res.render('how-to-host', { title: 'How to Host | Gender Reveal Bingo Party', mainClass: 'how-to-main' });
+    res.render('how-to-host', {
+        title: 'How to Host | Gender Reveal Bingo Party',
+        mainClass: 'how-to-main',
+        price: price
+    });
 };
 
 const contactUsPage = (req, res) => {
@@ -31,4 +37,11 @@ const testErrorPage = (req, res, next) => {
     next(err);
 };
 
-export { homePage, aboutPage, howToPage, contactUsPage, testErrorPage, introVideoPage, playableBingoCardPage };
+export {
+    homePage,
+    howToPage,
+    contactUsPage,
+    testErrorPage,
+    introVideoPage,
+    playableBingoCardPage
+};

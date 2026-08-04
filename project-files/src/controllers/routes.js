@@ -3,7 +3,6 @@ import { addDemoHeaders } from '../middleware/demo/headers.js';
 
 import {
     homePage,
-    aboutPage,
     howToPage,
     contactUsPage,
     introVideoPage,
@@ -40,7 +39,6 @@ router.use('/register', (req, res, next) => {
 
 // Home and basic pages
 router.get('/', homePage);
-router.get('/about', aboutPage);
 router.get('/contact-us', contactUsPage);
 router.get('/how-to', howToPage);
 router.get('/intro-video', introVideoPage);
