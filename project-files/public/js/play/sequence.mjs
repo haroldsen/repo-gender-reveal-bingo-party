@@ -174,6 +174,7 @@ export function getWinningSequence(winningGender, cardsInPlay, maxSequenceLength
 
     // Return the final sequence.
     return {
+        // sequence: [1],
         sequence: sequence,
         winningId: winningCombo.id
     };

@@ -2,6 +2,7 @@
 import { getCards } from "../card-data.mjs";
 import { getWinningSequence, getRandomNumber } from "./sequence.mjs";
 import {
+    forBestExperiencePage,
     landingPage,
     introVideoPage,
     registerCardsPage,
@@ -115,8 +116,8 @@ function noticeAnimationEnd() {
 function updateIdSuggestions(searchId) {
     boyIds = boyIds.filter(id => id != searchId);
     girlIds = girlIds.filter(id => id != searchId);
-    document.querySelector('.boy-suggestion').innerHTML = `BOY: ${boyIds[0] || 'USED ALL'}`;
-    document.querySelector('.girl-suggestion').innerHTML = `GIRL: ${girlIds[0] || 'USED ALL'}`;
+    document.querySelector('.boy-suggestion').innerHTML = `BOY: ${boyIds[0] || 'ALL USED'}`;
+    document.querySelector('.girl-suggestion').innerHTML = `GIRL: ${girlIds[0] || 'ALL USED'}`;
 }
 
 function flashMessage(message, colorClass) {
@@ -158,6 +159,13 @@ async function saveWinningCardToDatabase(gameId, winningData) {
 // CORE FUNCTIONS
 //------------------------------------------------------------------------
 
+function showForBestExperiencePage() {
+    switchToPage(forBestExperiencePage());
+    document.querySelector('.go-to-game').addEventListener('click', () => {
+        showLandingPage();
+    });
+}
+
 function showLandingPage() {
     switchToPage(landingPage());
     document.querySelector('.play-intro').addEventListener('click', () => {
@@ -181,6 +189,12 @@ function goToIntroVideo() {
 function goToRegisterCards() {
     switchToPage(registerCardsPage(girlIds, boyIds));
     backgroundMusic.play();
+    document.querySelector('.boy-suggestion').addEventListener('click', (e) => {
+        document.querySelector('.id-input').value = e.target.innerHTML.slice(-4);
+    });
+    document.querySelector('.girl-suggestion').addEventListener('click', (e) => {
+        document.querySelector('.id-input').value = e.target.innerHTML.slice(-4);
+    });
     document.querySelector('#get-ids').addEventListener('submit', (e) => {
         e.preventDefault();
         tryIdSubmit();
@@ -352,7 +366,7 @@ function goToLateBingo() {
 // INITIALIZE PROGRAM
 //------------------------------------------------------------------------
 
-showLandingPage();
+showForBestExperiencePage();
 
 window.addEventListener('beforeunload', (e) => {
     const message = "Are you sure you want to leave? Your unsaved changes may be lost.";

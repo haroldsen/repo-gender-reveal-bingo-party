@@ -25,6 +25,22 @@ function updatePulledNumberBoard(pulledNumbers) {
 
 
 
+function forBestExperiencePage() {
+    return `
+        <div class="page-area">
+            <div class="pop-up">
+                <h2>For Best Experience</h2>
+                <p>Some browsers (usually smart phones) disable the fullscreen feature.  This can make our game player look clunky or crowded.</p>
+                <p>For the best experience, we recommend adding our site to your home screen (to allow the fullscreen feature).</p>
+                <a class="button" href="/how-to#add-to-home-screen">Add To Home Screen</a>
+            </div>
+        </div>
+        <div class="button-floor">
+            <button class="go-to-game">Proceed to Game</button>
+        </div>
+    `;
+}
+
 function landingPage() {
     return `
         <div class="page-area">
@@ -192,13 +208,14 @@ function congratsPage(winningGender) {
                 <h2>Congratulations!</h2>
                 <img src="../../images/announce-${winningGender.toLowerCase()}.svg">
                 <p>Thank you for letting us be part of your big reveal!</p>
-                <a href="/my-games">Return to Main Site</a>
+                <a class="button" href="/my-games">Return to Main Site</a>
             </div>
         </div>
     `;
 }
 
 export {
+    forBestExperiencePage,
     landingPage,
     introVideoPage,
     registerCardsPage,
